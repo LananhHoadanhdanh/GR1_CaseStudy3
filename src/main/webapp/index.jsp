@@ -12,6 +12,6 @@
   </head>
   <body>
 Nhánh của Rei
-  nhánh của Duy
+nhánh của Duy
   </body>
 </html>
