@@ -26,7 +26,7 @@
         </tr>
         <c:forEach var="product" items="${products}">
             <tr>
-                            <td><img src="<c:out value="${product.image}"/>" alt=""></td>
+                <td><img src="<c:out value="${product.image}"/>" alt=""></td>
                 <td><c:out value="${product.categoryId}"/></td>
                 <td><c:out value="${product.name}"/></td>
                 <td><c:out value="${product.price}"/></td>
