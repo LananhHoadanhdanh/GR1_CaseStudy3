@@ -1,6 +1,7 @@
 package gr1_cs3.model;
 
 public class Member {
+    private int id;
     private String username;
     private String password;
     private String name;
@@ -12,7 +13,8 @@ public class Member {
     public Member() {
     }
 
-    public Member(String username, String password, String name, String phone, String email, String address, int roleId) {
+    public Member(int id, String username, String password, String name, String phone, String email, String address, int roleId) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -20,6 +22,14 @@ public class Member {
         this.email = email;
         this.address = address;
         this.roleId = roleId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
