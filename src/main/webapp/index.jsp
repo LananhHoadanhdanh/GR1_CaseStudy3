@@ -12,6 +12,5 @@
   </head>
   <body>
 Nhánh của Rei
-long
   </body>
 </html>
