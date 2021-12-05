@@ -25,7 +25,7 @@
     </tr>
     <c:forEach var="product" items="${products}">
       <tr>
-        <td><c:out value="${product.img}"/></td>
+        <td><cgit:out value="${product.img}"/></td>
         <td><c:out value="${product.category}"/></td>
         <td><c:out value="${product.name}"/></td>
         <td><c:out value="${product.price}"/></td>
