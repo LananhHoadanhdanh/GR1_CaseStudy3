@@ -307,7 +307,7 @@ Lower Header Section
                                     <div class="caption cntr">
                                         <p>Manicure & Pedicure</p>
                                         <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="product_detail.jsp" title="add to cart 1000"> Add to cart </a></h4>
+                                        <h4><a class="shopBtn" href="product/product_detail.jsp" title="add to cart"> Add to cart1000</a></h4>
                                         <div class="actionList">
                                             <a class="pull-left" href="#">Add to Wish List </a>
                                             <a class="pull-left" href="#"> Add to Compare </a>
