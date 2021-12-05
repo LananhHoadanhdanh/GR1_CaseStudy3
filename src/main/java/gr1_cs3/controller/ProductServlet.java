@@ -41,9 +41,10 @@ public class ProductServlet extends HttpServlet {
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 //        String name = request.getParameter("name");
 //        if (name == null) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/demo.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
             List<Product> products = productService.printAll();
             request.setAttribute("products", products);
+            request.setAttribute("product", products.get(0));
             requestDispatcher.forward(request, response);
 //        }
 //        else {
