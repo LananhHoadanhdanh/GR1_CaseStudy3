@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: z
-  Date: 12/5/2021
-  Time: 4:13 PM
-  To change this template use File | Settings | File Templates.
---%>
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -50,7 +44,8 @@
                 <a href="#"><span class="icon-user"></span> My Account</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
+                <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
+                        class="badge badge-warning"> $448.42</span></a>
             </div>
         </div>
     </div>
@@ -60,7 +55,7 @@
 Lower Header Section
 -->
 <div class="container">
-    <div id="gototop"> </div>
+    <div id="gototop"></div>
     <header id="header">
         <div class="row">
             <div class="span4">
@@ -79,7 +74,7 @@ Lower Header Section
                 </div>
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) :  0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
                 <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
                 <span class="btn btn-mini">&pound;</span>
@@ -101,7 +96,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="index.html">Home	</a></li>
+                        <li class=""><a href="index.html">Home </a></li>
                         <li class=""><a href="list-view.html">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
@@ -113,7 +108,8 @@ Lower Header Section
                     </form>
                     <ul class="nav pull-right">
                         <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span> Login <b class="caret"></b></a>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span>
+                                Login <b class="caret"></b></a>
                             <div class="dropdown-menu">
                                 <form class="form-horizontal loginFrm">
                                     <div class="control-group">
@@ -154,24 +150,28 @@ Lower Header Section
                     <tr>
                         <th>Product</th>
                         <th>Description</th>
-                        <th>	Ref. </th>
+                        <th> Ref.</th>
                         <th>Avail.</th>
                         <th>Unit price</th>
-                        <th>Qty </th>
+                        <th>Qty</th>
                         <th>Total</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><img width="100" src="assets/img/e.jpg" alt=""></td>
-                        <td>Items name here<br>Carate : 22<br>Model : n/a</td>
-                        <td> - </td>
-                        <td><span class="shopBtn"><span class="icon-ok"></span></span> </td>
+                        <td><img width="100" src="../productImg/img1.jpg" alt=""></td>
+                        <td>jkj<br>Carate : 22<br>Model : n/a</td>
+                        <td> -</td>
+                        <td><span class="shopBtn"><span class="icon-ok"></span></span></td>
                         <td>$50.00</td>
                         <td>
-                            <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="2">
+                            <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons"
+                                   size="16" type="text" value="2">
                             <div class="input-append">
-                                <button class="btn btn-mini" type="button">-</button><button class="btn btn-mini" type="button"> + </button><button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span></button>
+                                <button class="btn btn-mini" type="button">-</button>
+                                <button class="btn btn-mini" type="button"> +</button>
+                                <button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span>
+                                </button>
                             </div>
                         </td>
                         <td>$100.00</td>
@@ -179,35 +179,40 @@ Lower Header Section
                     <tr>
                         <td><img width="100" src="assets/img/f.jpg" alt=""></td>
                         <td>Item names and brief details<br>Carate:24 <br>Model:HBK24</td>
-                        <td> - </td>
-                        <td><span class="shopBtn"><span class="icon-ok"></span></span> </td>
+                        <td> -</td>
+                        <td><span class="shopBtn"><span class="icon-ok"></span></span></td>
                         <td>$348.42</td>
                         <td>
                             <input class="span1" style="max-width:34px" placeholder="1" size="16" type="text">
                             <div class="input-append">
-                                <button class="btn btn-mini" type="button">-</button><button class="btn btn-mini" type="button">+</button><button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span></button>
+                                <button class="btn btn-mini" type="button">-</button>
+                                <button class="btn btn-mini" type="button">+</button>
+                                <button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span>
+                                </button>
                             </div>
                         </td>
                         <td>$348.42</td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="alignR">Total products:	</td>
+                        <td colspan="6" class="alignR">Total products:</td>
                         <td> $448.42</td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="alignR">Total products:	</td>
+                        <td colspan="6" class="alignR">Total products:</td>
                         <td> $448.42</td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="alignR">Total products:	</td>
+                        <td colspan="6" class="alignR">Total products:</td>
                         <td> $448.42</td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="alignR">Total products:	</td>
+                        <td colspan="6" class="alignR">Total products:</td>
                         <td class="label label-primary"> $448.42</td>
                     </tr>
                     </tbody>
-                </table><br/>
+
+                </table>
+                <br/>
 
 
                 <table class="table table-bordered">
@@ -226,7 +231,9 @@ Lower Header Section
                 </table>
                 <table class="table table-bordered">
                     <tbody>
-                    <tr><td>ESTIMATE YOUR SHIPPING & TAXES</td></tr>
+                    <tr>
+                        <td>ESTIMATE YOUR SHIPPING & TAXES</td>
+                    </tr>
                     <tr>
                         <td>
                             <form class="form-horizontal">
@@ -252,8 +259,10 @@ Lower Header Section
                     </tr>
                     </tbody>
                 </table>
-                <a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
-                <a href="login.html" class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
+                <a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
+                    Shopping </a>
+                <a href="login.html" class="shopBtn btn-large pull-right">Next <span
+                        class="icon-arrow-right"></span></a>
 
             </div>
         </div>
