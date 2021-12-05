@@ -261,56 +261,7 @@
 <!-- Feature End-->
 
 <!-- Category Start-->
-<div class="category">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="category-item ch-400">
-                    <img src="img/category-3.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="category-item ch-250">
-                    <img src="img/category-4.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-                <div class="category-item ch-150">
-                    <img src="img/category-5.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="category-item ch-150">
-                    <img src="img/category-6.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-                <div class="category-item ch-250">
-                    <img src="img/category-7.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="category-item ch-400">
-                    <img src="img/category-8.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- Category End-->
 
 <!-- Call to Action Start -->
@@ -335,6 +286,8 @@
             <h1>Featured Product</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
+            <c:forEach var="product" items="${products}">
+
             <div class="col-lg-3">
                 <div class="product-item">
                     <div class="product-title">
@@ -347,7 +300,6 @@
                             <i class="fa fa-star"></i>
                         </div>
                     </div>
-                    <c:forEach var="product" items="${products}">
 <%--                        <tr>--%>
 <%--                            <td></td>--%>
 <%--                            <td><c:out value="${product.categoryId}"/></td>--%>
@@ -365,7 +317,6 @@
                                 <a href="#"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
-                    </c:forEach>
                     <div class="product-image">
                         <a href="product-detail.html">
                             <img src="img/img1.jpg" alt="Product Image">
@@ -382,6 +333,8 @@
                     </div>
                 </div>
             </div>
+            </c:forEach>
+
             <div class="col-lg-3">
                 <div class="product-item">
                     <div class="product-title">
