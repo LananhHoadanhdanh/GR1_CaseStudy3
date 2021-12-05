@@ -1,4 +1,10 @@
+<%--<%@ page language="java" contentType="text/html; charset=UTF-8"--%>
+<%--         pageEncoding="UTF-8" %>--%>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <html lang="en">
     <head>
     <meta charset="utf-8">
@@ -341,6 +347,25 @@
                             <i class="fa fa-star"></i>
                         </div>
                     </div>
+                    <c:forEach var="product" items="${products}">
+<%--                        <tr>--%>
+<%--                            <td></td>--%>
+<%--                            <td><c:out value="${product.categoryId}"/></td>--%>
+<%--                            <td><c:out value="${product.name}"/></td>--%>
+<%--                            <td><c:out value="${product.price}"/></td>--%>
+<%--                            <td><c:out value="${product.quantity}"/></td>--%>
+<%--                        </tr>--%>
+                        <div class="product-image">
+                            <a href="product-detail.html">
+                                <img src="<c:out value="${product.image}"/>" alt="">
+                            </a>
+                            <div class="product-action">
+                                <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                <a href="#"><i class="fa fa-heart"></i></a>
+                                <a href="#"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                    </c:forEach>
                     <div class="product-image">
                         <a href="product-detail.html">
                             <img src="img/img1.jpg" alt="Product Image">
