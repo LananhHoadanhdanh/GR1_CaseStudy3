@@ -23,9 +23,9 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "l":
+            case "addToCart":
                 try {
-                    ashowList(request, response);
+                    addToCart(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -41,9 +41,10 @@ public class ProductServlet extends HttpServlet {
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 //        String name = request.getParameter("name");
 //        if (name == null) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/demo.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
             List<Product> products = productService.printAll();
             request.setAttribute("products", products);
+            request.setAttribute("product", products.get(0));
             requestDispatcher.forward(request, response);
 //        }
 //        else {
@@ -54,21 +55,11 @@ public class ProductServlet extends HttpServlet {
 //            requestDispatcher.forward(request, response);
 //        }
     }
-    private void ashowList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-//        String name = request.getParameter("name");
-//        if (name == null) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("a.jsp");
+    private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("cart.jsp");
             List<Product> products = productService.printAll();
             request.setAttribute("products", products);
             requestDispatcher.forward(request, response);
-//        }
-//        else {
-//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
-//            List<Product> listProduct = new ArrayList<>();
-//            listProduct = productService.findByName(name);
-//            request.setAttribute("listProduct", listProduct);
-//            requestDispatcher.forward(request, response);
-//        }
     }
 
     @Override
