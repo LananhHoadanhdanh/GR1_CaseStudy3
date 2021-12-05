@@ -1,798 +1,517 @@
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8"--%>
-<%--         pageEncoding="UTF-8" %>--%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <html lang="en">
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="utf-8">
-    <title>E Store - eCommerce HTML Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="eCommerce HTML Template Free Download" name="keywords">
-    <meta content="eCommerce HTML Template Free Download" name="description">
+    <title>Twitter Bootstrap shopping cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- Customize styles -->
+    <link href="style.css" rel="stylesheet"/>
+    <!-- font awesome styles -->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!--[if IE 7]>
+    <link href="css/font-awesome-ie7.min.css" rel="stylesheet">
+    <![endif]-->
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
-
-    <!-- CSS Libraries -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="lib/slick/slick.css" rel="stylesheet">
-    <link href="lib/slick/slick-theme.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
 </head>
 <body>
-<div class="top-bar">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <i class="fa fa-envelope"></i>
-                support@email.com
-            </div>
-            <div class="col-sm-6">
-                <i class="fa fa-phone-alt"></i>
-                +012-345-6789
+<!--
+	Upper Header Section
+-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="topNav">
+        <div class="container">
+            <div class="alignR">
+                <div class="pull-left socialNw">
+                    <a href="#"><span class="icon-twitter"></span></a>
+                    <a href="#"><span class="icon-facebook"></span></a>
+                    <a href="#"><span class="icon-youtube"></span></a>
+                    <a href="#"><span class="icon-tumblr"></span></a>
+                </div>
+                <a class="active" href="index.html"> <span class="icon-home"></span> Home</a>
+                <a href="#"><span class="icon-user"></span> My Account</a>
+                <a href="register.html"><span class="icon-edit"></span> Free Register </a>
+                <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+                <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
             </div>
         </div>
     </div>
 </div>
-<!-- Top bar End -->
 
-<!-- Nav Bar Start -->
-<div class="nav">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a href="#" class="navbar-brand">MENU</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav mr-auto">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="product-list.html" class="nav-item nav-link">Products</a>
-                    <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-                    <a href="cart.html" class="nav-item nav-link">Cart</a>
-                    <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                    <a href="my-account.html" class="nav-item nav-link">My Account</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                        <div class="dropdown-menu">
-                            <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                            <a href="login.html" class="dropdown-item">Login & Register</a>
-                            <a href="contact.html" class="dropdown-item">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
-                        </div>
-                    </div>
+<!--
+Lower Header Section
+-->
+<div class="container">
+    <div id="gototop"> </div>
+    <header id="header">
+        <div class="row">
+            <div class="span4">
+                <h1>
+                    <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+                        <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
+                    </a>
+                </h1>
+            </div>
+            <div class="span4">
+                <div class="offerNoteWrapper">
+                    <h1 class="dotmark">
+                        <i class="icon-cut"></i>
+                        Twitter Bootstrap shopping cart HTML template is available @ $14
+                    </h1>
                 </div>
             </div>
-        </nav>
-    </div>
-</div>
-<!-- Nav Bar End -->
-
-<!-- Bottom Bar Start -->
-<div class="bottom-bar">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-3">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="img/logo.png" alt="Logo">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="user">
-                    <a href="wishlist.html" class="btn wishlist">
-                        <i class="fa fa-heart"></i>
-                        <span>(0)</span>
-                    </a>
-                    <a href="cart.html" class="btn cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
-                    </a>
-                </div>
+            <div class="span4 alignR">
+                <p><br> <strong> Support (24/7) :  0800 1234 678 </strong><br><br></p>
+                <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
+                <span class="btn btn-warning btn-mini">$</span>
+                <span class="btn btn-mini">&pound;</span>
+                <span class="btn btn-mini">&euro;</span>
             </div>
         </div>
-    </div>
-</div>
-<!-- Bottom Bar End -->
+    </header>
 
-<!-- Main Slider Start -->
-<div class="header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <nav class="navbar bg-light">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-home"></i>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Best Selling</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-plus-square"></i>New Arrivals</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
+    <!--
+    Navigation Bar Section
+    -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="index.html">Home	</a></li>
+                        <li class=""><a href="list-view.html">List View</a></li>
+                        <li class=""><a href="grid-view.html">Grid View</a></li>
+                        <li class=""><a href="three-col.html">Three Column</a></li>
+                        <li class=""><a href="four-col.html">Four Column</a></li>
+                        <li class=""><a href="general.html">General Content</a></li>
+                    </ul>
+                    <form action="#" class="navbar-search pull-left">
+                        <input type="text" placeholder="Search" class="search-query span2">
+                    </form>
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span> Login <b class="caret"></b></a>
+                            <div class="dropdown-menu">
+                                <form class="form-horizontal loginFrm">
+                                    <div class="control-group">
+                                        <input type="text" class="span2" id="inputEmail" placeholder="Email">
+                                    </div>
+                                    <div class="control-group">
+                                        <input type="password" class="span2" id="inputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="checkbox">
+                                            <input type="checkbox"> Remember me
+                                        </label>
+                                        <button type="submit" class="shopBtn btn-block">Sign in</button>
+                                    </div>
+                                </form>
+                            </div>
                         </li>
                     </ul>
-                </nav>
-            </div>
-            <div class="col-md-6">
-                <div class="header-slider normal-slider">
-                    <div class="header-slider-item">
-                        <img src="img/slider-1.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Some text goes here that describes the image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="header-slider-item">
-                        <img src="img/slider-2.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Some text goes here that describes the image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="header-slider-item">
-                        <img src="img/slider-3.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Some text goes here that describes the image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="header-img">
-                    <div class="img-item">
-                        <img src="img/category-1.jpg" />
-                        <a class="img-text" href="">
-                            <p>Some text goes here that describes the image</p>
-                        </a>
-                    </div>
-                    <div class="img-item">
-                        <img src="img/category-2.jpg" />
-                        <a class="img-text" href="">
-                            <p>Some text goes here that describes the image</p>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Main Slider End -->
-
-<!-- Brand Start -->
-<div class="brand">
-    <div class="container-fluid">
-        <div class="brand-slider">
-            <div class="brand-item"><img src="img/brand-1.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-2.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-3.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-4.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-5.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-6.png" alt=""></div>
-        </div>
-    </div>
-</div>
-<!-- Brand End -->
-
-<!-- Feature Start-->
-<div class="feature">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fab fa-cc-mastercard"></i>
-                    <h2>Secure Payment</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
+    <!--
+    Body Section
+    -->
+    <div class="row">
+        <div id="sidebar" class="span3">
+            <div class="well well-small">
+                <ul class="nav nav-list">
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Fashion</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Watches</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Fine Jewelry</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Fashion Jewelry</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Engagement & Wedding</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Men's Jewelry</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Vintage & Antique</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Loose Diamonds </a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Loose Beads</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>See All Jewelry & Watches</a></li>
+                    <li style="border:0"> &nbsp;</li>
+                    <li> <a class="totalInCart" href="cart.html"><strong>Total Amount  <span class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a></li>
+                </ul>
             </div>
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fa fa-truck"></i>
-                    <h2>Worldwide Delivery</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fa fa-sync-alt"></i>
-                    <h2>90 Days Return</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fa fa-comments"></i>
-                    <h2>24/7 Support</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Feature End-->
 
-<!-- Category Start-->
-
-<!-- Category End-->
-
-<!-- Call to Action Start -->
-<div class="call-to-action">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <h1>call us for any queries</h1>
+            <div class="well well-small alert alert-warning cntr">
+                <h2>50% Discount</h2>
+                <p>
+                    only valid for online order. <br><br><a class="defaultBtn" href="#">Click here </a>
+                </p>
             </div>
-            <div class="col-md-6">
-                <a href="tel:0123456789">+012-345-6789</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Call to Action End -->
+            <div class="well well-small" ><a href="#"><img src="assets/img/paypal.jpg" alt="payment method paypal"></a></div>
 
-<!-- Featured Product Start -->
-<div class="featured-product product">
-    <div class="container-fluid">
-        <div class="section-header">
-            <h1>Featured Product</h1>
-        </div>
-        <div class="row align-items-center product-slider product-slider-4">
-            <c:forEach var="product" items="${products}">
-
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+            <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
+            <br>
+            <br>
+            <ul class="nav nav-list promowrapper">
+                <li>
+                    <div class="thumbnail">
+                        <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                        <img src="assets/img/bootstrap-ecommerce-templates.png" alt="bootstrap ecommerce templates">
+                        <div class="caption">
+                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span></h4>
                         </div>
                     </div>
-<%--                        <tr>--%>
-<%--                            <td></td>--%>
-<%--                            <td><c:out value="${product.categoryId}"/></td>--%>
-<%--                            <td><c:out value="${product.name}"/></td>--%>
-<%--                            <td><c:out value="${product.price}"/></td>--%>
-<%--                            <td><c:out value="${product.quantity}"/></td>--%>
-<%--                        </tr>--%>
-                        <div class="product-image">
-                            <a href="product-detail.html">
-                                <img src="<c:out value="${product.image}"/>" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                                <a href="#"><i class="fa fa-search"></i></a>
+                </li>
+                <li style="border:0"> &nbsp;</li>
+                <li>
+                    <div class="thumbnail">
+                        <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                        <img src="assets/img/shopping-cart-template.png" alt="shopping cart template">
+                        <div class="caption">
+                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span></h4>
+                        </div>
+                    </div>
+                </li>
+                <li style="border:0"> &nbsp;</li>
+                <li>
+                    <div class="thumbnail">
+                        <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                        <img src="assets/img/bootstrap-template.png" alt="bootstrap template">
+                        <div class="caption">
+                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span></h4>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="span9">
+            <div class="well np">
+                <div id="myCarousel" class="carousel slide homCar">
+                    <div class="carousel-inner">
+                        <div class="item">
+                            <img style="width:100%" src="assets/img/bootstrap_free-ecommerce.png" alt="bootstrap ecommerce templates">
+                            <div class="carousel-caption">
+                                <h4>Bootstrap shopping cart</h4>
+                                <p><span>Very clean simple to use</span></p>
                             </div>
                         </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/img1.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
+                        <div class="item">
+                            <img style="width:100%" src="assets/img/carousel1.png" alt="bootstrap ecommerce templates">
+                            <div class="carousel-caption">
+                                <h4>Bootstrap Ecommerce template</h4>
+                                <p><span>Highly Google seo friendly</span></p>
+                            </div>
+                        </div>
+                        <div class="item active">
+                            <img style="width:100%" src="assets/img/carousel3.png" alt="bootstrap ecommerce templates">
+                            <div class="carousel-caption">
+                                <h4>Twitter Bootstrap cart</h4>
+                                <p><span>Very easy to integrate and expand.</span></p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img style="width:100%" src="assets/img/bootstrap-templates.png" alt="bootstrap templates">
+                            <div class="carousel-caption">
+                                <h4>Bootstrap templates integration</h4>
+                                <p><span>Compitable to many more opensource cart</span></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
                 </div>
             </div>
-            </c:forEach>
+            <!--
+            New Products
+            -->
+            <div class="well well-small">
+                <h3>New Products </h3>
+                <hr class="soften"/>
+                <div class="row-fluid">
+                    <div id="newProductCar" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <ul class="thumbnails">
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a href="#" class="tag"></a>
+                                            <a href="product_details.html"><img src="assets/img/bootstrap-ring.png" alt="bootstrap-ring"></a>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a href="#" class="tag"></a>
+                                            <a  href="product_details.html"><img src="assets/img/i.jpg" alt=""></a>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a href="#" class="tag"></a>
+                                            <a  href="product_details.html"><img src="assets/img/g.jpg" alt=""></a>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a  href="product_details.html"><img src="assets/img/s.png" alt=""></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <ul class="thumbnails">
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a  href="product_details.html"><img src="assets/img/i.jpg" alt=""></a>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a  href="product_details.html"><img src="assets/img/f.jpg" alt=""></a>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a  href="product_details.html"><img src="assets/img/h.jpg" alt=""></a>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                            <a  href="product_details.html"><img src="assets/img/j.jpg" alt=""></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#newProductCar" data-slide="prev">&lsaquo;</a>
+                        <a class="right carousel-control" href="#newProductCar" data-slide="next">&rsaquo;</a>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <ul class="thumbnails">
+                        <li class="span4">
+                            <div class="thumbnail">
 
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/img2.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
+                                <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                <a href="product_details.html"><img src="assets/img/b.jpg" alt=""></a>
+                                <div class="caption cntr">
+                                    <p>Manicure & Pedicure</p>
+                                    <p><strong> $22.00</strong></p>
+                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+                                    <div class="actionList">
+                                        <a class="pull-left" href="#">Add to Wish List </a>
+                                        <a class="pull-left" href="#"> Add to Compare </a>
+                                    </div>
+                                    <br class="clr">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="span4">
+                            <div class="thumbnail">
+                                <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                <a href="product_details.html"><img src="assets/img/c.jpg" alt=""></a>
+                                <div class="caption cntr">
+                                    <p>Manicure & Pedicure</p>
+                                    <p><strong> $22.00</strong></p>
+                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+                                    <div class="actionList">
+                                        <a class="pull-left" href="#">Add to Wish List </a>
+                                        <a class="pull-left" href="#"> Add to Compare </a>
+                                    </div>
+                                    <br class="clr">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="span4">
+                            <div class="thumbnail">
+                                <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                <a href="product_details.html"><img src="assets/img/a.jpg" alt=""></a>
+                                <div class="caption cntr">
+                                    <p>Manicure & Pedicure</p>
+                                    <p><strong> $22.00</strong></p>
+                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+                                    <div class="actionList">
+                                        <a class="pull-left" href="#">Add to Wish List </a>
+                                        <a class="pull-left" href="#"> Add to Compare </a>
+                                    </div>
+                                    <br class="clr">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/img3.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/img4.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/product-5.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Featured Product End -->
-
-<!-- Newsletter Start -->
-<div class="newsletter">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <h1>Subscribe Our Newsletter</h1>
-            </div>
-            <div class="col-md-6">
-                <div class="form">
-                    <input type="email" value="Your email here">
-                    <button>Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Newsletter End -->
-
-<!-- Recent Product Start -->
-<div class="recent-product product">
-    <div class="container-fluid">
-        <div class="section-header">
-            <h1>Recent Product</h1>
-        </div>
-        <div class="row align-items-center product-slider product-slider-4">
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/product-6.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/product-7.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/product-8.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/product-9.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="img/product-10.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Recent Product End -->
-
-<!-- Review Start -->
-<div class="review">
-    <div class="container-fluid">
-        <div class="row align-items-center review-slider normal-slider">
-            <div class="col-md-6">
-                <div class="review-slider-item">
-                    <div class="review-img">
-                        <img src="img/review-1.jpg" alt="Image">
-                    </div>
-                    <div class="review-text">
-                        <h2>Customer Name</h2>
-                        <h3>Profession</h3>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae nunc eget leo finibus luctus et vitae lorem
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="review-slider-item">
-                    <div class="review-img">
-                        <img src="img/review-2.jpg" alt="Image">
-                    </div>
-                    <div class="review-text">
-                        <h2>Customer Name</h2>
-                        <h3>Profession</h3>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae nunc eget leo finibus luctus et vitae lorem
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="review-slider-item">
-                    <div class="review-img">
-                        <img src="img/review-3.jpg" alt="Image">
-                    </div>
-                    <div class="review-text">
-                        <h2>Customer Name</h2>
-                        <h3>Profession</h3>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae nunc eget leo finibus luctus et vitae lorem
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Review End -->
-
-<!-- Footer Start -->
-<div class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Get in Touch</h2>
-                    <div class="contact-info">
-                        <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                        <p><i class="fa fa-envelope"></i>email@example.com</p>
-                        <p><i class="fa fa-phone"></i>+123-456-7890</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Follow Us</h2>
-                    <div class="contact-info">
-                        <div class="social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Company Info</h2>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
+            <!--
+            Featured Products
+            -->
+            <div class="well well-small">
+                <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span class="icon-plus"></span></a> Featured Products  </h3>
+                <hr class="soften"/>
+                <div class="row-fluid">
+                    <ul class="thumbnails">
+                        <li class="span4">
+                            <div class="thumbnail">
+                                <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                <a  href="product_details.html"><img src="assets/img/d.jpg" alt=""></a>
+                                <div class="caption">
+                                    <h5>Manicure & Pedicure</h5>
+                                    <h4>
+                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span class="icon-zoom-in"></span></a>
+                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
+                                        <span class="pull-right">$22.00</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="span4">
+                            <div class="thumbnail">
+                                <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                <a  href="product_details.html"><img src="assets/img/e.jpg" alt=""></a>
+                                <div class="caption">
+                                    <h5>Manicure & Pedicure</h5>
+                                    <h4>
+                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span class="icon-zoom-in"></span></a>
+                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
+                                        <span class="pull-right">$22.00</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="span4">
+                            <div class="thumbnail">
+                                <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                <a  href="product_details.html"><img src="assets/img/f.jpg" alt=""/></a>
+                                <div class="caption">
+                                    <h5>Manicure & Pedicure</h5>
+                                    <h4>
+                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span class="icon-zoom-in"></span></a>
+                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
+                                        <span class="pull-right">$22.00</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Purchase Info</h2>
-                    <ul>
-                        <li><a href="#">Pyament Policy</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                    </ul>
-                </div>
+            <div class="well well-small">
+                <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
+                Popular Products
             </div>
-        </div>
-
-        <div class="row payment align-items-center">
-            <div class="col-md-6">
-                <div class="payment-method">
-                    <h2>We Accept:</h2>
-                    <img src="img/payment-method.png" alt="Payment Method" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="payment-security">
-                    <h2>Secured By:</h2>
-                    <img src="img/godaddy.svg" alt="Payment Security" />
-                    <img src="img/norton.svg" alt="Payment Security" />
-                    <img src="img/ssl.svg" alt="Payment Security" />
-                </div>
+            <hr>
+            <div class="well well-small">
+                <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
+                Best selling Products
             </div>
         </div>
     </div>
-</div>
-<!-- Footer End -->
+    <!--
+    Clients
+    -->
+    <section class="our_client">
+        <hr class="soften"/>
+        <h4 class="title cntr"><span class="text">Manufactures</span></h4>
+        <hr class="soften"/>
+        <div class="row">
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/1.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/2.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/3.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/4.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/5.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/6.png"></a>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer Bottom Start -->
-<div class="footer-bottom">
+    <!--
+    Footer
+    -->
+    <footer class="footer">
+        <div class="row-fluid">
+            <div class="span2">
+                <h5>Your Account</h5>
+                <a href="#">YOUR ACCOUNT</a><br>
+                <a href="#">PERSONAL INFORMATION</a><br>
+                <a href="#">ADDRESSES</a><br>
+                <a href="#">DISCOUNT</a><br>
+                <a href="#">ORDER HISTORY</a><br>
+            </div>
+            <div class="span2">
+                <h5>Iinformation</h5>
+                <a href="contact.html">CONTACT</a><br>
+                <a href="#">SITEMAP</a><br>
+                <a href="#">LEGAL NOTICE</a><br>
+                <a href="#">TERMS AND CONDITIONS</a><br>
+                <a href="#">ABOUT US</a><br>
+            </div>
+            <div class="span2">
+                <h5>Our Offer</h5>
+                <a href="#">NEW PRODUCTS</a> <br>
+                <a href="#">TOP SELLERS</a><br>
+                <a href="#">SPECIALS</a><br>
+                <a href="#">MANUFACTURERS</a><br>
+                <a href="#">SUPPLIERS</a> <br/>
+            </div>
+            <div class="span6">
+                <h5>The standard chunk of Lorem</h5>
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for
+                those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
+                Malorum" by Cicero are also reproduced in their exact original form,
+                accompanied by English versions from the 1914 translation by H. Rackham.
+            </div>
+        </div>
+    </footer>
+</div><!-- /container -->
+
+<div class="copyright">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 copyright">
-                <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-            </div>
-
-            <div class="col-md-6 template-by">
-                <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-            </div>
-        </div>
+        <p class="pull-right">
+            <a href="#"><img src="assets/img/maestro.png" alt="payment"></a>
+            <a href="#"><img src="assets/img/mc.png" alt="payment"></a>
+            <a href="#"><img src="assets/img/pp.png" alt="payment"></a>
+            <a href="#"><img src="assets/img/visa.png" alt="payment"></a>
+            <a href="#"><img src="assets/img/disc.png" alt="payment"></a>
+        </p>
+        <span>Copyright &copy; 2013<br> bootstrap ecommerce shopping template</span>
     </div>
 </div>
-<!-- Footer Bottom End -->
-
-<!-- Back to Top -->
-<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/slick/slick.min.js"></script>
-
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
+<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.easing-1.3.min.js"></script>
+<script src="assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script src="assets/js/shop.js"></script>
 </body>
 </html>
