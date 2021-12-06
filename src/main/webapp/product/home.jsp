@@ -42,10 +42,9 @@
                 </div>
                 <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
                 <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="/login"><span class="icon-edit"></span>Login or Register</a>
+                <a href="/login"><span class="icon-edit"></span>Login</a>
+                <a href="/register"><span class="icon-edit"></span>Register</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                        class="badge badge-warning"> $448.42</span></a>
             </div>
         </div>
     </div>
@@ -90,8 +89,8 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="index.html">Home </a></li>
-                        <li class=""><a href="list-view.html">List View</a></li>
+                        <li class="active"><a href="">Home </a></li>
+                        <li class=""><a href="product/list.jsp">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
                         <li class=""><a href="four-col.html">Four Column</a></li>
@@ -113,10 +112,14 @@ Lower Header Section
             <div class="well well-small">
                 <h3>Category</h3>
                 <ul class="nav nav-list">
+<<<<<<< HEAD
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Figure</a></li>
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Nendoroid</a></li>
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Cosplay</a></li>
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Accessory</a></li>
+=======
+                    <c:forEach items="${listCC}" var="o"> <li class="icon-chevron-right" >${o.name}<a href="category?cid=${o.id}">${o.name}</a></li></c:forEach>
+>>>>>>> 7061a5d8b365618c9e0cd8c293c6c8eca3b8af5e
                 </ul>
             </div>
 
@@ -243,9 +246,9 @@ Lower Header Section
                                             </div>
                                         </li>
 
-                                    </ul>
-                                </div>
                             </c:forEach>
+                            </ul>
+                        </div>
                         </div>
                         <a class="left carousel-control" href="#newProductCar" data-slide="prev">&lsaquo;</a>
                         <a class="right carousel-control" href="#newProductCar" data-slide="next">&rsaquo;</a>
@@ -280,8 +283,8 @@ Lower Header Section
                                 </div>
 
                             </li>
-                        </ul>
                     </c:forEach>
+                    </ul>
 
                 </div>
             </div>
