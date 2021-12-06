@@ -1,7 +1,12 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 12/5/2021
+  Time: 5:55 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -40,12 +45,11 @@
                     <a href="#"><span class="icon-youtube"></span></a>
                     <a href="#"><span class="icon-tumblr"></span></a>
                 </div>
-                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
+                <a href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
                 <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="/login"><span class="icon-edit"></span>Login or Register</a>
+                <a class="active" href="register.html"><span class="icon-edit"></span> Login or Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                        class="badge badge-warning"> $448.42</span></a>
+                <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
             </div>
         </div>
     </div>
@@ -55,7 +59,7 @@
 Lower Header Section
 -->
 <div class="container">
-    <div id="gototop"></div>
+    <div id="gototop"> </div>
     <header id="header">
         <div class="row">
             <div class="span4">
@@ -68,7 +72,7 @@ Lower Header Section
             <div class="span4">
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Support (24/7) :  0800 1234 678 </strong><br><br></p>
                 <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
                 <span class="btn btn-mini">&pound;</span>
@@ -90,7 +94,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="index.html">Home </a></li>
+                        <li class=""><a href="http://localhost:8080">Home	</a></li>
                         <li class=""><a href="list-view.html">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
@@ -99,7 +103,7 @@ Lower Header Section
                     </ul>
                     <form action="#" class="navbar-search pull-right">
                         <input type="text" placeholder="Search" class="search-query span2">
-                        <input type="submit" value="Search">
+                        <button>Search</button>
                     </form>
                 </div>
             </div>
@@ -172,182 +176,82 @@ Lower Header Section
 
         </div>
         <div class="span9">
-            <div class="well np">
-                <div id="myCarousel" class="carousel slide homCar">
-                    <div class="carousel-inner">
-                        <div class="item">
-                            <img style="width:100%" src="assets/img/bootstrap_free-ecommerce.png"
-                                 alt="bootstrap ecommerce templates">
-                            <div class="carousel-caption">
-                                <h4>Bootstrap shopping cart</h4>
-                                <p><span>Very clean simple to use</span></p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img style="width:100%" src="assets/img/carousel1.png" alt="bootstrap ecommerce templates">
-                            <div class="carousel-caption">
-                                <h4>Bootstrap Ecommerce template</h4>
-                                <p><span>Highly Google seo friendly</span></p>
-                            </div>
-                        </div>
-                        <div class="item active">
-                            <img style="width:100%" src="assets/img/carousel3.png" alt="bootstrap ecommerce templates">
-                            <div class="carousel-caption">
-                                <h4>Twitter Bootstrap cart</h4>
-                                <p><span>Very easy to integrate and expand.</span></p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img style="width:100%" src="assets/img/bootstrap-templates.png" alt="bootstrap templates">
-                            <div class="carousel-caption">
-                                <h4>Bootstrap templates integration</h4>
-                                <p><span>Compitable to many more opensource cart</span></p>
-                            </div>
+            <ul class="breadcrumb">
+                <li><a href="http://localhost:8080">Home</a> <span class="divider">/</span></li>
+                <li class="active">Registration</li>
+            </ul>
+            <h3> Login</h3>
+            <hr class="soft"/>
+            <div class="well">
+                <form class="form-horizontal">
+                    <h3>Your Personal Details</h3>
+                    <div class="control-group">
+                        <label class="control-label">Username or Email<sup>*</sup></label>
+                        <div class="controls">
+                            <input type="password" placeholder="Username or Email" name="use_email">
                         </div>
                     </div>
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-                </div>
-            </div>
-            <!--
-            New Products
-            -->
-            <div class="well well-small">
-                <h3>New Products </h3>
-                <hr class="soften"/>
-                <div class="row-fluid">
-                    <div id="newProductCar" class="carousel slide">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <ul class="thumbnails">
-                                    <li class="span3">
-                                        <div class="thumbnail">
-                                            <a class="zoomTool" href="product_details.html"
-                                               title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                            <a href="#" class="tag"></a>
-                                            <a href="product_details.html"><img src="${product.image}" alt="bootstrap-ring"></a>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <c:forEach var="product" items="${products}">
-                                <div class="item">
-                                    <ul class="thumbnails">
-                                        <li class="span3">
-                                            <div class="thumbnail">
-                                                <a class="zoomTool" href="product_details.html"
-                                                   title="add to cart"><span
-                                                        class="icon-search"></span> QUICK VIEW</a>
-                                                <a href="product_details.html"><img src="${product.image}" alt=""></a>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </c:forEach>
+                    <div class="control-group">
+                        <label class="control-label">Password<sup>*</sup></label>
+                        <div class="controls">
+                            <input type="password" placeholder="Password" name="passLogin">
                         </div>
-                        <a class="left carousel-control" href="#newProductCar" data-slide="prev">&lsaquo;</a>
-                        <a class="right carousel-control" href="#newProductCar" data-slide="next">&rsaquo;</a>
                     </div>
-                </div>
-                <div class="row-fluid">
-                    <c:forEach var="product" items="${products}">
-                        <ul class="thumbnails">
-                            <li class="span4">
-
-                                <div class="thumbnail">
-
-                                    <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                            class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.html"><img src="<c:out value="${product.image}"/>" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Manicure & Pedicure</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a  class="shopBtn" href="?action=addToCart&id=${product.id}" title="add to cart"> Add to cart1000</a></h4>
-                                        <div class="actionList">
-                                            <a class="pull-left" href="#">Add to Wish List </a>
-                                            <a class="pull-left" href="#"> Add to Compare </a>
-                                        </div>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-
-                            </li>
-                        </ul>
-                    </c:forEach>
-
-                </div>
-            </div>
-            <!--
-            Featured Products
-            -->
-            <div class="well well-small">
-                <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span
-                        class="icon-plus"></span></a> Featured Products </h3>
-                <hr class="soften"/>
-                <div class="row-fluid">
-                    <ul class="thumbnails">
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/d.jpg" alt=""></a>
-                                <div class="caption">
-                                    <h5>Manicure & Pedicure</h5>
-                                    <h4>
-                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span
-                                                class="icon-zoom-in"></span></a>
-                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
-                                        <span class="pull-right">$22.00</span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/e.jpg" alt=""></a>
-                                <div class="caption">
-                                    <h5>Manicure & Pedicure</h5>
-                                    <h4>
-                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span
-                                                class="icon-zoom-in"></span></a>
-                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
-                                        <span class="pull-right">$22.00</span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/f.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Manicure & Pedicure</h5>
-                                    <h4>
-                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span
-                                                class="icon-zoom-in"></span></a>
-                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
-                                        <span class="pull-right">$22.00</span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" name="submitAccount" value="Login" class="exclusive shopBtn">
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <div class="well well-small">
-                <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
-                Popular Products
-            </div>
-            <hr>
-            <div class="well well-small">
-                <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
-                Best selling Products
+            <h3> Registration</h3>
+            <hr class="soft"/>
+            <div class="well">
+                <form class="form-horizontal">
+                    <h3>Your Personal Details</h3>
+                    <div class="control-group">
+                        <label class="control-label" for="username">Username <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" id="username" name="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password<sup>*</sup></label>
+                        <div class="controls">
+                            <input type="password" id="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="rePassword">Re-enter the password<sup>*</sup></label>
+                        <div class="controls">
+                            <input type="password" id="rePassword" placeholder="Re-enter the password">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name<sup>*</sup></label>
+                        <div class="controls">
+                            <input type="password" id="name" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >Email <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Address <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" placeholder="Address" name="address">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" name="submitAccount" value="Register" class="exclusive shopBtn">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -394,7 +298,7 @@ Lower Header Section
                 <a href="#">ORDER HISTORY</a><br>
             </div>
             <div class="span2">
-                <h5>Information</h5>
+                <h5>Iinformation</h5>
                 <a href="contact.html">CONTACT</a><br>
                 <a href="#">SITEMAP</a><br>
                 <a href="#">LEGAL NOTICE</a><br>
@@ -441,3 +345,5 @@ Lower Header Section
 <script src="assets/js/shop.js"></script>
 </body>
 </html>
+
+
