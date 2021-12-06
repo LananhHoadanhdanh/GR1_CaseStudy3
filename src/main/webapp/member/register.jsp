@@ -201,13 +201,19 @@ Lower Header Section
                     <div class="control-group">
                         <label class="control-label" for="name">Name<sup>*</sup></label>
                         <div class="controls">
-                            <input type="password" id="name" placeholder="Name" name="name">
+                            <input type="text" id="name" placeholder="Name" name="name">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" >Email <sup>*</sup></label>
                         <div class="controls">
                             <input type="text" placeholder="Email" name="email">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >Phone number <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" placeholder="Phone number" name="phone">
                         </div>
                     </div>
                     <div class="control-group">
