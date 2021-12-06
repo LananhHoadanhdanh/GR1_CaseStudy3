@@ -34,7 +34,7 @@ public class ListViewServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
         List<Product> products = null;
         try {
-            products = productService.printAll();
+            products = productService.printFourProduct();
         } catch (SQLException e) {
             e.printStackTrace();
         }

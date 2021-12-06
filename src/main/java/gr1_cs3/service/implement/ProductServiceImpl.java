@@ -19,15 +19,38 @@ public class ProductServiceImpl implements ProductService {
         }
         return connection;
     }
+
     public int viewPay(int price,int quantity){
-      int res= price*quantity;
-        return res;
+        return price*quantity;
     }
+
     @Override
-    public List<Product> printAll() throws SQLException {
+    public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select *from product limit 4");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> printFourProduct() throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product limit 4");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -94,6 +117,52 @@ public class ProductServiceImpl implements ProductService {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("select * from product where name like ?");) {
             preparedStatement.setString(1, "%" + key + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> findByCategory(String category) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where category like ?");) {
+            preparedStatement.setString(1, category);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> findByBrand(String brand) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where brand like ?");) {
+            preparedStatement.setString(1, brand);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
