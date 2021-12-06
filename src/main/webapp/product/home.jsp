@@ -245,7 +245,6 @@ New Products
                 <a href="product_details.html"><img src="${product.image}" alt=""></a>
             </div>
         </li>
-
     </c:forEach>
     </ul>
     </div>
