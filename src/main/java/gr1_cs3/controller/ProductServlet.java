@@ -23,13 +23,13 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "addToCart":
-                try {
-                    addToCart(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
+//            case "addToCart":
+//                try {
+//                    addToCart(request, response);
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
             default:
                 try {
                     showList(request, response);
@@ -63,6 +63,7 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Product products = productService.addToCart(id);
         request.setAttribute("product", products);
+
         requestDispatcher.forward(request, response);
     }
 

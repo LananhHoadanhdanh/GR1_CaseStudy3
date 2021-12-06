@@ -1,5 +1,6 @@
 package gr1_cs3.service.implement;
 
+import gr1_cs3.model.Invoice;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.ProductService;
 
@@ -17,6 +18,10 @@ public class ProductServiceImpl implements ProductService {
             e.printStackTrace();
         }
         return connection;
+    }
+    public int viewPay(int price,int quantity){
+      int res= price*quantity;
+        return res;
     }
     @Override
     public List<Product> printAll() throws SQLException {
