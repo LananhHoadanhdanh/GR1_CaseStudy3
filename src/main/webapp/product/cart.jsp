@@ -174,7 +174,7 @@ Lower Header Section
                                 </button>
                             </div>
                         </td>
-                        <td>${product.price}+VND</td>
+                        <td>VND</td>
                     </tr>
                     <tr>
                         <td><img width="100" src="assets/img/f.jpg" alt=""></td>
