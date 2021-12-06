@@ -13,15 +13,12 @@ public class ProductServiceImpl implements ProductService {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cs3_g1?allowPublicKeyRetrieval=true&useSSL=false", "root", "123456");
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return connection;
     }
+
     @Override
     public List<Product> printAll() throws SQLException {
         List<Product> products = new ArrayList<>();
@@ -37,9 +34,9 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
-        } catch (SQLException e) {
+        } catch (SQLException ignored) {
         }
         return products;
     }
