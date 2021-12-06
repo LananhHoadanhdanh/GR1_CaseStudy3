@@ -18,6 +18,7 @@ public class ProductServiceImpl implements ProductService {
         }
         return connection;
     }
+
     @Override
     public List<Product> printAll() throws SQLException {
         List<Product> products = new ArrayList<>();
@@ -35,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
