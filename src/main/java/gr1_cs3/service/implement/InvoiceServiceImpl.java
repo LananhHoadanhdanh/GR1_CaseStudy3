@@ -1,6 +1,7 @@
 package gr1_cs3.service.implement;
 
 import gr1_cs3.model.Invoice;
+import gr1_cs3.model.Product;
 import gr1_cs3.service.InvoiceService;
 
 import java.sql.*;
@@ -40,26 +41,33 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     }
 
     @Override
-    public Invoice invoice() {
+    public List<Invoice> invoice() {
+       return null;
+    }
+
+    @Override
+    public List<Invoice> addToCart() {
+        List<Invoice> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("?=call getPay");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
+                     "from product\n" +
+                     "         inner join orderdetail on orderdetail.productId = product.id\n" +
+                     "         inner join `order` on orderdetail.orderId = `order`.id");) {
             ResultSet rs = preparedStatement.executeQuery();
-
-//            while (rs.next()) {
-            int idMember = 5;
-            int price = 5;
-            int quantity = 2;
-            int status = 1;
-//                int idMember = rs.getInt("memberid");
-//                int price = rs.getInt("price");
-//                int quantity = rs.getInt("product_quantity");
-//                int status = rs.getInt("status");
-            Invoice invoice = new Invoice(idMember, status, quantity, price);
-            return invoice;
-
-//            }
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                int productquantity = rs.getInt("product_quantity");
+                String description = rs.getString("description");
+                products.add(new Invoice(id, name, price, quantity,  categoryId,  image,  brandId,  description ,productquantity));
+            }
         } catch (SQLException ignored) {
         }
-        return null;
+        return products;
     }
 }

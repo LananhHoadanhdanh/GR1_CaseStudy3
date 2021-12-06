@@ -17,16 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "CartServlet", value = "/Cart")
 public class CartServlet extends HttpServlet {
-    protected Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cs3_g1?allowPublicKeyRetrieval=true&useSSL=false", "root", "123456");
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
+
     InvoiceService invoiceService = new InvoiceServiceImpl();
     ProductService productService = new ProductServiceImpl();
 
@@ -50,9 +41,15 @@ public class CartServlet extends HttpServlet {
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
-        Product products = productService.addToCart(id);
+        List<Product> products = invoiceService.addToCart();
         request.setAttribute("product", products);
         requestDispatcher.forward(request, response);
+
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
+//        List<Product> products = new ArrayList<>();
+//        products = productService.printAll();
+//        request.setAttribute("product", products);
+//        requestDispatcher.forward(request, response);
     }
 
     @Override
