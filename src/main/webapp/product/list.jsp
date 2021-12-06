@@ -40,11 +40,11 @@
                     <a href="http://www.youtube.com"><span class="icon-youtube"></span></a>
                     <a href="https://www.tumblr.com/login"><span class="icon-tumblr"></span></a>
                 </div>
-                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
+                <a href="home.jsp"> <span class="icon-home"></span> Home</a>
                 <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="/login"><span class="icon-edit"></span>Login</a>
-                <a href="/register"><span class="icon-edit"></span>Register</a>
+                <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+                <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
+                    <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
                         <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                     </a>
                 </h1>
@@ -96,7 +96,7 @@ Lower Header Section
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li class=""><a href="http://localhost:8080">Home	</a></li>
-                        <li class="active"><a href="list-view.html">List View</a></li>
+                        <li class="active"><a href="/list-view">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
                         <li class=""><a href="four-col.html">Four Column</a></li>

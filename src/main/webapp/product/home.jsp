@@ -54,70 +54,69 @@ Upper Header Section
 Lower Header Section
 -->
 <div class="container">
-    <div id="gototop"></div>
-    <header id="header">
-        <div class="row">
-            <div class="span4">
-                <h1>
-                    <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
-                        <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
-                    </a>
-                </h1>
-            </div>
-            <div class="span4">
-            </div>
-            <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-                <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
-                <span class="btn btn-warning btn-mini">$</span>
-                <span class="btn btn-mini">&pound;</span>
-                <span class="btn btn-mini">&euro;</span>
-            </div>
-        </div>
-    </header>
-
-    <!--
-    Navigation Bar Section
-    -->
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="container">
-                <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+<div id="gototop"></div>
+<header id="header">
+    <div class="row">
+        <div class="span4">
+            <h1>
+                <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+                    <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                 </a>
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li class="active"><a href="http://localhost:8080">Home </a></li>
-                        <li class=""><a href="list-view.html">List View</a></li>
-                        <li class=""><a href="grid-view.html">Grid View</a></li>
-                        <li class=""><a href="three-col.html">Three Column</a></li>
-                        <li class=""><a href="four-col.html">Four Column</a></li>
-                        <li class=""><a href="general.html">General Content</a></li>
-                    </ul>
-                    <form action="#" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2">
-                        <input type="submit" value="Search">
-                    </form>
-                </div>
+            </h1>
+        </div>
+        <div class="span4">
+        </div>
+        <div class="span4 alignR">
+            <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
+            <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
+            <span class="btn btn-warning btn-mini">$</span>
+            <span class="btn btn-mini">&pound;</span>
+            <span class="btn btn-mini">&euro;</span>
+        </div>
+    </div>
+</header>
+
+<!--
+Navigation Bar Section
+-->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="active"><a href="">Home </a></li>
+                    <li class=""><a href="/list-view">List View</a></li>
+                    <li class=""><a href="grid-view.html">Grid View</a></li>
+                    <li class=""><a href="three-col.html">Three Column</a></li>
+                    <li class=""><a href="four-col.html">Four Column</a></li>
+                    <li class=""><a href="general.html">General Content</a></li>
+                </ul>
+                <form action="#" class="navbar-search pull-right">
+                    <input type="text" placeholder="Search" class="search-query span2">
+                    <input type="submit" value="Search">
+                </form>
             </div>
         </div>
     </div>
-    <!--
-    Body Section
-    -->
-    <div class="row">
-        <div id="sidebar" class="span3">
-            <div class="well well-small">
-                <h3>Category</h3>
-                <ul class="nav nav-list">
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Figure</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Nendoroid</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Cosplay</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Accessory</a></li>
-                </ul>
-            </div>
+</div>
+<!--
+Body Section
+-->
+<div class="row">
+<div id="sidebar" class="span3">
+    <div class="well well-small">
+        <h3>Category</h3>
+        <ul class="nav nav-list">
+            <c:forEach items="${listCC}" var="o">
+                <li class="icon-chevron-right">${o.name}<a href="category?cid=${o.id}">${o.name}</a></li>
+            </c:forEach>
+        </ul>
+    </div>
 
     <div class="well well-small">
         <h3>Brand</h3>
@@ -245,6 +244,7 @@ New Products
                 <a href="product_details.html"><img src="${product.image}" alt=""></a>
             </div>
         </li>
+
     </c:forEach>
     </ul>
     </div>

@@ -12,9 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", value = "/products")
+@WebServlet(name = "ProductServlet", value = "")
 public class ProductServlet extends HttpServlet {
-    ProductService productService = new ProductServiceImpl();
+    ProductServiceImpl productService = new ProductServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -22,31 +23,78 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            default:
+            case "list-view":
+                showAll(request, response);
+                break;
+            case "addToCart":
                 try {
-                    showListProduct(request, response);
+                    addToCart(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 break;
+            default:
+                try {
+                    showList(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
         }
     }
 
-    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-        String key = request.getParameter("key");
-        List<Product> products = new ArrayList<>();
-        if (key == null) {
-            products = productService.printAll();
-        } else {
-            products = productService.findByName(key);
+    private void showAll(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
+//        List<Product> products = new ArrayList<>();
+//        products = productService.printAll();
+//        request.setAttribute("products", products);
+//        request.setAttribute("product", products.get(0));
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        request.setAttribute("products", products);
+    }
+
+    private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+//        String name = request.getParameter("name");
+//        if (name == null) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
+        List<Product> newProducts = new ArrayList<>();
+        List<Product> topThreeProducts = new ArrayList<>();
+        newProducts = productService.printAll();
+        topThreeProducts = productService.getThreeProduct();
+        request.setAttribute("newProducts", newProducts);
+        request.setAttribute("topThreeProducts", topThreeProducts);
+        requestDispatcher.forward(request, response);
+//        }
+//        else {
+//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
+//            List<Product> listProduct = new ArrayList<>();
+//            listProduct = productService.findByName(name);
+//            request.setAttribute("listProduct", listProduct);
+//            requestDispatcher.forward(request, response);
+//        }
+    }
+    private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product products = productService.addToCart(id);
+        request.setAttribute("product", products);
+
         requestDispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "login":
 
+        }
     }
 }
