@@ -13,6 +13,16 @@ public class Member {
     public Member() {
     }
 
+    public Member(String username, String password, String name, String phone, String email, String address, int roleId) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.roleId = roleId;
+    }
+
     public Member(int id, String username, String password, String name, String phone, String email, String address, int roleId) {
         this.id = id;
         this.username = username;
@@ -22,6 +32,16 @@ public class Member {
         this.email = email;
         this.address = address;
         this.roleId = roleId;
+    }
+
+    public Member(String username, String password, String name, String phone, String email, String address) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.roleId = 2;
     }
 
     public int getId() {

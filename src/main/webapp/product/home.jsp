@@ -42,10 +42,9 @@
                 </div>
                 <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
                 <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="/login"><span class="icon-edit"></span>Login or Register</a>
+                <a href="/login"><span class="icon-edit"></span>Login</a>
+                <a href="/register"><span class="icon-edit"></span>Register</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                        class="badge badge-warning"> $448.42</span></a>
             </div>
         </div>
     </div>
@@ -259,7 +258,7 @@ Lower Header Section
                                     <div class="caption cntr">
                                         <p>Manicure & Pedicure</p>
                                         <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="product_detail.jsp" title="add to cart 1000"> Add to cart </a></h4>
+                                        <h4><a  class="shopBtn" href="/Cart?action=addToCart&id=${product.id}" title="add to cart"> Add to cart1000</a></h4>
                                         <div class="actionList">
                                             <a class="pull-left" href="#">Add to Wish List </a>
                                             <a class="pull-left" href="#"> Add to Compare </a>
