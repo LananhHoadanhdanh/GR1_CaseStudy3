@@ -29,7 +29,7 @@ public class HomepageServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
         List<Product> newProducts = new ArrayList<>();
         List<Product> topThreeProducts = new ArrayList<>();
-        newProducts = productService.printAll();
+        newProducts = productService.printFourProduct();
         topThreeProducts = productService.getThreeProduct();
         request.setAttribute("newProducts", newProducts);
         request.setAttribute("topThreeProducts", topThreeProducts);

@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         if (memberService.checkAdmin(username, password)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
-            List<Product> products = productService.printAll();
+            List<Product> products = productService.printFourProduct();
             request.setAttribute("products", products);
             dispatcher.forward(request, response);
         } else if (memberService.checkLogin(username, password)) {

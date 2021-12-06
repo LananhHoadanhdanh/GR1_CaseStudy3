@@ -1,7 +1,6 @@
 package gr1_cs3.controller;
 
 import gr1_cs3.model.Product;
-import gr1_cs3.service.ProductService;
 import gr1_cs3.service.implement.ProductServiceImpl;
 
 import javax.servlet.*;
@@ -61,7 +60,7 @@ public class ProductServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
         List<Product> newProducts = new ArrayList<>();
         List<Product> topThreeProducts = new ArrayList<>();
-        newProducts = productService.printAll();
+        newProducts = productService.printFourProduct();
         topThreeProducts = productService.getThreeProduct();
         request.setAttribute("newProducts", newProducts);
         request.setAttribute("topThreeProducts", topThreeProducts);

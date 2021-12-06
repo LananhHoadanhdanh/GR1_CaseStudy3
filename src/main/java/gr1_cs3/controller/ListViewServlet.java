@@ -26,18 +26,18 @@ public class ListViewServlet extends HttpServlet {
             case "addToCart":
                 break;
             default:
-                showList(request, response);
+                try {
+                    showList(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
         }
     }
 
-    private void showList(HttpServletRequest request, HttpServletResponse response) {
+    private void showList(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
         List<Product> products = null;
-        try {
-            products = productService.printAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        products = productService.findAll();
         request.setAttribute("products", products);
         try {
             requestDispatcher.forward(request, response);

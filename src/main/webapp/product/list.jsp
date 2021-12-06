@@ -28,7 +28,7 @@
 </head>
 <body>
 <!--
-	Upper Header Section
+Upper Header Section
 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="topNav">
@@ -44,7 +44,8 @@
                 <a href="#"><span class="icon-user"></span> My Account</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
+                <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
+                        class="badge badge-warning"> $448.42</span></a>
             </div>
         </div>
     </div>
@@ -54,7 +55,7 @@
 Lower Header Section
 -->
 <div class="container">
-    <div id="gototop"> </div>
+    <div id="gototop"></div>
     <header id="header">
         <div class="row">
             <div class="span4">
@@ -73,7 +74,7 @@ Lower Header Section
                 </div>
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) :  0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
                 <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
                 <span class="btn btn-mini">&pound;</span>
@@ -95,7 +96,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="http://localhost:8080">Home	</a></li>
+                        <li class=""><a href="http://localhost:8080">Home </a></li>
                         <li class="active"><a href="/list-view">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
@@ -134,34 +135,39 @@ Lower Header Section
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Gundam</a></li>
                 </ul>
             </div>
-
             <ul class="nav nav-list promowrapper">
                 <li>
                     <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                                class="icon-search"></span> QUICK VIEW</a>
                         <img src="assets/img/bootstrap-ecommerce-templates.png" alt="bootstrap ecommerce templates">
                         <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span></h4>
+                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
+                            </h4>
                         </div>
                     </div>
                 </li>
                 <li style="border:0"> &nbsp;</li>
                 <li>
                     <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                                class="icon-search"></span> QUICK VIEW</a>
                         <img src="assets/img/shopping-cart-template.png" alt="shopping cart template">
                         <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span></h4>
+                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
+                            </h4>
                         </div>
                     </div>
                 </li>
                 <li style="border:0"> &nbsp;</li>
                 <li>
                     <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                                class="icon-search"></span> QUICK VIEW</a>
                         <img src="assets/img/bootstrap-template.png" alt="bootstrap template">
                         <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span></h4>
+                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
+                            </h4>
                         </div>
                     </div>
                 </li>
@@ -169,294 +175,298 @@ Lower Header Section
 
         </div>
         <div class="span9">
+            <c:forEach var="product" items="${products}">
             <div class="well well-small">
+
                 <div class="row-fluid">
                     <div class="span2">
-                        <img src="assets/img/a.jpg" alt="">
+                        <img src="${product.image}" alt="">
                     </div>
                     <div class="span6">
-                        <h5>Product Name </h5>
+                        <h5>${product.name} </h5>
                         <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
+                                ${product.description}
                         </p>
                     </div>
                     <div class="span4 alignR">
                         <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
+                            <h3> ${product.price}</h3>
                             <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
+                                <input type="checkbox"> Adds product to compair
                             </label><br>
                             <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
+                                <a href="product_details.html" class="defaultBtn"><span
+                                        class=" icon-shopping-cart"></span> Add to cart</a>
                                 <a href="product_details.html" class="shopBtn">VIEW</a>
                             </div>
                         </form>
                     </div>
                 </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/b.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/c.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/d.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/e.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/f.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/g.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/h.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/i.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/a.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr class="soften">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <img src="assets/img/b.jpg" alt="">
-                    </div>
-                    <div class="span6">
-                        <h5>Product Name </h5>
-                        <p>
-                            Nowadays the lingerie industry is one of the most successful business spheres.
-                            We always stay in touch with the latest fashion tendencies -
-                            that is why our goods are so popular..
-                        </p>
-                    </div>
-                    <div class="span4 alignR">
-                        <form class="form-horizontal qtyFrm">
-                            <h3> $140.00</h3>
-                            <label class="checkbox">
-                                <input type="checkbox">  Adds product to compair
-                            </label><br>
-                            <div class="btn-group">
-                                <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>
-                                <a href="product_details.html" class="shopBtn">VIEW</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/b.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/c.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/d.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/e.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/f.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/g.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/h.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/i.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/a.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
+                    <%--    <hr class="soften">--%>
+                    <%--    <div class="row-fluid">--%>
+                    <%--    <div class="span2">--%>
+                    <%--    <img src="assets/img/b.jpg" alt="">--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span6">--%>
+                    <%--    <h5>Product Name </h5>--%>
+                    <%--    <p>--%>
+                    <%--    Nowadays the lingerie industry is one of the most successful business spheres.--%>
+                    <%--    We always stay in touch with the latest fashion tendencies ---%>
+                    <%--    that is why our goods are so popular..--%>
+                    <%--    </p>--%>
+                    <%--    </div>--%>
+                    <%--    <div class="span4 alignR">--%>
+                    <%--    <form class="form-horizontal qtyFrm">--%>
+                    <%--    <h3> $140.00</h3>--%>
+                    <%--    <label class="checkbox">--%>
+                    <%--    <input type="checkbox"> Adds product to compair--%>
+                    <%--    </label><br>--%>
+                    <%--    <div class="btn-group">--%>
+                    <%--    <a href="product_details.html" class="defaultBtn"><span class=" icon-shopping-cart"></span> Add to cart</a>--%>
+                    <%--    <a href="product_details.html" class="shopBtn">VIEW</a>--%>
+                    <%--    </div>--%>
+                    <%--    </form>--%>
+                    <%--    </div>--%>
+                    <%--    </div>--%>
             </div>
+            <hr class="soften">
         </div>
+            </c:forEach>
+
     </div>
     <!--
     Clients
