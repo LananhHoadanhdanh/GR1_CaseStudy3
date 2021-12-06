@@ -165,8 +165,8 @@ Lower Header Section
                         <td><span class="shopBtn"><span class="icon-ok"></span></span></td>
                         <td>${product.price}VND</td>
                         <td>
-                            <input name="quanOrder" class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons"
-                                   size="16" type="text" value="${inqua.productQuantity}">
+                            <input name="quanOrder" class="span1" style="max-width:34px" placeholder="${inqua.productquantity}" id="appendedInputButtons"
+                                   size="16" type="text" value="<c:out value='${inqua.productQuantity}' />">
                             <div class="input-append">
                                 <button class="btn btn-mini" type="button">-</button>
                                 <button class="btn btn-mini" type="button"> +</button>

@@ -40,24 +40,26 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     }
 
     @Override
-    public List<Invoice> invoice() {
-        List<Invoice> invoiceList = new ArrayList<>();
+    public Invoice invoice() {
         try (Connection connection = getConnection();
-
              PreparedStatement preparedStatement = connection.prepareStatement("?=call getPay");) {
             ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                int idMember = rs.getInt("memberid");
-                int price = rs.getInt("price");
-                int quantity = rs.getInt("product_quantity");
-                int status = rs.getInt("status");
-                invoiceList.add(new Invoice(idMember, status, quantity, price));
+//            while (rs.next()) {
+            int idMember = 5;
+            int price = 5;
+            int quantity = 2;
+            int status = 1;
+//                int idMember = rs.getInt("memberid");
+//                int price = rs.getInt("price");
+//                int quantity = rs.getInt("product_quantity");
+//                int status = rs.getInt("status");
+            Invoice invoice = new Invoice(idMember, status, quantity, price);
+            return invoice;
 
-            }
+//            }
         } catch (SQLException ignored) {
         }
-        return invoiceList;
-
+        return null;
     }
 }
