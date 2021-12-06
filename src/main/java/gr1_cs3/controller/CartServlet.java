@@ -1,5 +1,6 @@
 package gr1_cs3.controller;
 
+import gr1_cs3.model.Invoice;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.InvoiceService;
 import gr1_cs3.service.ProductService;
@@ -11,6 +12,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "CartServlet", value = "/Cart")
 public class CartServlet extends HttpServlet {
@@ -33,14 +36,28 @@ public class CartServlet extends HttpServlet {
                 }
         }
     }
+
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
         Product products = productService.addToCart(id);
-        request.setAttribute("product", products);
+        List<Invoice> invoiceList = new ArrayList<>();
+        invoiceList = invoiceService.invoice();
 
+
+        for (int i = 0; i < invoiceList.size(); i++) {
+            if (invoiceList.get(i).getIdProduct() != id) {
+                products.setQuantity(9);
+                request.setAttribute("inqua", products);
+            }
+        }
+
+
+//        if (products.getId())
+            request.setAttribute("product", products);
         requestDispatcher.forward(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
