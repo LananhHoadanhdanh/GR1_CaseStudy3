@@ -9,14 +9,5 @@ public interface MemberService extends GeneralService<Member>{
     boolean checkAdmin(String username, String password);
 
     boolean checkLogin(String username, String password);
-<<<<<<< HEAD
 
-    String getPassByUser(String username);
-=======
-<<<<<<< HEAD
-
-    String getPassByUser(String username);
-=======
->>>>>>> 7061a5d8b365618c9e0cd8c293c6c8eca3b8af5e
->>>>>>> duy
 }
