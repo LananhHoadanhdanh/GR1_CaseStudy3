@@ -292,13 +292,7 @@ Lower Header Section
                     <c:forEach var="product" items="${products}">
                         <ul class="thumbnails">
                             <li class="span4">
-                                    <%--                                <tr>--%>
-                                    <%--                                    <td><img src="<c:out value="${product.image}"/>" alt=""></td>--%>
-                                    <%--                                    <td><c:out value="${product.categoryId}"/></td>--%>
-                                    <%--                                    <td><c:out value="${product.name}"/></td>--%>
-                                    <%--                                    <td><c:out value="${product.price}"/></td>--%>
-                                    <%--                                    <td><c:out value="${product.quantity}"/></td>--%>
-                                    <%--                                </tr>--%>
+
                                 <div class="thumbnail">
 
                                     <a class="zoomTool" href="product_details.html" title="add to cart"><span

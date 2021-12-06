@@ -43,7 +43,8 @@ public class ProductServlet extends HttpServlet {
 //        String name = request.getParameter("name");
 //        if (name == null) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-        List<Product> products = productService.printAll();
+        List<Product> products = new ArrayList<>();
+        products = productService.printAll();
         request.setAttribute("products", products);
         request.setAttribute("product", products.get(0));
         requestDispatcher.forward(request, response);
@@ -60,9 +61,8 @@ public class ProductServlet extends HttpServlet {
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
-        List<Product> products = new ArrayList<>();
-        products.add(productService.addToCart(id));
-        request.setAttribute("products", products);
+        Product products = productService.addToCart(id);
+        request.setAttribute("product", products);
         requestDispatcher.forward(request, response);
     }
 

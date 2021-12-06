@@ -159,13 +159,13 @@ Lower Header Section
                     </thead>
                     <tbody>
                     <tr>
-                        <td><img width="100" src="../productImg/img1.jpg" alt=""></td>
-                        <td>jkj<br>Carate : 22<br>Model : n/a</td>
+                        <td><img width="100" src="${product.image}" alt=""></td>
+                        <td>name: ${product.name}<br>Carate : ${product.quantity}</td>
                         <td> -</td>
                         <td><span class="shopBtn"><span class="icon-ok"></span></span></td>
-                        <td>$50.00</td>
+                        <td>${product.price}VND</td>
                         <td>
-                            <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons"
+                            <input name="quanOrder" class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons"
                                    size="16" type="text" value="2">
                             <div class="input-append">
                                 <button class="btn btn-mini" type="button">-</button>
@@ -174,7 +174,7 @@ Lower Header Section
                                 </button>
                             </div>
                         </td>
-                        <td>$100.00</td>
+                        <td>${product.price}+VND</td>
                     </tr>
                     <tr>
                         <td><img width="100" src="assets/img/f.jpg" alt=""></td>
