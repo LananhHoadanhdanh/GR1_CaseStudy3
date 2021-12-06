@@ -90,8 +90,8 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="index.html">Home </a></li>
-                        <li class=""><a href="list-view.html">List View</a></li>
+                        <li class="active"><a href="">Home </a></li>
+                        <li class=""><a href="product/list.jsp">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
                         <li class=""><a href="four-col.html">Four Column</a></li>
@@ -113,10 +113,7 @@ Lower Header Section
             <div class="well well-small">
                 <h3>Category</h3>
                 <ul class="nav nav-list">
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Figure</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Nendoroid</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Cosplay</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Accessory</a></li>
+
                 </ul>
             </div>
 
