@@ -23,6 +23,8 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "list-view":
+                break;
             case "addToCart":
                 try {
                     addToCart(request, response);
