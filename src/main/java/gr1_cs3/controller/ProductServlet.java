@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "ProductServlet", value = "")
 public class ProductServlet extends HttpServlet {
-    ProductService productService = new ProductServiceImpl();
+    ProductServiceImpl productService = new ProductServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,6 +24,7 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "list-view":
+                showAll(request, response);
                 break;
             case "addToCart":
                 try {
@@ -40,14 +41,32 @@ public class ProductServlet extends HttpServlet {
                 }
         }
     }
+
+    private void showAll(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
+//        List<Product> products = new ArrayList<>();
+//        products = productService.printAll();
+//        request.setAttribute("products", products);
+//        request.setAttribute("product", products.get(0));
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 //        String name = request.getParameter("name");
 //        if (name == null) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-        List<Product> products = new ArrayList<>();
-        products = productService.printAll();
-        request.setAttribute("products", products);
-        request.setAttribute("product", products.get(0));
+        List<Product> newProducts = new ArrayList<>();
+        List<Product> topThreeProducts = new ArrayList<>();
+        newProducts = productService.printAll();
+        topThreeProducts = productService.getThreeProduct();
+        request.setAttribute("newProducts", newProducts);
+        request.setAttribute("topThreeProducts", topThreeProducts);
         requestDispatcher.forward(request, response);
 //        }
 //        else {

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Twitter Bootstrap shopping cart</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -35,12 +35,12 @@
         <div class="container">
             <div class="alignR">
                 <div class="pull-left socialNw">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                    <a href="#"><span class="icon-facebook"></span></a>
-                    <a href="#"><span class="icon-youtube"></span></a>
-                    <a href="#"><span class="icon-tumblr"></span></a>
+                    <a href="https://twitter.com/login"><span class="icon-twitter"></span></a>
+                    <a href="http://www.facebook.com"><span class="icon-facebook"></span></a>
+                    <a href="http://www.youtube.com"><span class="icon-youtube"></span></a>
+                    <a href="https://www.tumblr.com/login"><span class="icon-tumblr"></span></a>
                 </div>
-                <a href="index.html"> <span class="icon-home"></span> Home</a>
+                <a href="home.jsp"> <span class="icon-home"></span> Home</a>
                 <a href="#"><span class="icon-user"></span> My Account</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
