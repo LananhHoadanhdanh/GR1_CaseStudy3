@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+@WebServlet(name = "ProductServlet", value = "/products")
 
-@WebServlet(name = "ProductServlet", value = "")
 public class ProductServlet extends HttpServlet {
     ProductServiceImpl productService = new ProductServiceImpl();
 
@@ -50,9 +50,7 @@ public class ProductServlet extends HttpServlet {
 //        request.setAttribute("product", products.get(0));
         try {
             requestDispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }

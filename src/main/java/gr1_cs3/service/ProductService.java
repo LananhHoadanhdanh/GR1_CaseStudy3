@@ -10,4 +10,5 @@ public interface ProductService extends GeneralService<Product> {
     List<Product> printAllOrderByPrice() throws SQLException;
     List<Product> findByName(String name) throws SQLException;
     Product addToCart(int id);
+    List<Product> getThreeProduct();
 }
