@@ -90,7 +90,7 @@ Navigation Bar Section
             <div class="nav-collapse">
                 <ul class="nav">
                     <li class="active"><a href="">Home </a></li>
-                    <li class=""><a href="?action=list-view">List View</a></li>
+                    <li class=""><a href="/list-view">List View</a></li>
                     <li class=""><a href="grid-view.html">Grid View</a></li>
                     <li class=""><a href="three-col.html">Three Column</a></li>
                     <li class=""><a href="four-col.html">Four Column</a></li>

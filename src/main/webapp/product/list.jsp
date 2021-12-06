@@ -96,7 +96,7 @@ Lower Header Section
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li class=""><a href="index.html">Home	</a></li>
-                        <li class="active"><a href="list-view.html">List View</a></li>
+                        <li class="active"><a href="/list-view">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
                         <li class=""><a href="four-col.html">Four Column</a></li>
