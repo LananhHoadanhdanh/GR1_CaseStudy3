@@ -3,6 +3,7 @@ package gr1_cs3.service.implement;
 import gr1_cs3.model.Member;
 import gr1_cs3.service.MemberService;
 
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,7 +24,19 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void add(Member member) throws SQLException {
-
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("insert into member(username, password, name, phone, email, address, roleId) value (?, ?, ?, ?, ?, ?, ?)");) {
+            System.out.println(preparedStatement);
+            preparedStatement.setString(1, member.getUsername());
+            preparedStatement.setString(2, member.getPassword());
+            preparedStatement.setString(3, member.getName());
+            preparedStatement.setString(4, member.getPhone());
+            preparedStatement.setString(5, member.getEmail());
+            preparedStatement.setString(6, member.getAddress());
+            preparedStatement.setInt(7, member.getRoleId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ignored) {
+        }
     }
 
     @Override
@@ -44,11 +57,39 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean checkAdmin(String username, String password) {
-        return (username.equals("admin") || username.equals("admin@gmail.com")) && password.equals("admin");
+        boolean check = false;
+        if (username.equals("admin") || username.equals("admin@gmail.com")) {
+            if (password.equals("admin")) {
+                check = true;
+            }
+        }
+        return check;
     }
 
     @Override
     public boolean checkLogin(String username, String password) {
-        return false;
+        boolean check = false;
+        String pass = getPassByUser(username);
+        if (pass.equals(password)) {
+            check = true;
+        }
+        return check;
+    }
+
+    @Override
+    public String getPassByUser(String username) {
+        String password = null;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select password from member where (username = ? or email = ?)");) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, username);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                password = rs.getString("password");
+            }
+        } catch (SQLException ignored) {
+        }
+        return password;
     }
 }

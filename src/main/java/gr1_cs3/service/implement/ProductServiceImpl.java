@@ -1,6 +1,5 @@
 package gr1_cs3.service.implement;
 
-import gr1_cs3.model.Invoice;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.ProductService;
 
@@ -27,10 +26,8 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> printAll() throws SQLException {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-
              PreparedStatement preparedStatement = connection.prepareStatement("select *from product");) {
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");

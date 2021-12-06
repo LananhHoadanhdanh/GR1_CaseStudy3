@@ -34,6 +34,16 @@ public class Member {
         this.roleId = roleId;
     }
 
+    public Member(String username, String password, String name, String phone, String email, String address) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.roleId = 2;
+    }
+
     public int getId() {
         return id;
     }
