@@ -45,6 +45,27 @@ public class ProductServiceImpl implements ProductService {
         return products;
     }
 
+    public List<Product> getThreeProduct(){
+        List<Product> topThreeProduct = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select *from product ORDER BY RAND() limit 3");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                topThreeProduct.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return topThreeProduct;
+    }
+
     @Override
     public List<Product> printAllOrderByPrice() throws SQLException {
         List<Product> products = new ArrayList<>();
