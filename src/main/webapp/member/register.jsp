@@ -180,35 +180,11 @@ Lower Header Section
                 <li><a href="http://localhost:8080">Home</a> <span class="divider">/</span></li>
                 <li class="active">Registration</li>
             </ul>
-            <h3> Login</h3>
-            <hr class="soft"/>
-            <div class="well">
-                <form class="form-horizontal">
-                    <h3>Your Personal Details</h3>
-                    <div class="control-group">
-                        <label class="control-label">Username or Email<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="password" placeholder="Username or Email" name="use_email">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Password<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="password" placeholder="Password" name="passLogin">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <input type="submit" name="submitAccount" value="Login" class="exclusive shopBtn">
-                        </div>
-                    </div>
-                </form>
-            </div>
 
             <h3> Registration</h3>
             <hr class="soft"/>
             <div class="well">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
                     <h3>Your Personal Details</h3>
                     <div class="control-group">
                         <label class="control-label" for="username">Username <sup>*</sup></label>
