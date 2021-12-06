@@ -112,14 +112,10 @@ Lower Header Section
             <div class="well well-small">
                 <h3>Category</h3>
                 <ul class="nav nav-list">
-<<<<<<< HEAD
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Figure</a></li>
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Nendoroid</a></li>
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Cosplay</a></li>
                     <li><a href="products.html"><span class="icon-chevron-right"></span>Accessory</a></li>
-=======
-                    <c:forEach items="${listCC}" var="o"> <li class="icon-chevron-right" >${o.name}<a href="category?cid=${o.id}">${o.name}</a></li></c:forEach>
->>>>>>> 7061a5d8b365618c9e0cd8c293c6c8eca3b8af5e
                 </ul>
             </div>
 
@@ -234,9 +230,9 @@ Lower Header Section
 
                                 </ul>
                             </div>
+                            <div class="item">
+                            <ul class="thumbnails">
                             <c:forEach var="product" items="${products}">
-                                <div class="item">
-                                    <ul class="thumbnails">
                                         <li class="span3">
                                             <div class="thumbnail">
                                                 <a class="zoomTool" href="product_details.html"
@@ -255,18 +251,10 @@ Lower Header Section
                     </div>
                 </div>
                 <div class="row-fluid">
+                    <ul class="thumbnails">
                     <c:forEach var="product" items="${products}">
-                        <ul class="thumbnails">
-                            <li class="span4">
-                                    <%--                                <tr>--%>
-                                    <%--                                    <td><img src="<c:out value="${product.image}"/>" alt=""></td>--%>
-                                    <%--                                    <td><c:out value="${product.categoryId}"/></td>--%>
-                                    <%--                                    <td><c:out value="${product.name}"/></td>--%>
-                                    <%--                                    <td><c:out value="${product.price}"/></td>--%>
-                                    <%--                                    <td><c:out value="${product.quantity}"/></td>--%>
-                                    <%--                                </tr>--%>
+                            <li class="span4" style="margin: 0 !important; padding: 5px" >
                                 <div class="thumbnail">
-
                                     <a class="zoomTool" href="product_details.html" title="add to cart"><span
                                             class="icon-search"></span> QUICK VIEW</a>
                                     <a href="product_details.html"><img src="<c:out value="${product.image}"/>" alt=""></a>
@@ -283,8 +271,8 @@ Lower Header Section
                                 </div>
 
                             </li>
+                        </ul>
                     </c:forEach>
-                    </ul>
 
                 </div>
             </div>

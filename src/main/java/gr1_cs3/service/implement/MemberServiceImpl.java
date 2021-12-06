@@ -3,9 +3,16 @@ package gr1_cs3.service.implement;
 import gr1_cs3.model.Member;
 import gr1_cs3.service.MemberService;
 
+<<<<<<< HEAD
 import java.sql.*;
+=======
+<<<<<<< HEAD
+import java.sql.*;
+=======
+>>>>>>> duy
 import java.sql.Connection;
 import java.sql.DriverManager;
+>>>>>>> 7061a5d8b365618c9e0cd8c293c6c8eca3b8af5e
 import java.sql.SQLException;
 import java.util.List;
 
@@ -57,6 +64,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean checkAdmin(String username, String password) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> duy
         boolean check = false;
         if (username.equals("admin") || username.equals("admin@gmail.com")) {
             if (password.equals("admin")) {
@@ -64,10 +75,20 @@ public class MemberServiceImpl implements MemberService {
             }
         }
         return check;
+<<<<<<< HEAD
+=======
+=======
+        return (username.equals("admin") || username.equals("admin@gmail.com")) && password.equals("admin");
+>>>>>>> 7061a5d8b365618c9e0cd8c293c6c8eca3b8af5e
+>>>>>>> duy
     }
 
     @Override
     public boolean checkLogin(String username, String password) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> duy
         boolean check = false;
         String pass = getPassByUser(username);
         if (pass.equals(password)) {
@@ -91,5 +112,11 @@ public class MemberServiceImpl implements MemberService {
         } catch (SQLException ignored) {
         }
         return password;
+<<<<<<< HEAD
+=======
+=======
+        return false;
+>>>>>>> 7061a5d8b365618c9e0cd8c293c6c8eca3b8af5e
+>>>>>>> duy
     }
 }

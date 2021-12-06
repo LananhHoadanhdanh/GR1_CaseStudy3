@@ -18,14 +18,13 @@ public class ProductServiceImpl implements ProductService {
         }
         return connection;
     }
+
     @Override
     public List<Product> printAll() throws SQLException {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-
              PreparedStatement preparedStatement = connection.prepareStatement("select *from product");) {
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
@@ -35,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
