@@ -89,8 +89,8 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="">Home </a></li>
-                        <li class=""><a href="product/list.jsp">List View</a></li>
+                        <li class="active"><a href="index.html">Home </a></li>
+                        <li class=""><a href="list-view.html">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
                         <li class=""><a href="four-col.html">Four Column</a></li>
@@ -261,7 +261,7 @@ Lower Header Section
                                     <div class="caption cntr">
                                         <p>Manicure & Pedicure</p>
                                         <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="product_detail.jsp" title="add to cart 1000"> Add to cart </a></h4>
+                                        <h4><a  class="shopBtn" href="/Cart?action=addToCart&id=${product.id}" title="add to cart"> Add to cart1000</a></h4>
                                         <div class="actionList">
                                             <a class="pull-left" href="#">Add to Wish List </a>
                                             <a class="pull-left" href="#"> Add to Compare </a>
