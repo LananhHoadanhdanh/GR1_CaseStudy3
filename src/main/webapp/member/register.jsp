@@ -195,25 +195,19 @@ Lower Header Section
                     <div class="control-group">
                         <label class="control-label" for="password">Password<sup>*</sup></label>
                         <div class="controls">
-                            <input type="password" id="password" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="rePassword">Re-enter the password<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="password" id="rePassword" placeholder="Re-enter the password">
+                            <input type="password" id="password" placeholder="Password" name="password">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="name">Name<sup>*</sup></label>
                         <div class="controls">
-                            <input type="password" id="name" placeholder="Name">
+                            <input type="password" id="name" placeholder="Name" name="name">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" >Email <sup>*</sup></label>
                         <div class="controls">
-                            <input type="text" placeholder="Email">
+                            <input type="text" placeholder="Email" name="email">
                         </div>
                     </div>
                     <div class="control-group">
