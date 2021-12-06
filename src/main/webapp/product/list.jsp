@@ -501,7 +501,7 @@ Lower Header Section
                 <a href="#">ORDER HISTORY</a><br>
             </div>
             <div class="span2">
-                <h5>Iinformation</h5>
+                <h5>Information</h5>
                 <a href="contact.html">CONTACT</a><br>
                 <a href="#">SITEMAP</a><br>
                 <a href="#">LEGAL NOTICE</a><br>
