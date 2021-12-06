@@ -41,15 +41,16 @@ public class CartServlet extends HttpServlet {
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
-        List<Product> products = invoiceService.addToCart();
+        int result = 0;
+        List<Invoice> products = invoiceService.addToCart();
+        for (Invoice in:products
+             ) {
+            result+=(in.getProduct_quantity()*in.getPrice());
+        }
         request.setAttribute("product", products);
+        request.setAttribute("result", result);
         requestDispatcher.forward(request, response);
 
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
-//        List<Product> products = new ArrayList<>();
-//        products = productService.printAll();
-//        request.setAttribute("product", products);
-//        requestDispatcher.forward(request, response);
     }
 
     @Override

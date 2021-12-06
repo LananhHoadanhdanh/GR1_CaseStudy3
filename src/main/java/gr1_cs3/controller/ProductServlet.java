@@ -40,22 +40,12 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-//        String name = request.getParameter("name");
-//        if (name == null) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
         List<Product> products = new ArrayList<>();
         products = productService.printAll();
         request.setAttribute("products", products);
         request.setAttribute("product", products.get(0));
         requestDispatcher.forward(request, response);
-//        }
-//        else {
-//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
-//            List<Product> listProduct = new ArrayList<>();
-//            listProduct = productService.findByName(name);
-//            request.setAttribute("listProduct", listProduct);
-//            requestDispatcher.forward(request, response);
-//        }
     }
 
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

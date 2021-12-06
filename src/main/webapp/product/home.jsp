@@ -260,7 +260,7 @@ Lower Header Section
                                     <a href="product_details.html"><img src="<c:out value="${product.image}"/>" alt=""></a>
                                     <div class="caption cntr">
                                         <p>Manicure & Pedicure</p>
-                                        <p><strong> $22.00</strong></p>
+                                        <p><strong> ${product.price}</strong></p>
                                         <h4><a  class="shopBtn" href="/Cart?action=addToCart&id=${product.id}" title="add to cart"> Add to cart1000</a></h4>
                                         <div class="actionList">
                                             <a class="pull-left" href="#">Add to Wish List </a>

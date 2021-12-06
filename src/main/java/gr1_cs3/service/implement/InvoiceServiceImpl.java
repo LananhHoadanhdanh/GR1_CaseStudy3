@@ -49,7 +49,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     public List<Invoice> addToCart() {
         List<Invoice> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
+             PreparedStatement preparedStatement = connection.prepareStatement("select * \n" +
                      "from product\n" +
                      "         inner join orderdetail on orderdetail.productId = product.id\n" +
                      "         inner join `order` on orderdetail.orderId = `order`.id");) {
