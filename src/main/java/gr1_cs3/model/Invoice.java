@@ -1,80 +1,97 @@
 package gr1_cs3.model;
 
 public class Invoice {
-    private int idMember;
-    private int idOrder;
-    private int status;
-    private int productQuantity;
-    private int idProduct;
+    private int id;
+    private String name;
     private int price;
+    private int quantity;
+    private int categoryId;
+    private String image;
+    private int brandId;
+    private String description;
+    private int product_quantity;
+
+    public Invoice(int id, String name, int price, int quantity, int categoryId, String image, int brandId, String description, int product_quantity) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.categoryId = categoryId;
+        this.image = image;
+        this.brandId = brandId;
+        this.description = description;
+        this.product_quantity = product_quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getPrice() {
         return price;
-    }
-
-    public Invoice(int idMember, int status, int productQuantity, int price) {
-        this.idMember = idMember;
-        this.status = status;
-        this.productQuantity = productQuantity;
-        this.price = price;
     }
 
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public Invoice(int idMember) {
-        this.idMember = idMember;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public Invoice() {
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public Invoice(int idMember, int idOrder, int status, int productQuantity, int idProduct) {
-        this.idMember = idMember;
-        this.idOrder = idOrder;
-        this.status = status;
-        this.productQuantity = productQuantity;
-        this.idProduct = idProduct;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public int getIdMember() {
-        return idMember;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setIdMember(int idMember) {
-        this.idMember = idMember;
+    public String getImage() {
+        return image;
     }
 
-    public int getIdOrder() {
-        return idOrder;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public int getStatus() {
-        return status;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public String getDescription() {
+        return description;
     }
 
-    public int getProductQuantity() {
-        return productQuantity;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
+    public int getProduct_quantity() {
+        return product_quantity;
     }
 
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+    public void setProduct_quantity(int product_quantity) {
+        this.product_quantity = product_quantity;
     }
 }

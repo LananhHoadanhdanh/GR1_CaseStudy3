@@ -158,6 +158,7 @@ Lower Header Section
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="product" items="${product}">
                     <tr>
                         <td><img width="100" src="${product.image}" alt=""></td>
                         <td>name: ${product.name}<br>Carate : ${product.quantity}</td>
@@ -165,25 +166,9 @@ Lower Header Section
                         <td><span class="shopBtn"><span class="icon-ok"></span></span></td>
                         <td>${product.price}VND</td>
                         <td>
-                            <input name="quanOrder" class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons"
-                                   size="16" type="text" value="2">
-                            <div class="input-append">
-                                <button class="btn btn-mini" type="button">-</button>
-                                <button class="btn btn-mini" type="button"> +</button>
-                                <button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span>
-                                </button>
-                            </div>
-                        </td>
-                        <td>${pay}</td>
-                    </tr>
-                    <tr>
-                        <td><img width="100" src="assets/img/f.jpg" alt=""></td>
-                        <td>Item names and brief details<br>Carate:24 <br>Model:HBK24</td>
-                        <td> -</td>
-                        <td><span class="shopBtn"><span class="icon-ok"></span></span></td>
-                        <td>$348.42</td>
-                        <td>
-                            <input class="span1" style="max-width:34px" placeholder="1" size="16" type="text">
+                            <input class="span1" style="max-width:34px" id="appendedInputButtons"
+                                   size="16" type="text" value="${product.product_quantity}">
+
                             <div class="input-append">
                                 <button class="btn btn-mini" type="button">-</button>
                                 <button class="btn btn-mini" type="button">+</button>
@@ -191,16 +176,9 @@ Lower Header Section
                                 </button>
                             </div>
                         </td>
-                        <td>$348.42</td>
+                        <td>fg</td>
                     </tr>
-                    <tr>
-                        <td colspan="6" class="alignR">Total products:</td>
-                        <td> $448.42</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="alignR">Total products:</td>
-                        <td> $448.42</td>
-                    </tr>
+                    </c:forEach>
                     <tr>
                         <td colspan="6" class="alignR">Total products:</td>
                         <td> $448.42</td>

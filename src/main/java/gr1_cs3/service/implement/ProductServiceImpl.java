@@ -1,5 +1,6 @@
 package gr1_cs3.service.implement;
 
+import gr1_cs3.model.Invoice;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.ProductService;
 
