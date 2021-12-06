@@ -66,7 +66,7 @@
       <div class="row">
         <div class="span4">
           <h1>
-            <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+            <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
               <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
             </a>
           </h1>
@@ -96,7 +96,7 @@
           </a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="index.html">Home </a></li>
+              <li class="active"><a href="http://localhost:8080">Home </a></li>
               <li class=""><a href="list-view.html">List View</a></li>
               <li class=""><a href="grid-view.html">Grid View</a></li>
               <li class=""><a href="three-col.html">Three Column</a></li>

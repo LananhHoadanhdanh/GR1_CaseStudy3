@@ -59,7 +59,7 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+                    <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
                         <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                     </a>
                 </h1>
@@ -89,7 +89,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="index.html">Home </a></li>
+                        <li class="active"><a href="http://localhost:8080">Home </a></li>
                         <li class=""><a href="list-view.html">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
@@ -135,7 +135,6 @@ Lower Header Section
                     <div class="thumbnail">
                         <a class="zoomTool" href="product_details.html" title="add to cart"><span
                                 class="icon-search"></span> QUICK VIEW</a>
-
                         <img src="assets/img/bootstrap-ecommerce-templates.PNG" alt="bootstrap ecommerce templates">
                         <div class="caption">
                             <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
@@ -168,8 +167,8 @@ Lower Header Section
                     </div>
                 </li>
             </ul>
-
         </div>
+
         <div class="span9">
             <div class="well np">
                 <div id="myCarousel" class="carousel slide homCar">

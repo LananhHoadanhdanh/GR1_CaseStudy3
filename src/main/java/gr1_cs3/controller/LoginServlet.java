@@ -47,8 +47,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("products", products);
             dispatcher.forward(request, response);
         } else if (memberService.checkLogin(username, password)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("product/list.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect("/products");
         } else {
             response.sendRedirect("/login");
         }

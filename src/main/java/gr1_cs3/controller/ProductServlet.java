@@ -12,70 +12,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", value = "")
+@WebServlet(name = "ProductServlet", value = "/products")
 public class ProductServlet extends HttpServlet {
     ProductService productService = new ProductServiceImpl();
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        String action = request.getParameter("act");
         if (action == null) {
             action = "";
         }
         switch (action) {
-//            case "addToCart":
-//                try {
-//                    addToCart(request, response);
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//                break;
             default:
                 try {
-                    showList(request, response);
+                    showListProduct(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                break;
         }
     }
 
-    private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-//        String name = request.getParameter("name");
-//        if (name == null) {
+    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
+        String key = request.getParameter("key");
         List<Product> products = new ArrayList<>();
-        products = productService.printAll();
+        if (key == null) {
+            products = productService.printAll();
+        } else {
+            products = productService.findByName(key);
+        }
         request.setAttribute("products", products);
-        request.setAttribute("product", products.get(0));
-        requestDispatcher.forward(request, response);
-//        }
-//        else {
-//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
-//            List<Product> listProduct = new ArrayList<>();
-//            listProduct = productService.findByName(name);
-//            request.setAttribute("listProduct", listProduct);
-//            requestDispatcher.forward(request, response);
-//        }
-    }
-
-    private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product products = productService.addToCart(id);
-        request.setAttribute("product", products);
-
         requestDispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "login":
 
-        }
     }
 }

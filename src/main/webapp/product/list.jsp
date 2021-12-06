@@ -66,7 +66,7 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+                    <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
                         <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                     </a>
                 </h1>
@@ -102,37 +102,16 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="index.html">Home	</a></li>
+                        <li class=""><a href="http://localhost:8080">Home	</a></li>
                         <li class="active"><a href="list-view.html">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
                         <li class=""><a href="four-col.html">Four Column</a></li>
-                        <li class=""><a href="general.html">General Content</a></li>
                     </ul>
-                    <form action="#" class="navbar-search pull-left">
-                        <input type="text" placeholder="Search" class="search-query span2">
+                    <form action="/products" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2" name="key">
+                        <button>Search by name</button>
                     </form>
-                    <ul class="nav pull-right">
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span> Login <b class="caret"></b></a>
-                            <div class="dropdown-menu">
-                                <form class="form-horizontal loginFrm">
-                                    <div class="control-group">
-                                        <input type="text" class="span2" id="inputEmail" placeholder="Email">
-                                    </div>
-                                    <div class="control-group">
-                                        <input type="password" class="span2" id="inputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="checkbox">
-                                            <input type="checkbox"> Remember me
-                                        </label>
-                                        <button type="submit" class="shopBtn btn-block">Sign in</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -143,33 +122,26 @@ Lower Header Section
     <div class="row">
         <div id="sidebar" class="span3">
             <div class="well well-small">
+                <h3>Category</h3>
                 <ul class="nav nav-list">
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Fashion</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Watches</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Fine Jewelry</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Fashion Jewelry</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Engagement & Wedding</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Men's Jewelry</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Vintage & Antique</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Loose Diamonds </a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Loose Beads</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>See All Jewelry & Watches</a></li>
-                    <li style="border:0"> &nbsp;</li>
-                    <li> <a class="totalInCart" href="cart.html"><strong>Total Amount  <span class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Figure</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Nendoroid</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Cosplay</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Accessory</a></li>
                 </ul>
             </div>
 
-            <div class="well well-small alert alert-warning cntr">
-                <h2>50% Discount</h2>
-                <p>
-                    only valid for online order. <br><br><a class="defaultBtn" href="#">Click here </a>
-                </p>
+            <div class="well well-small">
+                <h3>Brand</h3>
+                <ul class="nav nav-list">
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Naruto</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Dragon Ball</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Kimetsu no Yaiba</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>One Piece</a></li>
+                    <li><a href="products.html"><span class="icon-chevron-right"></span>Gundam</a></li>
+                </ul>
             </div>
-            <div class="well well-small" ><a href="#"><img src="assets/img/paypal.jpg" alt="payment method paypal"></a></div>
 
-            <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
-            <br>
-            <br>
             <ul class="nav nav-list promowrapper">
                 <li>
                     <div class="thumbnail">

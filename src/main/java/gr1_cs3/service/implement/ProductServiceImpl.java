@@ -46,12 +46,47 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> printAllOrderByPrice() throws SQLException {
-        return null;
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product order by price");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
     }
 
     @Override
-    public List<Product> findByName(String name) throws SQLException {
-        return null;
+    public List<Product> findByName(String key) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where name like ?");) {
+            preparedStatement.setString(1, "%" + key + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
     }
 
     @Override
