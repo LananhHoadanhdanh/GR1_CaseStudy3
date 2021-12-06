@@ -23,13 +23,13 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "addToCart":
-                try {
-                    addToCart(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
+//            case "addToCart":
+//                try {
+//                    addToCart(request, response);
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
             default:
                 try {
                     showList(request, response);
@@ -38,14 +38,16 @@ public class ProductServlet extends HttpServlet {
                 }
         }
     }
+
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 //        String name = request.getParameter("name");
 //        if (name == null) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-            List<Product> products = productService.printAll();
-            request.setAttribute("products", products);
-            request.setAttribute("product", products.get(0));
-            requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
+        List<Product> products = new ArrayList<>();
+        products = productService.printAll();
+        request.setAttribute("products", products);
+        request.setAttribute("product", products.get(0));
+        requestDispatcher.forward(request, response);
 //        }
 //        else {
 //            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
@@ -55,15 +57,25 @@ public class ProductServlet extends HttpServlet {
 //            requestDispatcher.forward(request, response);
 //        }
     }
+
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("cart.jsp");
-            List<Product> products = productService.printAll();
-            request.setAttribute("products", products);
-            requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product products = productService.addToCart(id);
+        request.setAttribute("product", products);
+
+        requestDispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "login":
 
+        }
     }
 }
