@@ -1,6 +1,5 @@
 package gr1_cs3.service.implement;
 
-import gr1_cs3.model.Invoice;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.ProductService;
 
@@ -20,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
         return connection;
     }
 
-    public int viewPay(int price,int quantity){
+    public int viewPay(int price, int quantity){
         return price*quantity;
     }
 

@@ -44,11 +44,11 @@ public class LoginServlet extends HttpServlet {
         if (memberService.checkAdmin(username, password)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
             List<Product> products = productService.findAll();
-            request.setAttribute("username", username);
             request.setAttribute("products", products);
             dispatcher.forward(request, response);
         } else if (memberService.checkLogin(username, password)) {
             response.sendRedirect("/products");
+            request.setAttribute("username", username);
         } else {
             response.sendRedirect("/login");
         }
