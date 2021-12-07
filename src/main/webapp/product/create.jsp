@@ -208,7 +208,7 @@ Lower Header Section
 
                     <label class="control-label">Danh mục<sup>*</sup></label>
                     <div class="controls">
-                        <select class="span1" name="category">
+                        <select class="span1" name="categoryId">
                             <option value="">-</option>
                             <c:forEach var="category" items="${categories}">
                                 <option value="${category.id}">${category.id}. ${category.name}</option>
@@ -218,12 +218,20 @@ Lower Header Section
                     <br>
                     <label class="control-label">Anime/Manga<sup>*</sup></label>
                     <div class="controls">
-                        <select class="span1" name="brand">
+                        <select class="span1" name="brandId">
                             <option value="">-</option>
                             <c:forEach var="brand" items="${brands}">
                                 <option value="${brand.id}">${brand.id}. ${brand.name}</option>
                             </c:forEach>
                         </select>
+                    </div>
+                    <br>
+                    <div class="control-group">
+                        <label class="control-label" for="description">Mô tả sản phẩm<sup>*</sup></label>
+                        <div class="controls">
+                            <textarea rows="9" cols="70" id="description" name="description"></textarea>
+<%--                            <input type="text" id="description" name="description" placeholder="Mô tả sản phẩm">--%>
+                        </div>
                     </div>
                     <br>
                     <div class="control-group">

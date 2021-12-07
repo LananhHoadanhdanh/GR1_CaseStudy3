@@ -103,7 +103,30 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "login":
-
+                break;
+            case "create":
+                try {
+                    createProduct(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
+    }
+
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+        int brandId = Integer.parseInt(request.getParameter("brandId"));
+        String image = "productImg/logo.png";
+        Product product = new Product(name, price, quantity, categoryId, image, brandId, description);
+        productService.add(product);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
+        List<Product> products = productService.findAll();
+        request.setAttribute("products", products);
+        dispatcher.forward(request, response);
     }
 }

@@ -270,6 +270,7 @@
               <th>Brand</th>
               <th>View</th>
               <th>Edit</th>
+              <th>Delete</th>
             </tr>
             <c:forEach var="product" items="${products}">
               <tr>
@@ -282,6 +283,8 @@
                 <td>${product.brandId}</td>
                 <td><a href="/products?act=view&id=${product.id}">View</a></td>
                 <td><a href="/products?act=edit&id=${product.id}">Edit</a></td>
+                <td><a onclick="return confirm('Are you sure?')"
+                       href="/products?act=delete&id=${product.id}">Delete</a></td>
               </tr>
             </c:forEach>
           </table>

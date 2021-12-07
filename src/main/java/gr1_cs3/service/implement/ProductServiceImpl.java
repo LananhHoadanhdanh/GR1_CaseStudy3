@@ -210,7 +210,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void add(Product product) throws SQLException {
-
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("insert into product(name, price, quantity, categoryId, image, brandId, description) value (?, ?, ?, ?, ?, ?, ?)");) {
+            System.out.println(preparedStatement);
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setInt(2, product.getPrice());
+            preparedStatement.setInt(3, product.getQuantity());
+            preparedStatement.setInt(4, product.getCategoryId());
+            preparedStatement.setString(5, product.getImage());
+            preparedStatement.setInt(6, product.getBrandId());
+            preparedStatement.setString(7, product.getDescription());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ignored) {
+        }
     }
 
     @Override
