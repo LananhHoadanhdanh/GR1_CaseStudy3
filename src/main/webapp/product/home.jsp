@@ -228,10 +228,10 @@ Lower Header Section
                                     <c:forEach var="product" items="${newProducts}">
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <a class="zoomTool" href="product_details.html"
+                                                <a class="zoomTool" href="?action=product-detail&id=${product.id}"
                                                    title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
                                                 <a href="#" class="tag"></a>
-                                                <a href="product_details.html"><img src="${product.image}" alt=""></a>
+                                                <a href="?action=product-detail&id=${product.id}"><img src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
                                     </c:forEach>
@@ -242,7 +242,7 @@ Lower Header Section
                                     <c:forEach var="product" items="${newProducts}">
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <a class="zoomTool" href="product_details.html"
+                                                <a class="zoomTool" href="?action=product-detail&id=${product.id}"
                                                    title="add to cart"><span
                                                         class="icon-search"></span> QUICK VIEW</a>
                                                 <a href="product_details.html"><img src="${product.image}" alt=""></a>
