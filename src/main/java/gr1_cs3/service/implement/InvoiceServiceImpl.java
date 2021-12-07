@@ -93,7 +93,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     }
 
     @Override
-    public void augToCart(int idProduct, String userName) {
+    public void augmentToCart(int idProduct, String userName) {
         if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`+ 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
@@ -121,13 +121,41 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     }
 
     @Override
-    public void editCart(int idProduct, String userName,int quantity) {
+    public void editCart(int idProduct, String userName, int quantity) {
         if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =? WHERE (`orderId` = ?) and (`productId` = ?);")) {
                 preparedStatement.setInt(1, quantity);
                 preparedStatement.setInt(2, getIdOrder(userName));
                 preparedStatement.setInt(3, idProduct);
+                preparedStatement.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void addToCart(int idProduct, String userName) {
+        if (getStatus(userName) == 0) {
+            try (Connection connection = getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `cs3_g1`.`orderdetail` (`orderId`, `productId`, `product_quantity`) VALUES (?,?,?) ;")) {
+                preparedStatement.setInt(1, getIdOrder(userName));
+                preparedStatement.setInt(2, idProduct);
+                preparedStatement.setInt(3, 1);
+                preparedStatement.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    public void addOrder( String userName) {
+        if (getStatus(userName) == 0) {
+            try (Connection connection = getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(
+                         "INSERT INTO `cs3_g1`.`order` (memberId) VALUES (?) ;")) {
+                preparedStatement.setInt(1, getIdUser(userName));
                 preparedStatement.executeUpdate();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

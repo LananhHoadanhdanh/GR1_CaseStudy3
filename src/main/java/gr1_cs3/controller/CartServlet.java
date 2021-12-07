@@ -30,7 +30,7 @@ public class CartServlet extends HttpServlet {
                 reduce(request, response);
                 break;
             case "addToCart":
-                addToCart(request, response);
+                augment(request, response);
                 break;
             default:
                 try {
@@ -47,7 +47,7 @@ public class CartServlet extends HttpServlet {
         int edit = Integer.parseInt(request.getParameter("edit"));
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-        invoiceService.editCart(id, user,edit);
+        invoiceService.editCart(id, user, edit);
         List<Invoice> products = invoiceService.findAll(user);
         for (Invoice in : products
         ) {
@@ -58,6 +58,7 @@ public class CartServlet extends HttpServlet {
         request.setAttribute("username", user);
         requestDispatcher.forward(request, response);
     }
+
     private void reduce(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         String user = request.getParameter("username");
@@ -80,7 +81,7 @@ public class CartServlet extends HttpServlet {
         String user = request.getParameter("username");
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-        invoiceService.augToCart(id, user);
+        invoiceService.augmentToCart(id, user);
         List<Invoice> products = invoiceService.findAll(user);
         for (Invoice in : products
         ) {
@@ -97,12 +98,16 @@ public class CartServlet extends HttpServlet {
         String user = request.getParameter("username");
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-        invoiceService.augToCart(id, user);
         List<Invoice> products = invoiceService.findAll(user);
         for (Invoice in : products
-        ) {
-            result += (in.getProduct_quantity() * in.getPrice());
+        ) {result += (in.getProduct_quantity() * in.getPrice());}
+        for (Invoice add: products
+             ) {
+            if (add.ge)
+
         }
+
+
         request.setAttribute("product", products);
         request.setAttribute("result", result);
         request.setAttribute("username", user);
@@ -131,24 +136,11 @@ public class CartServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "augment":
-                augment(request, response);
-                break;
-            case "reduce":
-                reduce(request, response);
-                break;
+
             case "edit":
                 edit(request, response);
                 break;
-            case "addToCart":
-                addToCart(request, response);
-                break;
-            default:
-                try {
-                    findAll(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+
         }
     }
 }
