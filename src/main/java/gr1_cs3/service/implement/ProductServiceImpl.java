@@ -1,6 +1,5 @@
 package gr1_cs3.service.implement;
 
-import gr1_cs3.model.Invoice;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.ProductService;
 
@@ -19,15 +18,16 @@ public class ProductServiceImpl implements ProductService {
         }
         return connection;
     }
-    public int viewPay(int price,int quantity){
-      int res= price*quantity;
-        return res;
+
+    public int viewPay(int price, int quantity){
+        return price*quantity;
     }
+
     @Override
-    public List<Product> printAll() throws SQLException {
+    public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select *from product");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -46,13 +46,137 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> printAllOrderByPrice() throws SQLException {
-        return null;
+    public List<Product> printFourProduct() throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product limit 4");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    public List<Product> getThreeProduct(){
+        List<Product> topThreeProduct = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select *from product ORDER BY RAND() limit 3");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                topThreeProduct.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return topThreeProduct;
     }
 
     @Override
-    public List<Product> findByName(String name) throws SQLException {
-        return null;
+    public List<Product> printAllOrderByPrice() throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product order by price");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> findByName(String key) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where name like ?");) {
+            preparedStatement.setString(1, "%" + key + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> findByCategory(String category) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where category like ?");) {
+            preparedStatement.setString(1, category);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> findByBrand(String brand) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where brand like ?");) {
+            preparedStatement.setString(1, brand);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
     }
 
     @Override

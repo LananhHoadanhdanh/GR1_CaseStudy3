@@ -20,6 +20,12 @@ public class OrderServiceImpl implements OrderService<Order> {
         }
         return connection;
     }
+
+    @Override
+    public List<OrderService<Order>> findAll() {
+        return null;
+    }
+
     @Override
     public void add(OrderService<Order> orderOrderService) throws SQLException {
 

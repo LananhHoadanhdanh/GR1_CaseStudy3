@@ -23,6 +23,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public List<Member> findAll() {
+        return null;
+    }
+
+    @Override
     public void add(Member member) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("insert into member(username, password, name, phone, email, address, roleId) value (?, ?, ?, ?, ?, ?, ?)");) {

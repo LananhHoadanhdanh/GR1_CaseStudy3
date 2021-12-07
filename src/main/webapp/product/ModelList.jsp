@@ -12,7 +12,7 @@
                     <strong>Model List</strong>
                 </font>
             </p>
-            <a href="${pageContext.request.contextPath }/ShoppingCart.jsp" mce_href="${pageContext.request.contextPath }/ShoppingCart.jsp">View Cart</a>
+            <a href="${pageContext.request.contextPath}/ShoppingCart.jsp" mce_href="${pageContext.request.contextPath }/ShoppingCart.jsp">View Cart</a>
             <br/><br/>
             <table width="75%" border="1">
                 <tr>

@@ -45,11 +45,11 @@
           <a href="#"><span class="icon-youtube"></span></a>
           <a href="#"><span class="icon-tumblr"></span></a>
         </div>
-        <a href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
+        <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
         <a href="#"><span class="icon-user"></span> My Account</a>
-        <a class="active" href="register.html"><span class="icon-edit"></span> Login or Register </a>
+        <a href="/login"><span class="icon-edit"></span>Login</a>
+        <a href="/register"><span class="icon-edit"></span>Register</a>
         <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-        <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@ Lower Header Section
     <div class="row">
       <div class="span4">
         <h1>
-          <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+          <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
             <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
           </a>
         </h1>
@@ -178,77 +178,28 @@ Lower Header Section
     <div class="span9">
       <ul class="breadcrumb">
         <li><a href="http://localhost:8080">Home</a> <span class="divider">/</span></li>
-        <li class="active">Registration</li>
+        <li class="active">Login</li>
       </ul>
       <h3> Login</h3>
       <hr class="soft"/>
       <div class="well">
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post">
           <h3>Your Personal Details</h3>
           <div class="control-group">
             <label class="control-label">Username or Email<sup>*</sup></label>
             <div class="controls">
-              <input type="password" placeholder="Username or Email" name="use_email">
+              <input type="text" placeholder="Username or Email" name="username">
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">Password<sup>*</sup></label>
             <div class="controls">
-              <input type="password" placeholder="Password" name="passLogin">
+              <input type="password" placeholder="Password" name="password">
             </div>
           </div>
           <div class="control-group">
             <div class="controls">
               <input type="submit" name="submitAccount" value="Login" class="exclusive shopBtn">
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <h3> Registration</h3>
-      <hr class="soft"/>
-      <div class="well">
-        <form class="form-horizontal">
-          <h3>Your Personal Details</h3>
-          <div class="control-group">
-            <label class="control-label" for="username">Username <sup>*</sup></label>
-            <div class="controls">
-              <input type="text" id="username" name="username" placeholder="Username">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="password">Password<sup>*</sup></label>
-            <div class="controls">
-              <input type="password" id="password" placeholder="Password">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="rePassword">Re-enter the password<sup>*</sup></label>
-            <div class="controls">
-              <input type="text" id="rePassword" placeholder="Re-enter the password">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="name">Name<sup>*</sup></label>
-            <div class="controls">
-              <input type="text" id="name" placeholder="Name">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >Email <sup>*</sup></label>
-            <div class="controls">
-              <input type="text" placeholder="Email">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">Address <sup>*</sup></label>
-            <div class="controls">
-              <input type="text" placeholder="Address" name="address">
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <input type="submit" name="submitAccount" value="Register" class="exclusive shopBtn">
             </div>
           </div>
         </form>

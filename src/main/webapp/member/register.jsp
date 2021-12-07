@@ -64,7 +64,7 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+                    <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
                         <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                     </a>
                 </h1>
@@ -180,35 +180,11 @@ Lower Header Section
                 <li><a href="http://localhost:8080">Home</a> <span class="divider">/</span></li>
                 <li class="active">Registration</li>
             </ul>
-            <h3> Login</h3>
-            <hr class="soft"/>
-            <div class="well">
-                <form class="form-horizontal">
-                    <h3>Your Personal Details</h3>
-                    <div class="control-group">
-                        <label class="control-label">Username or Email<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="password" placeholder="Username or Email" name="use_email">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Password<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="password" placeholder="Password" name="passLogin">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <input type="submit" name="submitAccount" value="Login" class="exclusive shopBtn">
-                        </div>
-                    </div>
-                </form>
-            </div>
 
             <h3> Registration</h3>
             <hr class="soft"/>
             <div class="well">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
                     <h3>Your Personal Details</h3>
                     <div class="control-group">
                         <label class="control-label" for="username">Username <sup>*</sup></label>
@@ -219,25 +195,25 @@ Lower Header Section
                     <div class="control-group">
                         <label class="control-label" for="password">Password<sup>*</sup></label>
                         <div class="controls">
-                            <input type="password" id="password" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="rePassword">Re-enter the password<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="password" id="rePassword" placeholder="Re-enter the password">
+                            <input type="password" id="password" placeholder="Password" name="password">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="name">Name<sup>*</sup></label>
                         <div class="controls">
-                            <input type="password" id="name" placeholder="Name">
+                            <input type="text" id="name" placeholder="Name" name="name">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" >Email <sup>*</sup></label>
                         <div class="controls">
-                            <input type="text" placeholder="Email">
+                            <input type="text" placeholder="Email" name="email">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >Phone number <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" placeholder="Phone number" name="phone">
                         </div>
                     </div>
                     <div class="control-group">
