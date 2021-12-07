@@ -31,18 +31,18 @@ public class CartServlet extends HttpServlet {
 
             default:
                 try {
-                    addToCart(request, response);
+                    findAll(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
     }
 
-    private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    private void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-        List<Invoice> products = invoiceService.addToCart();
+        List<Invoice> products = invoiceService.findAll();
         for (Invoice in:products
              ) {
             result+=(in.getProduct_quantity()*in.getPrice());
