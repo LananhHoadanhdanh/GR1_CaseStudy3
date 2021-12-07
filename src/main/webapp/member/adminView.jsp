@@ -136,48 +136,9 @@
             <li><a href="products.html"><span class="icon-chevron-right"></span>Gundam</a></li>
           </ul>
         </div>
-
-        <ul class="nav nav-list promowrapper">
-          <li>
-            <div class="thumbnail">
-              <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                      class="icon-search"></span> QUICK VIEW</a>
-
-              <img src="assets/img/bootstrap-ecommerce-templates.PNG" alt="bootstrap ecommerce templates">
-              <div class="caption">
-                <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                </h4>
-              </div>
-            </div>
-          </li>
-          <li style="border:0"> &nbsp;</li>
-          <li>
-            <div class="thumbnail">
-              <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                      class="icon-search"></span> QUICK VIEW</a>
-              <img src="assets/img/shopping-cart-template.PNG" alt="shopping cart template">
-              <div class="caption">
-                <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                </h4>
-              </div>
-            </div>
-          </li>
-          <li style="border:0"> &nbsp;</li>
-          <li>
-            <div class="thumbnail">
-              <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                      class="icon-search"></span> QUICK VIEW</a>
-              <img src="assets/img/bootstrap-template.png" alt="bootstrap template">
-              <div class="caption">
-                <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                </h4>
-              </div>
-            </div>
-          </li>
-        </ul>
-
       </div>
       <div class="span9">
+
         <div class="well np">
           <div id="myCarousel" class="carousel slide homCar">
             <div class="carousel-inner">
@@ -215,51 +176,19 @@
             <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
         <!--
         New Products
         -->
         <div class="well well-small">
-          <h3>New Products </h3>
-          <hr class="soften"/>
-          <div class="row-fluid">
-            <div id="newProductCar" class="carousel slide">
-              <div class="carousel-inner">
-                <div class="item active">
-                  <ul class="thumbnails">
-                    <li class="span3">
-                      <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html"
-                           title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                        <a href="#" class="tag"></a>
-                        <a href="product_details.html"><img src="${product.image}" alt="bootstrap-ring"></a>
-                      </div>
-                    </li>
-
-                  </ul>
-                </div>
-                <div class="item">
-                  <ul class="thumbnails">
-                    <c:forEach var="product" items="${products}">
-                      <li class="span3">
-                        <div class="thumbnail">
-                          <a class="zoomTool" href="product_details.html"
-                             title="add to cart"><span
-                                  class="icon-search"></span> QUICK VIEW</a>
-                          <a href="product_details.html"><img src="${product.image}" alt=""></a>
-                        </div>
-                      </li>
-
-                    </c:forEach>
-                  </ul>
-                </div>
-              </div>
-              <a class="left carousel-control" href="#newProductCar" data-slide="prev">&lsaquo;</a>
-              <a class="right carousel-control" href="#newProductCar" data-slide="next">&rsaquo;</a>
-            </div>
-          </div>
-          <h3><a href="/products?action=create">Thêm sản phẩm mới</a></h3>
-          <table border="1" cellpadding="5">
-            <caption><h2>List of products</h2></caption>
+          <table style="width: 100%" cellpadding="5" cellspacing="5">
+            <caption>
+              <h2>List of products</h2>
+              <h3><a href="/products?action=create">Thêm sản phẩm mới</a></h3>
+            </caption>
             <tr>
               <th>ID</th>
               <th>Name</th>
@@ -268,96 +197,25 @@
               <th>Quantity</th>
               <th>Category</th>
               <th>Brand</th>
-              <th>View</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th colspan="3">Action</th>
             </tr>
             <c:forEach var="product" items="${products}">
-              <tr>
+              <tr style="border-collapse: collapse; padding: 5px; border-bottom: 1px #DDD solid ;border-top: 1px #DDD solid ;">
                 <td>${product.id}</td>
-                <td>${product.name}</td>
-                <td><img src="${product.image}" alt="${product.name}"></td>
+                <td width="150px">${product.name}</td>
+                <td width="200px"><img src="${product.image}" alt="${product.name}" style="width: 100%; border-radius: 5px"></td>
                 <td>${product.price}</td>
                 <td>${product.quantity}</td>
                 <td>${product.categoryId}</td>
                 <td>${product.brandId}</td>
-                <td><a href="/products?act=view&id=${product.id}">View</a></td>
-                <td><a href="/products?act=edit&id=${product.id}">Edit</a></td>
+                <td><a href="/products?action=view&id=${product.id}">View</a></td>
+                <td><a href="/products?action=edit&id=${product.id}">Edit</a></td>
                 <td><a onclick="return confirm('Are you sure?')"
-                       href="/products?act=delete&id=${product.id}">Delete</a></td>
+                       href="/products?action=delete&id=${product.id}">Delete</a></td>
+
               </tr>
             </c:forEach>
           </table>
-        </div>
-        <!--
-        Featured Products
-        -->
-        <div class="well well-small">
-          <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span
-                  class="icon-plus"></span></a> Featured Products </h3>
-          <hr class="soften"/>
-          <div class="row-fluid">
-            <ul class="thumbnails">
-              <li class="span4">
-                <div class="thumbnail">
-                  <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                          class="icon-search"></span> QUICK VIEW</a>
-                  <a href="product_details.html"><img src="assets/img/d.jpg" alt=""></a>
-                  <div class="caption">
-                    <h5>Manicure & Pedicure</h5>
-                    <h4>
-                      <a class="defaultBtn" href="product_details.html" title="Click to view"><span
-                              class="icon-zoom-in"></span></a>
-                      <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
-                      <span class="pull-right">$22.00</span>
-                    </h4>
-                  </div>
-                </div>
-              </li>
-              <li class="span4">
-                <div class="thumbnail">
-                  <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                          class="icon-search"></span> QUICK VIEW</a>
-                  <a href="product_details.html"><img src="assets/img/e.jpg" alt=""></a>
-                  <div class="caption">
-                    <h5>Manicure & Pedicure</h5>
-                    <h4>
-                      <a class="defaultBtn" href="product_details.html" title="Click to view"><span
-                              class="icon-zoom-in"></span></a>
-                      <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
-                      <span class="pull-right">$22.00</span>
-                    </h4>
-                  </div>
-                </div>
-              </li>
-              <li class="span4">
-                <div class="thumbnail">
-                  <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                          class="icon-search"></span> QUICK VIEW</a>
-                  <a href="product_details.html"><img src="assets/img/f.jpg" alt=""/></a>
-                  <div class="caption">
-                    <h5>Manicure & Pedicure</h5>
-                    <h4>
-                      <a class="defaultBtn" href="product_details.html" title="Click to view"><span
-                              class="icon-zoom-in"></span></a>
-                      <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>
-                      <span class="pull-right">$22.00</span>
-                    </h4>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="well well-small">
-          <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
-          Popular Products
-        </div>
-        <hr>
-        <div class="well well-small">
-          <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
-          Best selling Products
         </div>
       </div>
     </div>

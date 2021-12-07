@@ -63,6 +63,10 @@ public class ProductServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productService.findProductById(id);
+        List<Brand> brands = brandService.findAll();
+        List<Category> categories = categoryService.findAll();
+        request.setAttribute("brands", brands);
+        request.setAttribute("categories", categories);
         request.setAttribute("product", product);
         dispatcher.forward(request, response);
     }
@@ -126,7 +130,31 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "edit":
+                try {
+                    editProduct(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
+    }
+
+    private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        String image = request.getParameter("image");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+        int brandId = Integer.parseInt(request.getParameter("brandId"));
+        Product product = new Product(id, name, price, quantity, categoryId, image, brandId, description);
+        productService.edit(product);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
+        List<Product> products = productService.findAll();
+        request.setAttribute("products", products);
+        dispatcher.forward(request, response);
     }
 
     private void createProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
