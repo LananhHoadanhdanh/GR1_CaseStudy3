@@ -37,12 +37,29 @@ public class HomepageServlet extends HttpServlet {
             case "gioi-thieu":
                 showAboutUs(request, response);
                 break;
+            case "product-detail":
+                showProductDetail(request, response);
+                break;
             default:
                 try {
                     showHomePage(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+        }
+    }
+
+    private void showProductDetail(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/productDetail.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product productDetail = productService.findProductById(id);
+        request.setAttribute("productDetail", productDetail);
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
