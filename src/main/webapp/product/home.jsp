@@ -230,7 +230,8 @@ Lower Header Section
                                                 <a class="zoomTool" href="?action=product-detail&id=${product.id}"
                                                    title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
                                                 <a href="#" class="tag"></a>
-                                                <a href="?action=product-detail&id=${product.id}"><img src="${product.image}" alt=""></a>
+                                                <a href="?action=product-detail&id=${product.id}"><img
+                                                        src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
                                     </c:forEach>
@@ -244,7 +245,8 @@ Lower Header Section
                                                 <a class="zoomTool" href="?action=product-detail&id=${product.id}"
                                                    title="add to cart"><span
                                                         class="icon-search"></span> QUICK VIEW</a>
-                                                <a href="?action=product-detail&id=${product.id}"><img src="${product.image}" alt=""></a>
+                                                <a href="?action=product-detail&id=${product.id}"><img
+                                                        src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
                                     </c:forEach>
@@ -260,15 +262,19 @@ Lower Header Section
                         <c:forEach var="product" items="${topThreeProducts}">
                             <li class="span4" style="margin: 0 !important; padding: 5px">
                                 <div class="thumbnail">
-                                    <a class="zoomTool" href="?action=product-detail&id=${product.id}" title="add to cart"><span
+                                    <a class="zoomTool" href="?action=product-detail&id=${product.id}"
+                                       title="add to cart"><span
                                             class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="?action=product-detail&id=${product.id}"><img src="<c:out value="${product.image}"/>" alt=""></a>
+                                    <a href="?action=product-detail&id=${product.id}"><img
+                                            src="<c:out value="${product.image}"/>" alt=""></a>
                                     <div class="caption cntr">
                                         <h3>${product.name}</h3>
-                                        <p><strong> ${product.price}</strong></p>
+                                        <p style="display: inline !important;"><strong> ${product.price}</strong></p>
+                                        <span style="padding: 5px !important; font-weight: bold !important;">VNĐ</span>
+                                        <span  style="font-weight: bold !important; padding: 5px !important;">Số lượng: </span>
+                                        <p style="display: inline !important;"><strong> ${product.quantity}</strong></p>
                                         <h4><a class="shopBtn" href="/login"
-                                               title="add to cart"> Add to
-                                            cart1000</a></h4>
+                                               title="add to cart"> Add to cart</a></h4>
                                         <br class="clr">
                                     </div>
                                 </div>

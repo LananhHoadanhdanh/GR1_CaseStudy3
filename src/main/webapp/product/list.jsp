@@ -107,7 +107,7 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li><a href="category?cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a href="category?cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -183,267 +183,27 @@ Lower Header Section
                         <c:forEach var="product" items="${products}">
                             <li class="span4" style="margin: 0px !important; padding: 5px">
                                 <div class="thumbnail">
-                                    <a href="product_details.html" class="overlay"></a>
-                                    <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                                    <a href="?action=product-detail&id=${product.id}" class="overlay"></a>
+                                    <a class="zoomTool" href="?action=product-detail&id=${product.id}" title="add to cart"><span
                                             class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.html"><img src="${product.image}" alt=""></a>
+                                    <a href="?action=product-detail&id=${product.id}"><img src="${product.image}" alt=""></a>
                                     <div class="caption cntr">
-                                        <p>Manicure & Pedicure</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <div class="actionList">
-                                            <a class="pull-left" href="#">Add to Wish List </a>
-                                            <a class="pull-left" href="#"> Add to Compare </a>
-                                        </div>
+                                        <h3>${product.name}</h3>
+                                        <p style="display: inline !important;"><strong> ${product.price}</strong></p>
+                                        <span style="padding: 5px !important; font-weight: bold !important;">VNĐ</span><br>
+                                        <span  style="font-weight: bold !important; padding: 5px !important;">Số lượng: </span>
+                                        <span><strong> ${product.quantity}</strong></span>
+                                        <h4><a class="shopBtn" href="/login" title="add to cart"> Add to cart </a></h4>
                                         <br class="clr">
                                     </div>
                                 </div>
                             </li>
                         </c:forEach>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/b.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/c.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
-                <div class="row-fluid">
-                    <ul class="thumbnails">
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/d.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/e.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/f.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row-fluid">
-                    <ul class="thumbnails">
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/g.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/h.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/i.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row-fluid">
-                    <ul class="thumbnails">
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/a.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/b.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a href="product_details.html" class="overlay"></a>
-                                <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                        class="icon-search"></span> QUICK VIEW</a>
-                                <a href="product_details.html"><img src="assets/img/c.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
         </div>
     </div>
-    <!--
-    Clients
-    -->
-    <section class="our_client">
-        <hr class="soften"/>
-        <h4 class="title cntr"><span class="text">Manufactures</span></h4>
-        <hr class="soften"/>
-        <div class="row">
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/1.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/2.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/3.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/4.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/5.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/6.png"></a>
-            </div>
-        </div>
-    </section>
 
     <!--
     Footer
@@ -451,28 +211,26 @@ Lower Header Section
     <footer class="footer">
         <div class="row-fluid">
             <div class="span2">
-                <h5>Your Account</h5>
-                <a href="#">YOUR ACCOUNT</a><br>
-                <a href="#">PERSONAL INFORMATION</a><br>
-                <a href="#">ADDRESSES</a><br>
-                <a href="#">DISCOUNT</a><br>
-                <a href="#">ORDER HISTORY</a><br>
+                <h5>Liên kết</h5>
+                <a href="">Trang chủ</a><br>
+                <a href="/list-view">Tất cả sản phẩm</a><br>
+                <a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a><br>
+                <a href="?action=gioi-thieu">Giới thiệu</a><br>
             </div>
             <div class="span2">
-                <h5>Iinformation</h5>
-                <a href="contact.html">CONTACT</a><br>
-                <a href="#">SITEMAP</a><br>
-                <a href="#">LEGAL NOTICE</a><br>
-                <a href="#">TERMS AND CONDITIONS</a><br>
-                <a href="#">ABOUT US</a><br>
+                <h5>Chính sách hỗ trợ</h5>
+                <a href="#">Tìm kiếm</a><br>
+                <a href="#">Giới thiệu</a><br>
+                <a href="#">Chính sách thanh toán</a><br>
+                <a href="#">Chính sách vận chuyển</a><br>
             </div>
             <div class="span2">
-                <h5>Our Offer</h5>
-                <a href="#">NEW PRODUCTS</a> <br>
-                <a href="#">TOP SELLERS</a><br>
-                <a href="#">SPECIALS</a><br>
-                <a href="#">MANUFACTURERS</a><br>
-                <a href="#">SUPPLIERS</a> <br/>
+                <%--                <h5>Our Offer</h5>--%>
+                <%--                <a href="#">NEW PRODUCTS</a> <br>--%>
+                <%--                <a href="#">TOP SELLERS</a><br>--%>
+                <%--                <a href="#">SPECIALS</a><br>--%>
+                <%--                <a href="#">MANUFACTURERS</a><br>--%>
+                <%--                <a href="#">SUPPLIERS</a> <br/>--%>
             </div>
             <div class="span6">
                 <h5>The standard chunk of Lorem</h5>
@@ -497,7 +255,7 @@ Lower Header Section
         <span>Copyright &copy; 2013<br> bootstrap ecommerce shopping template</span>
     </div>
 </div>
-<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
+<a href="http://localhost:8080/" class="gotop"><i class="icon-double-angle-up"></i></a>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
