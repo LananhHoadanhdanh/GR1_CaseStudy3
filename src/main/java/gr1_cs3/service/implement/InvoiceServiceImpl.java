@@ -20,14 +20,16 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         return connection;
     }
 
-    @Override
-    public List<Invoice> findAll() {
+    public List<Invoice> findAll(String username) {
         List<Invoice> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * \n" +
+             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
                      "from product\n" +
-                     "         inner join orderdetail on orderdetail.productId = product.id\n" +
-                     "         inner join `order` on orderdetail.orderId = `order`.id");) {
+                     " inner join orderdetail on orderdetail.productId = product.id\n" +
+                     " inner join `order` on orderdetail.orderId = `order`.id\n" +
+                     "inner join member on `member`.id=memberId\n" +
+                     "where member.username=?;");) {
+            preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -39,11 +41,76 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                 int brandId = rs.getInt("brandId");
                 int productquantity = rs.getInt("product_quantity");
                 String description = rs.getString("description");
-                products.add(new Invoice(id, name, price, quantity,  categoryId,  image,  brandId,  description ,productquantity));
+                products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity));
             }
         } catch (SQLException ignored) {
         }
         return products;
+    }
+
+    @Override
+    public int getIdUser(String username) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select id from member where member.username=?")) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int id = rs.getInt("id");
+            return id;
+        } catch (SQLException ignored) {
+        }
+        return 0;
+    }
+
+    @Override
+    public int getIdOrder(String username) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select id from `order` where memberid=?")) {
+            preparedStatement.setInt(1, getIdUser(username));
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int id = rs.getInt("id");
+            return id;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int getStatus(String username) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select status from `order` where memberid=?")) {
+            preparedStatement.setInt(1, getIdUser(username));
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int status = rs.getInt("status");
+            return status;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean addToCart(int idProduct, String userName) {
+        if (getStatus(userName) == 0) {
+            try (Connection connection = getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`+ 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
+                preparedStatement.setInt(1, getIdOrder(userName));
+                preparedStatement.setInt(2, idProduct);
+                preparedStatement.executeUpdate();
+                return true;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public List<Invoice> findAll() {
+        return null;
     }
 
     @Override
@@ -66,34 +133,5 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         return 0;
     }
 
-    @Override
-    public List<Invoice> invoice() {
-       return null;
-    }
 
-    @Override
-    public List<Invoice> addToCart() {
-        List<Invoice> products = new ArrayList<>();
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * \n" +
-                     "from product\n" +
-                     "         inner join orderdetail on orderdetail.productId = product.id\n" +
-                     "         inner join `order` on orderdetail.orderId = `order`.id");) {
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                int price = rs.getInt("price");
-                int quantity = rs.getInt("quantity");
-                int categoryId = rs.getInt("categoryId");
-                String image = rs.getString("image");
-                int brandId = rs.getInt("brandId");
-                int productquantity = rs.getInt("product_quantity");
-                String description = rs.getString("description");
-                products.add(new Invoice(id, name, price, quantity,  categoryId,  image,  brandId,  description ,productquantity));
-            }
-        } catch (SQLException ignored) {
-        }
-        return products;
-    }
 }
