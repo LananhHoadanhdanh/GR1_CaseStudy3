@@ -43,6 +43,13 @@ public class ProductServlet extends HttpServlet {
             case "create":
                 showCreateForm(request, response);
                 break;
+            case "edit":
+                try {
+                    showEditForm(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 try {
                     showUserView(request, response);
@@ -50,6 +57,14 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
         }
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findProductById(id);
+        request.setAttribute("product", product);
+        dispatcher.forward(request, response);
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

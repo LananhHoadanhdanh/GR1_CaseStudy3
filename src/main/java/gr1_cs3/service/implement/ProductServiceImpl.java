@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getThreeProduct(){
         List<Product> topThreeProduct = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select *from product ORDER BY RAND() limit 3");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product ORDER BY RAND() limit 3");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -86,6 +86,29 @@ public class ProductServiceImpl implements ProductService {
         } catch (SQLException ignored) {
         }
         return topThreeProduct;
+    }
+
+    @Override
+    public Product findProductById(int id) {
+        Product product = null;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where id = ?");) {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                product = new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description );
+            }
+        } catch (SQLException e) {
+        }
+        return product;
     }
 
     @Override
