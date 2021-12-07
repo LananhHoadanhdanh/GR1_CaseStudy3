@@ -68,7 +68,7 @@ Lower Header Section
       </div>
       <div class="span4 alignR">
         <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-        <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
+        <a href="Cart?action=def&username=${username}"><span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span></a>
         <span class="btn btn-warning btn-mini">$</span>
         <span class="btn btn-mini">&pound;</span>
         <span class="btn btn-mini">&euro;</span>
@@ -264,7 +264,7 @@ Lower Header Section
                   <div class="caption cntr">
                     <p>Manicure & Pedicure</p>
                     <p><strong> $22.00</strong></p>
-                    <h4><a class="shopBtn" href="/Cart?action=addToCart&id=${product.id}" title="add to cart"> Add to
+                    <h4><a class="shopBtn" href="/Cart" title="add to cart"> Add to
                       cart1000</a></h4>
                     <div class="actionList">
                       <a class="pull-left" href="#">Add to Wish List </a>

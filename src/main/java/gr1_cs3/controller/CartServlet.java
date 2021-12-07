@@ -19,7 +19,6 @@ import java.util.List;
 public class CartServlet extends HttpServlet {
 
     InvoiceService invoiceService = new InvoiceServiceImpl();
-    ProductService productService = new ProductServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +27,9 @@ public class CartServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-
+            case "addToCart":
+                addToCart(request,response);
+                break;
             default:
                 try {
                     findAll(request, response);
@@ -38,19 +39,30 @@ public class CartServlet extends HttpServlet {
         }
     }
 
+    private void addToCart(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            findAll(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
-        int id = Integer.parseInt(request.getParameter("id"));
+        String user = request.getParameter("username");
         int result = 0;
-        List<Invoice> products = invoiceService.findAll();
-        for (Invoice in:products
-             ) {
-            result+=(in.getProduct_quantity()*in.getPrice());
+        List<Invoice> products = invoiceService.findAll(user);
+        for (Invoice in : products
+        ) {
+            result += (in.getProduct_quantity() * in.getPrice());
         }
         request.setAttribute("product", products);
         request.setAttribute("result", result);
         requestDispatcher.forward(request, response);
-
     }
 
     @Override

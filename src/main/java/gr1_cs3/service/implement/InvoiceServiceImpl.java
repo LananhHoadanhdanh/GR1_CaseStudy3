@@ -20,14 +20,17 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         return connection;
     }
 
-    @Override
-    public List<Invoice> findAll() {
+
+    public List<Invoice> findAll(String username) {
         List<Invoice> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * \n" +
+             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
                      "from product\n" +
-                     "         inner join orderdetail on orderdetail.productId = product.id\n" +
-                     "         inner join `order` on orderdetail.orderId = `order`.id");) {
+                     " inner join orderdetail on orderdetail.productId = product.id\n" +
+                     " inner join `order` on orderdetail.orderId = `order`.id\n" +
+                     "inner join member on `member`.id=memberId\n" +
+                     "where member.username=?;");) {
+            preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -44,6 +47,12 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         } catch (SQLException ignored) {
         }
         return products;
+    }
+
+
+    @Override
+    public List<Invoice> findAll() {
+        return null;
     }
 
     @Override
@@ -64,11 +73,6 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     @Override
     public int findById(int id) throws SQLException {
         return 0;
-    }
-
-    @Override
-    public List<Invoice> invoice() {
-       return null;
     }
 
     @Override
