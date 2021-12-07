@@ -93,19 +93,46 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     }
 
     @Override
-    public boolean addToCart(int idProduct, String userName) {
+    public void augToCart(int idProduct, String userName) {
         if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`+ 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
                 preparedStatement.setInt(1, getIdOrder(userName));
                 preparedStatement.setInt(2, idProduct);
                 preparedStatement.executeUpdate();
-                return true;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
-        return false;
+    }
+
+    @Override
+    public void reduceToCart(int idProduct, String userName) {
+        if (getStatus(userName) == 0) {
+            try (Connection connection = getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`- 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
+                preparedStatement.setInt(1, getIdOrder(userName));
+                preparedStatement.setInt(2, idProduct);
+                preparedStatement.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void editCart(int idProduct, String userName,int quantity) {
+        if (getStatus(userName) == 0) {
+            try (Connection connection = getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =? WHERE (`orderId` = ?) and (`productId` = ?);")) {
+                preparedStatement.setInt(1, quantity);
+                preparedStatement.setInt(2, getIdOrder(userName));
+                preparedStatement.setInt(3, idProduct);
+                preparedStatement.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
     }
 
     @Override
