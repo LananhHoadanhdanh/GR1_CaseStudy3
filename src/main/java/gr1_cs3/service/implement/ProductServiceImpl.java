@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> printFourProduct() throws SQLException {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from product limit 4");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product order by id desc limit 4");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getThreeProduct(){
         List<Product> topThreeProduct = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from product ORDER BY RAND() limit 3");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where product.quantity > 0 ORDER BY RAND() limit 3");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -109,6 +109,28 @@ public class ProductServiceImpl implements ProductService {
         } catch (SQLException e) {
         }
         return product;
+    }
+
+    @Override
+    public List<Product> getUpcomingProduct() {
+        List<Product> upComingProducts = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select *from product where product.quantity = 0 ORDER BY RAND() limit 3");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                upComingProducts.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+            }
+        } catch (SQLException ignored) {
+        }
+        return upComingProducts;
     }
 
     @Override

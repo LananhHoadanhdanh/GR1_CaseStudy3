@@ -15,4 +15,5 @@ public interface ProductService extends GeneralService<Product> {
     Product addToCart(int id);
     List<Product> getThreeProduct();
     Product findProductById(int id);
+    List<Product> getUpcomingProduct();
 }
