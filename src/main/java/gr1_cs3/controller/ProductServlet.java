@@ -34,7 +34,7 @@ public class ProductServlet extends HttpServlet {
                 break;
             default:
                 try {
-                    showList(request, response);
+                    showUserView(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -54,10 +54,10 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    private void showUserView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 //        String name = request.getParameter("name");
 //        if (name == null) {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/userView.jsp");
         List<Product> newProducts = new ArrayList<>();
         List<Product> topThreeProducts = new ArrayList<>();
         newProducts = productService.printFourProduct();

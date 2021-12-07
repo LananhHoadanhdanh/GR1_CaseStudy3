@@ -21,6 +21,11 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     }
 
     @Override
+    public List<Invoice> findAll() {
+        return null;
+    }
+
+    @Override
     public void add(Invoice invoice) throws SQLException {
 
     }

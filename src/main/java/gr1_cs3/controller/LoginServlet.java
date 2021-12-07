@@ -11,6 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "LoginServlet", value = "/login")
@@ -47,8 +48,16 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("products", products);
             dispatcher.forward(request, response);
         } else if (memberService.checkLogin(username, password)) {
-            response.sendRedirect("/products");
+//            response.sendRedirect("/products");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/userView.jsp");
             request.setAttribute("username", username);
+            List<Product> newProducts = new ArrayList<>();
+            List<Product> topThreeProducts = new ArrayList<>();
+            newProducts = productService.printFourProduct();
+            topThreeProducts = productService.getThreeProduct();
+            request.setAttribute("newProducts", newProducts);
+            request.setAttribute("topThreeProducts", topThreeProducts);
+            requestDispatcher.forward(request, response);
         } else {
             response.sendRedirect("/login");
         }
