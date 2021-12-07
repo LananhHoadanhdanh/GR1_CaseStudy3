@@ -42,8 +42,11 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 int productquantity = rs.getInt("product_quantity");
+                int status = rs.getInt("status");
                 String description = rs.getString("description");
-                products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity,productId,orderId));
+                if (status == 0) {
+                    products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity, productId, orderId));
+                }
             }
         } catch (SQLException ignored) {
         }
@@ -96,7 +99,6 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
 
     @Override
     public void augmentToCart(int idProduct, String userName) {
-        if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`+ 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
                 preparedStatement.setInt(1, getIdOrder(userName));
@@ -105,12 +107,10 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
     }
 
     @Override
     public void reduceToCart(int idProduct, String userName) {
-        if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`- 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
                 preparedStatement.setInt(1, getIdOrder(userName));
@@ -118,13 +118,11 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                 preparedStatement.executeUpdate();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
-            }
         }
     }
 
     @Override
     public void editCart(int idProduct, String userName, int quantity) {
-        if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =? WHERE (`orderId` = ?) and (`productId` = ?);")) {
                 preparedStatement.setInt(1, quantity);
@@ -134,12 +132,10 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
     }
 
     @Override
     public void addToCart(int idProduct, String userName) {
-        if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `cs3_g1`.`orderdetail` (`orderId`, `productId`, `product_quantity`) VALUES (?,?,?) ;")) {
                 preparedStatement.setInt(1, getIdOrder(userName));
@@ -149,11 +145,9 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
     }
 
-    public void addToCa( String userName) {
-        if (getStatus(userName) == 0) {
+    public void addToCa(String userName) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(
                          "INSERT INTO `cs3_g1`.`order` (memberId) VALUES (?) ;")) {
@@ -162,6 +156,28 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }
+    @Override
+    public void deleteProInCart(String userName,int id) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "    DELETE FROM `cs3_g1`.`orderdetail` WHERE (`orderId` = ?) and (`productId` = ?);")) {
+            preparedStatement.setInt(1, getIdOrder(userName));
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    @Override
+    public void deleteCart(String userName) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "    DELETE FROM `cs3_g1`.`orderdetail` WHERE `orderId` = ?;")) {
+            preparedStatement.setInt(1, getIdOrder(userName));
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 

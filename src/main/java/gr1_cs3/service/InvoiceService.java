@@ -15,4 +15,6 @@ public interface InvoiceService<I> extends GeneralService<Invoice>{
     public void editCart(int idProduct, String userName,int quantity);
     public void addToCart(int idProduct, String userName);
     public void addToCa( String userName);
+    public void deleteProInCart( String userName,int id);
+    public void deleteCart(String userName);
 }
