@@ -257,6 +257,7 @@
               <a class="right carousel-control" href="#newProductCar" data-slide="next">&rsaquo;</a>
             </div>
           </div>
+          <h3><a href="/products?action=create">Thêm sản phẩm mới</a></h3>
           <table border="1" cellpadding="5">
             <caption><h2>List of products</h2></caption>
             <tr>

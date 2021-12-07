@@ -1,6 +1,12 @@
 package gr1_cs3.controller;
 
+import gr1_cs3.model.Brand;
+import gr1_cs3.model.Category;
 import gr1_cs3.model.Product;
+import gr1_cs3.service.BrandService;
+import gr1_cs3.service.CategoryService;
+import gr1_cs3.service.implement.BrandServiceImpl;
+import gr1_cs3.service.implement.CategoryServiceImpl;
 import gr1_cs3.service.implement.ProductServiceImpl;
 
 import javax.servlet.*;
@@ -14,6 +20,8 @@ import java.util.List;
 
 public class ProductServlet extends HttpServlet {
     ProductServiceImpl productService = new ProductServiceImpl();
+    BrandService brandService = new BrandServiceImpl();
+    CategoryService categoryService = new CategoryServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +40,9 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "create":
+                showCreateForm(request, response);
+                break;
             default:
                 try {
                     showUserView(request, response);
@@ -39,6 +50,15 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
         }
+    }
+
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+        List<Brand> brands = brandService.findAll();
+        List<Category> categories = categoryService.findAll();
+        request.setAttribute("brands", brands);
+        request.setAttribute("categories", categories);
+        dispatcher.forward(request, response);
     }
 
     private void showAll(HttpServletRequest request, HttpServletResponse response) {
