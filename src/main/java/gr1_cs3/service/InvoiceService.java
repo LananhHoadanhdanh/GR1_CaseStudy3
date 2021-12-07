@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface InvoiceService<I> extends GeneralService<Invoice>{
     public List<Invoice> findAll(String username);
-    public List<Invoice> addToCart();
     public int getIdUser(String username);
     public int getIdOrder(String username);
     public int getStatus(String username);
+    public void addToCart(int idProduct,String userName);
 }

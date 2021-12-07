@@ -264,7 +264,7 @@ Lower Header Section
                   <div class="caption cntr">
                     <p>Manicure & Pedicure</p>
                     <p><strong> $22.00</strong></p>
-                    <h4><a class="shopBtn" href="/Cart" title="add to cart"> Add to
+                    <h4><a class="shopBtn" href="/Cart?action=addToCart&name=${product.id}" title="add to cart"> Add to
                       cart1000</a></h4>
                     <div class="actionList">
                       <a class="pull-left" href="#">Add to Wish List </a>
