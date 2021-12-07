@@ -14,4 +14,6 @@ public interface ProductService extends GeneralService<Product> {
     List<Product> findByBrand(String brand) throws SQLException;
     Product addToCart(int id);
     List<Product> getThreeProduct();
+
+    List<Product> getUpcomingProduct();
 }
