@@ -54,6 +54,12 @@ public class HomepageServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Product productDetail = productService.findProductById(id);
         request.setAttribute("productDetail", productDetail);
+        List<Category> categories = new ArrayList<>();
+        List<Brand> brands = new ArrayList<>();
+        categories = categoryService.findAll();
+        brands = brandService.findAll();
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {
