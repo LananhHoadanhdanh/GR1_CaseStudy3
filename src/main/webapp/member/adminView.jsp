@@ -212,7 +212,6 @@
                 <td><a href="/products?action=edit&id=${product.id}">Edit</a></td>
                 <td><a onclick="return confirm('Are you sure?')"
                        href="/products?action=delete&id=${product.id}">Delete</a></td>
-
               </tr>
             </c:forEach>
           </table>
