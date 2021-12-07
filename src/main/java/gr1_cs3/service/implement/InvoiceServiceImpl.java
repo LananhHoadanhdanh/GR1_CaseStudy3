@@ -100,4 +100,45 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         }
         return products;
     }
+
+    @Override
+    public int getIdUser(String username) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select id from member where member.username=?");) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            int id = rs.getInt("id");
+            return id;
+        } catch (SQLException ignored) {
+        }
+        return 0;
+    }
+
+    @Override
+    public int getIdOrder(String username) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select id from `order` where memberid=?");) {
+            preparedStatement.setInt(1, getIdUser(username));
+            ResultSet rs = preparedStatement.executeQuery();
+            int id = rs.getInt("id");
+            return id;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int getStatus(String username) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select status from `order` where memberid=?");) {
+            preparedStatement.setInt(1, getIdUser(username));
+            ResultSet rs = preparedStatement.executeQuery();
+            int status = rs.getInt("status");
+            return status;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
 }
