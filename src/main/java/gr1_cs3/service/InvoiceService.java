@@ -10,5 +10,5 @@ public interface InvoiceService<I> extends GeneralService<Invoice>{
     public int getIdUser(String username);
     public int getIdOrder(String username);
     public int getStatus(String username);
-    public void addToCart(int idProduct,String userName);
+    public boolean addToCart(int idProduct,String userName);
 }

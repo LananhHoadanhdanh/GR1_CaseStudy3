@@ -54,6 +54,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
              PreparedStatement preparedStatement = connection.prepareStatement("select id from member where member.username=?")) {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
             int id = rs.getInt("id");
             return id;
         } catch (SQLException ignored) {
@@ -67,6 +68,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
              PreparedStatement preparedStatement = connection.prepareStatement("select id from `order` where memberid=?")) {
             preparedStatement.setInt(1, getIdUser(username));
             ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
             int id = rs.getInt("id");
             return id;
         } catch (SQLException throwables) {
@@ -81,6 +83,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
              PreparedStatement preparedStatement = connection.prepareStatement("select status from `order` where memberid=?")) {
             preparedStatement.setInt(1, getIdUser(username));
             ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
             int status = rs.getInt("status");
             return status;
         } catch (SQLException throwables) {
@@ -90,16 +93,19 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     }
 
     @Override
-    public void addToCart(int idProduct, String userName) {
+    public boolean addToCart(int idProduct, String userName) {
         if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`+ 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
                 preparedStatement.setInt(1, getIdOrder(userName));
                 preparedStatement.setInt(2, idProduct);
+                preparedStatement.executeUpdate();
+                return true;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
+        return false;
     }
 
     @Override

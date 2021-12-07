@@ -28,7 +28,7 @@ public class CartServlet extends HttpServlet {
         }
         switch (action) {
             case "addToCart":
-                addToCart(request,response);
+                addToCart(request, response);
                 break;
             default:
                 try {
@@ -44,14 +44,15 @@ public class CartServlet extends HttpServlet {
         String user = request.getParameter("username");
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-
-//        List<Invoice> products = invoiceService.findAll(user);
-//        for (Invoice in : products
-//        ) {
-//            result += (in.getProduct_quantity() * in.getPrice());
-//        }
-//        request.setAttribute("product", products);
-//        request.setAttribute("result", result);
+        boolean check=invoiceService.addToCart(id, user);
+boolean de=check;
+        List<Invoice> products = invoiceService.findAll(user);
+        for (Invoice in : products
+        ) {
+            result += (in.getProduct_quantity() * in.getPrice());
+        }
+        request.setAttribute("product", products);
+        request.setAttribute("result", result);
         requestDispatcher.forward(request, response);
     }
 
