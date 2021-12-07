@@ -50,6 +50,13 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "delete":
+                try {
+                    deleteProduct(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 try {
                     showUserView(request, response);
@@ -57,6 +64,15 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
         }
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        productService.delete(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
+        List<Product> products = productService.findAll();
+        request.setAttribute("products", products);
+        dispatcher.forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
