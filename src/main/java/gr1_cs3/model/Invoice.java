@@ -10,7 +10,29 @@ public class Invoice {
     private int brandId;
     private String description;
     private int product_quantity;
+    private int re;
 
+
+
+    public Invoice(int id, String name, int price, int quantity, int categoryId, String image, int brandId, String description, int product_quantity, int re) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.categoryId = categoryId;
+        this.image = image;
+        this.brandId = brandId;
+        this.description = description;
+        this.product_quantity = product_quantity;
+        this.re = re;
+    }
+    public int getRe() {
+        return re;
+    }
+
+    public void setRe(int re) {
+        this.re = re;
+    }
     public Invoice(int id, String name, int price, int quantity, int categoryId, String image, int brandId, String description, int product_quantity) {
         this.id = id;
         this.name = name;
@@ -21,6 +43,7 @@ public class Invoice {
         this.brandId = brandId;
         this.description = description;
         this.product_quantity = product_quantity;
+
     }
 
     public int getId() {

@@ -22,7 +22,28 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
 
     @Override
     public List<Invoice> findAll() {
-        return null;
+        List<Invoice> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * \n" +
+                     "from product\n" +
+                     "         inner join orderdetail on orderdetail.productId = product.id\n" +
+                     "         inner join `order` on orderdetail.orderId = `order`.id");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                int productquantity = rs.getInt("product_quantity");
+                String description = rs.getString("description");
+                products.add(new Invoice(id, name, price, quantity,  categoryId,  image,  brandId,  description ,productquantity));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
     }
 
     @Override
@@ -54,7 +75,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     public List<Invoice> addToCart() {
         List<Invoice> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
+             PreparedStatement preparedStatement = connection.prepareStatement("select * \n" +
                      "from product\n" +
                      "         inner join orderdetail on orderdetail.productId = product.id\n" +
                      "         inner join `order` on orderdetail.orderId = `order`.id");) {

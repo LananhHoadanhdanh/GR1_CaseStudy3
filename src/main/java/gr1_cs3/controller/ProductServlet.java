@@ -65,14 +65,6 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("newProducts", newProducts);
         request.setAttribute("topThreeProducts", topThreeProducts);
         requestDispatcher.forward(request, response);
-//        }
-//        else {
-//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
-//            List<Product> listProduct = new ArrayList<>();
-//            listProduct = productService.findByName(name);
-//            request.setAttribute("listProduct", listProduct);
-//            requestDispatcher.forward(request, response);
-//        }
     }
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");

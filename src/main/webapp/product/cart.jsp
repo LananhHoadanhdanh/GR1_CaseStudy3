@@ -149,22 +149,19 @@ Lower Header Section
                     <thead>
                     <tr>
                         <th>Product</th>
-                        <th>Description</th>
-                        <th> Ref.</th>
-                        <th>Avail.</th>
+                        <th>Information</th>
                         <th>Unit price</th>
                         <th>Qty</th>
                         <th>Total</th>
                     </tr>
                     </thead>
                     <tbody>
+<%--                    <%int totalPay=0;%>--%>
                     <c:forEach var="product" items="${product}">
                     <tr>
                         <td><img width="100" src="${product.image}" alt=""></td>
-                        <td>name: ${product.name}<br>Carate : ${product.quantity}</td>
-                        <td> -</td>
-                        <td><span class="shopBtn"><span class="icon-ok"></span></span></td>
-                        <td>${product.price}VND</td>
+                        <td>name: ${product.name}<br>warehouse : ${product.quantity}</td>
+                        <td>${product.price} VND</td>
                         <td>
                             <input class="span1" style="max-width:34px" id="appendedInputButtons"
                                    size="16" type="text" value="${product.product_quantity}">
@@ -176,16 +173,14 @@ Lower Header Section
                                 </button>
                             </div>
                         </td>
-                        <td>fg</td>
+                        <td>${product.price*product.product_quantity} VND</td>
                     </tr>
+
                     </c:forEach>
+
                     <tr>
                         <td colspan="6" class="alignR">Total products:</td>
-                        <td> $448.42</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="alignR">Total products:</td>
-                        <td class="label label-primary"> $448.42</td>
+                        <td class="label label-primary"> ${result} VND</td>
                     </tr>
                     </tbody>
 
