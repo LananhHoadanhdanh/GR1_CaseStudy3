@@ -35,16 +35,15 @@ Upper Header Section
         <div class="container">
             <div class="alignR">
                 <div class="pull-left socialNw">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                    <a href="#"><span class="icon-facebook"></span></a>
-                    <a href="#"><span class="icon-youtube"></span></a>
-                    <a href="#"><span class="icon-tumblr"></span></a>
+                    <a href="https://twitter.com/login"><span class="icon-twitter"></span></a>
+                    <a href="http://www.facebook.com"><span class="icon-facebook"></span></a>
+                    <a href="http://www.youtube.com"><span class="icon-youtube"></span></a>
+                    <a href="https://www.tumblr.com/login"><span class="icon-tumblr"></span></a>
                 </div>
-                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
-                <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="/login"><span class="icon-edit"></span>Login</a>
-                <a href="/register"><span class="icon-edit"></span>Register</a>
-                <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span>Trang chủ</a>
+                <a href="/login"><span class="icon-edit"></span>Đăng nhập </a>
+                <a href="/register"><span class="icon-edit"></span>Đăng kí</a>
+                <a href="contact.html"><span class="icon-envelope"></span> figureshop@gmail.com</a>
             </div>
         </div>
     </div>
@@ -59,7 +58,7 @@ Lower Header Section
     <div class="row">
         <div class="span4">
             <h1>
-                <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+                <a class="logo" href="/login"><span>Twitter Bootstrap ecommerce template</span>
                     <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                 </a>
             </h1>
