@@ -10,11 +10,10 @@ public class Invoice {
     private int brandId;
     private String description;
     private int product_quantity;
-    private int re;
+    private int productId;
+    private int orderId;
 
-
-
-    public Invoice(int id, String name, int price, int quantity, int categoryId, String image, int brandId, String description, int product_quantity, int re) {
+    public Invoice(int id, String name, int price, int quantity, int categoryId, String image, int brandId, String description, int product_quantity, int productId, int orderId) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -24,15 +23,26 @@ public class Invoice {
         this.brandId = brandId;
         this.description = description;
         this.product_quantity = product_quantity;
-        this.re = re;
-    }
-    public int getRe() {
-        return re;
+        this.productId = productId;
+        this.orderId = orderId;
     }
 
-    public void setRe(int re) {
-        this.re = re;
+    public int getProductId() {
+        return productId;
     }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
     public Invoice(int id, String name, int price, int quantity, int categoryId, String image, int brandId, String description, int product_quantity) {
         this.id = id;
         this.name = name;

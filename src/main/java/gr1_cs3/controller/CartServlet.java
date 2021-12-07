@@ -30,7 +30,7 @@ public class CartServlet extends HttpServlet {
                 reduce(request, response);
                 break;
             case "addToCart":
-                augment(request, response);
+                addToCart(request, response);
                 break;
             default:
                 try {
@@ -101,13 +101,19 @@ public class CartServlet extends HttpServlet {
         List<Invoice> products = invoiceService.findAll(user);
         for (Invoice in : products
         ) {result += (in.getProduct_quantity() * in.getPrice());}
+        if(invoiceService.getIdOrder(user)==0){
+            invoiceService.addToCa(user);
+        }
         for (Invoice add: products
              ) {
-            if (add.ge)
+            if (add.getOrderId()==invoiceService.getIdOrder(user)&&add.getProductId()==id){
+                augment(request,response);
+            }else {
+                    invoiceService.addToCart(id,user);
+            }
 
         }
-
-
+        products = invoiceService.findAll(user);
         request.setAttribute("product", products);
         request.setAttribute("result", result);
         request.setAttribute("username", user);

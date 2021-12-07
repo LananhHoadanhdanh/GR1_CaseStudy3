@@ -35,13 +35,15 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int price = rs.getInt("price");
+                int productId = rs.getInt("productId");
+                int orderId = rs.getInt("orderId");
                 int quantity = rs.getInt("quantity");
                 int categoryId = rs.getInt("categoryId");
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 int productquantity = rs.getInt("product_quantity");
                 String description = rs.getString("description");
-                products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity));
+                products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity,productId,orderId));
             }
         } catch (SQLException ignored) {
         }
@@ -150,7 +152,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         }
     }
 
-    public void addOrder( String userName) {
+    public void addToCa( String userName) {
         if (getStatus(userName) == 0) {
             try (Connection connection = getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(
