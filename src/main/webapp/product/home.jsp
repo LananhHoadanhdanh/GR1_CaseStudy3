@@ -61,7 +61,6 @@ Lower Header Section
                     <a class="logo" href="/login">
                         <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                     </a>
-
                 </h1>
             </div>
             <div class="span4">
