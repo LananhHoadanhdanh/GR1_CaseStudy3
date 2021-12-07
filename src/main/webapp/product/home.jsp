@@ -179,32 +179,34 @@ Lower Header Section
                 <div id="myCarousel" class="carousel slide homCar">
                     <div class="carousel-inner">
                         <div class="item">
-                            <img style="width:100%" src="assets/img/bootstrap_free-ecommerce.png"
-                                 alt="bootstrap ecommerce templates">
+                            <img style="width:100%" src="../assets/img/carousel1.jpg"
+                                 alt="">
                             <div class="carousel-caption">
-                                <h4>Bootstrap shopping cart</h4>
-                                <p><span>Very clean simple to use</span></p>
+                                <h4>HATSUNE MIKU LAND OF THE ETERNAL</h4>
+                                <p><span>Hàng có sẵn Tỷ lệ : 1/7</span></p>
                             </div>
                         </div>
                         <div class="item">
-                            <img style="width:100%" src="assets/img/carousel1.png" alt="bootstrap ecommerce templates">
+                            <img style="width:100%" src="../assets/img/carousel2.jpg"
+                                 alt="">
                             <div class="carousel-caption">
-                                <h4>Bootstrap Ecommerce template</h4>
-                                <p><span>Highly Google seo friendly</span></p>
+                                <h4>NENDOROID GAWR GURA</h4>
+                                <p><span>Hàng có sẵn Chính hãng</span></p>
                             </div>
                         </div>
                         <div class="item active">
-                            <img style="width:100%" src="assets/img/carousel3.png" alt="bootstrap ecommerce templates">
+                            <img style="width:100%" src="../assets/img/carousel3.jpg"
+                                 alt="">
                             <div class="carousel-caption">
-                                <h4>Twitter Bootstrap cart</h4>
-                                <p><span>Very easy to integrate and expand.</span></p>
+                                <h4>KURUMI PIGEON BLOOD RUBY DRESS VER</h4>
+                                <p><span>Tỉ lệ: 1/7 Size: H331mm x W291mm x D215mm</span></p>
                             </div>
                         </div>
                         <div class="item">
-                            <img style="width:100%" src="assets/img/bootstrap-templates.png" alt="bootstrap templates">
+                            <img style="width:100%" src="../assets/img/carousel4.jpg" alt="">
                             <div class="carousel-caption">
-                                <h4>Bootstrap templates integration</h4>
-                                <p><span>Compitable to many more opensource cart</span></p>
+                                <h4>FIGURE NINGGUANG</h4>
+                                <p><span>Kích thước fig 21cm x 20cm x 12cm</span></p>
                             </div>
                         </div>
                     </div>
@@ -246,7 +248,6 @@ Lower Header Section
                                                 <a href="product_details.html"><img src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
-
                                     </c:forEach>
                                 </ul>
                             </div>
@@ -288,7 +289,7 @@ Lower Header Section
             -->
             <div class="well well-small">
                 <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span
-                        class="icon-plus"></span></a> Featured Products </h3>
+                        class="icon-plus"></span></a> Best selling Products </h3>
                 <hr class="soften"/>
                 <div class="row-fluid">
                     <ul class="thumbnails">
@@ -343,46 +344,8 @@ Lower Header Section
                     </ul>
                 </div>
             </div>
-
-            <div class="well well-small">
-                <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
-                Popular Products
-            </div>
-            <hr>
-            <div class="well well-small">
-                <a class="btn btn-mini pull-right" href="#">View more <span class="icon-plus"></span></a>
-                Best selling Products
-            </div>
         </div>
     </div>
-    <!--
-    Clients
-    -->
-    <section class="our_client">
-        <hr class="soften"/>
-        <h4 class="title cntr"><span class="text">Manufactures</span></h4>
-        <hr class="soften"/>
-        <div class="row">
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/1.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/2.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/3.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/4.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/5.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="assets/img/6.png"></a>
-            </div>
-        </div>
-    </section>
 
     <!--
     Footer
@@ -390,28 +353,26 @@ Lower Header Section
     <footer class="footer">
         <div class="row-fluid">
             <div class="span2">
-                <h5>Your Account</h5>
-                <a href="#">YOUR ACCOUNT</a><br>
-                <a href="#">PERSONAL INFORMATION</a><br>
-                <a href="#">ADDRESSES</a><br>
-                <a href="#">DISCOUNT</a><br>
-                <a href="#">ORDER HISTORY</a><br>
+                <h5>Liên kết</h5>
+                <a href="">Trang chủ</a><br>
+                <a href="/list-view">Tất cả sản phẩm</a><br>
+                <a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a><br>
+                <a href="?action=gioi-thieu">Giới thiệu</a><br>
             </div>
             <div class="span2">
-                <h5>Information</h5>
-                <a href="contact.html">CONTACT</a><br>
-                <a href="#">SITEMAP</a><br>
-                <a href="#">LEGAL NOTICE</a><br>
-                <a href="#">TERMS AND CONDITIONS</a><br>
-                <a href="#">ABOUT US</a><br>
+                <h5>Chính sách hỗ trợ</h5>
+                <a href="#">Tìm kiếm</a><br>
+                <a href="#">Giới thiệu</a><br>
+                <a href="#">Chính sách thanh toán</a><br>
+                <a href="#">Chính sách vận chuyển</a><br>
             </div>
             <div class="span2">
-                <h5>Our Offer</h5>
-                <a href="#">NEW PRODUCTS</a> <br>
-                <a href="#">TOP SELLERS</a><br>
-                <a href="#">SPECIALS</a><br>
-                <a href="#">MANUFACTURERS</a><br>
-                <a href="#">SUPPLIERS</a> <br/>
+                <%--                <h5>Our Offer</h5>--%>
+                <%--                <a href="#">NEW PRODUCTS</a> <br>--%>
+                <%--                <a href="#">TOP SELLERS</a><br>--%>
+                <%--                <a href="#">SPECIALS</a><br>--%>
+                <%--                <a href="#">MANUFACTURERS</a><br>--%>
+                <%--                <a href="#">SUPPLIERS</a> <br/>--%>
             </div>
             <div class="span6">
                 <h5>The standard chunk of Lorem</h5>
@@ -436,7 +397,7 @@ Lower Header Section
         <span>Copyright &copy; 2013<br> bootstrap ecommerce shopping template</span>
     </div>
 </div>
-<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
+<a href="http://localhost:8080/" class="gotop"><i class="icon-double-angle-up"></i></a>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
