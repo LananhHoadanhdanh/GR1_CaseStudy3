@@ -34,18 +34,18 @@
     <div class="topNav">
         <div class="container">
             <div class="alignR">
-                <div class="pull-left socialNw">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                    <a href="#"><span class="icon-facebook"></span></a>
-                    <a href="#"><span class="icon-youtube"></span></a>
-                    <a href="#"><span class="icon-tumblr"></span></a>
-                </div>
-                <a href="index.html"> <span class="icon-home"></span> Home</a>
-                <a href="#"><span class="icon-user"></span>${username}</a>
-                <a href="register.html"><span class="icon-edit"></span> Free Register </a>
-                <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                        class="badge badge-warning"> $448.42</span></a>
+                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Trang chủ</a>
+                <c:if test="${sessionScope.acc != null}">
+                    <a href="/logout"><span class="icon-edit"></span> Đăng xuất</a>
+                    <a href="#"><span class="icon-user"></span>Hello ${acc.username}</a>
+                </c:if>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
+                </c:if>
+                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
+                <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> Giỏ hàng<span
+                        class="badge badge-warning"></span></a>
             </div>
         </div>
     </div>
