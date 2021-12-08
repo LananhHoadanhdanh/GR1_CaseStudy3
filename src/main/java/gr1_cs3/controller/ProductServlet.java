@@ -110,15 +110,10 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showUserView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-//        String name = request.getParameter("name");
-//        if (name == null) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/userView.jsp");
         List<Product> newProducts = new ArrayList<>();
-        List<Product> topThreeProducts = new ArrayList<>();
         newProducts = productService.printFourProduct();
-        topThreeProducts = productService.getThreeProduct();
         request.setAttribute("newProducts", newProducts);
-        request.setAttribute("topThreeProducts", topThreeProducts);
         requestDispatcher.forward(request, response);
     }
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

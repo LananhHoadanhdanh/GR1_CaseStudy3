@@ -282,8 +282,23 @@ Lower Header Section
                                         <h3>${product.name}</h3>
                                         <p><strong> ${product.price}</strong><span>VNĐ</span></p>
                                         <p><span>Số lượng: </span><strong> ${product.quantity}</strong></p>
-                                        <h4><a class="shopBtn" href="/login"
-                                               title="add to cart"> Add to cart</a></h4>
+
+                                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 2}">
+                                            <h4><a class="shopBtn" href="/Cart?action=addToCart&id=${product.id}&username=${acc.username}"
+                                                   title="add to cart"> Add to cart</a></h4>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                                            <h4><a class="shopBtn" href="/products?action=delete&id=${product.id}"
+                                                   title="add to cart"> Delete</a></h4>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                                            <h4><a class="shopBtn" href="/products?action=edit&id=${product.id}"
+                                                   title="add to cart"> Edit</a></h4>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc == null}">
+                                            <h4><a class="shopBtn" href="/login"
+                                                   title="add to cart"> Add to cart</a></h4>
+                                        </c:if>
                                         <br class="clr">
                                     </div>
                                 </div>

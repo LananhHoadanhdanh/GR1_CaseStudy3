@@ -91,18 +91,11 @@ public class HomepageServlet extends HttpServlet {
         String txtSearch = request.getParameter("Search");
         if (txtSearch == null) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-            List<Product> newProducts = new ArrayList<>();
-            List<Product> products = new ArrayList<>();
-            List<Product> upComingProducts = new ArrayList<>();
-            List<Category> categories = new ArrayList<>();
-            List<Brand> brands = new ArrayList<>();
-            newProducts = productService.printFourProduct();
-            products = productService.findAll();
-            upComingProducts = productService.getUpcomingProduct();
-            categories = categoryService.findAll();
-            brands = brandService.findAll();
-
-
+            List<Product> newProducts = productService.printFourProduct();
+            List<Product> products = productService.findAll();
+            List<Product> upComingProducts = productService.getUpcomingProduct();
+            List<Category> categories = categoryService.findAll();
+            List<Brand> brands = brandService.findAll();
             request.setAttribute("newProducts", newProducts);
             request.setAttribute("products", products);
             request.setAttribute("upComingProducts", upComingProducts);
