@@ -48,7 +48,9 @@
         <c:if test="${sessionScope.acc == null}">
           <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
         </c:if>
-        <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+        <c:if test="${sessionScope.acc == null}">
+          <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+        </c:if>
         <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
         <c:if test="${sessionScope.acc != null}">
           <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
