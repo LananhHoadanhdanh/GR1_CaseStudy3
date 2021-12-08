@@ -36,16 +36,20 @@ Upper Header Section
     <div class="topNav">
         <div class="container">
             <div class="alignR">
-                <div class="pull-left socialNw">
-                    <a href="https://twitter.com/login"><span class="icon-twitter"></span></a>
-                    <a href="http://www.facebook.com"><span class="icon-facebook"></span></a>
-                    <a href="http://www.youtube.com"><span class="icon-youtube"></span></a>
-                    <a href="https://www.tumblr.com/login"><span class="icon-tumblr"></span></a>
-                </div>
-                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span>Trang chủ</a>
-                <a href="/login"><span class="icon-edit"></span>Đăng nhập </a>
-                <a href="/register"><span class="icon-edit"></span>Đăng kí</a>
-                <a href="contact.html"><span class="icon-envelope"></span> figureshop@gmail.com</a>
+                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Trang chủ</a>
+                <c:if test="${sessionScope.acc != null}">
+                    <a href="/logout"><span class="icon-edit"></span> Đăng xuất</a>
+                    <a href="#"><span class="icon-user"></span> Hello ${acc.username}</a>
+                </c:if>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
+                </c:if>
+                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
+                <c:if test="${sessionScope.acc != null}">
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
+                            class="badge badge-warning"></span></a>
+                </c:if>
             </div>
         </div>
     </div>
@@ -276,12 +280,25 @@ Lower Header Section
                                             src="<c:out value="${product.image}"/>" alt=""></a>
                                     <div class="caption cntr">
                                         <h3>${product.name}</h3>
-                                        <p><strong> ${product.price}</strong></p>
-                                        <span>VNĐ</span>
-                                        <span>Số lượng: </span>
-                                        <p><strong> ${product.quantity}</strong></p>
-                                        <h4><a class="shopBtn" href="/login"
-                                               title="add to cart"> Add to cart</a></h4>
+                                        <p><strong> ${product.price}</strong><span>VNĐ</span></p>
+                                        <p><span>Số lượng: </span><strong> ${product.quantity}</strong></p>
+
+                                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 2}">
+                                            <h4><a class="shopBtn" href="/Cart?action=addToCart&id=${product.id}&username=${acc.username}"
+                                                   title="add to cart"> Add to cart</a></h4>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                                            <h4><a class="shopBtn" href="/products?action=delete&id=${product.id}"
+                                                   title="add to cart"> Delete</a></h4>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                                            <h4><a class="shopBtn" href="/products?action=edit&id=${product.id}"
+                                                   title="add to cart"> Edit</a></h4>
+                                        </c:if>
+                                        <c:if test="${sessionScope.acc == null}">
+                                            <h4><a class="shopBtn" href="/login"
+                                                   title="add to cart"> Add to cart</a></h4>
+                                        </c:if>
                                         <br class="clr">
                                     </div>
                                 </div>

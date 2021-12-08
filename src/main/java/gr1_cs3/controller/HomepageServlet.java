@@ -91,18 +91,11 @@ public class HomepageServlet extends HttpServlet {
         String txtSearch = request.getParameter("Search");
         if (txtSearch == null) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-            List<Product> newProducts = new ArrayList<>();
-            List<Product> products = new ArrayList<>();
-            List<Product> upComingProducts = new ArrayList<>();
-            List<Category> categories = new ArrayList<>();
-            List<Brand> brands = new ArrayList<>();
-            newProducts = productService.printFourProduct();
-            products = productService.findAll();
-            upComingProducts = productService.getUpcomingProduct();
-            categories = categoryService.findAll();
-            brands = brandService.findAll();
-
-
+            List<Product> newProducts = productService.printFourProduct();
+            List<Product> products = productService.findAll();
+            List<Product> upComingProducts = productService.getUpcomingProduct();
+            List<Category> categories = categoryService.findAll();
+            List<Brand> brands = brandService.findAll();
             request.setAttribute("newProducts", newProducts);
             request.setAttribute("products", products);
             request.setAttribute("upComingProducts", upComingProducts);
@@ -115,9 +108,7 @@ public class HomepageServlet extends HttpServlet {
             request.setAttribute("products", products);
             requestDispatcher.forward(request, response);
         }
-
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -125,18 +116,4 @@ public class HomepageServlet extends HttpServlet {
             action = "";
         }
     }
-
-//    private void findProductByName(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-//        String txtSearch = request.getParameter("Search");
-//        List<Product> products = new ArrayList<>();
-//        products = productService.findByName(txtSearch);
-//        request.setAttribute("products", products);
-//        try {
-//            request.getRequestDispatcher("product/list.jsp").forward(request, response);
-//        } catch (ServletException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
