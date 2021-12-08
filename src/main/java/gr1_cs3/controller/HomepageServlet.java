@@ -37,9 +37,6 @@ public class HomepageServlet extends HttpServlet {
             case "gioi-thieu":
                 showAboutUs(request, response);
                 break;
-            case "product-detail":
-                showProductDetail(request, response);
-                break;
             default:
                 try {
                     showHomePage(request, response);
@@ -47,22 +44,6 @@ public class HomepageServlet extends HttpServlet {
                     e.printStackTrace();
                 }
         }
-    }
-
-    private void showProductDetail(HttpServletRequest request, HttpServletResponse response) {
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/productDetail.jsp");
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        Product productDetail = productService.findProductById(id);
-//        request.setAttribute("productDetail", productDetail);
-//        List<Category> categories = categoryService.findAll();
-//        List<Brand> brands = brandService.findAll();
-//        request.setAttribute("listCategory", categories);
-//        request.setAttribute("listBrand", brands);
-//        try {
-//            requestDispatcher.forward(request, response);
-//        } catch (ServletException | IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     private void showAboutUs(HttpServletRequest request, HttpServletResponse response) {
