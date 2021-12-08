@@ -233,16 +233,16 @@ Lower Header Section
                         <th>Qty</th>
                         <th>Total</th>
                     </tr>
-                            <c:forEach var="product" items="${productO}">
+                            <c:forEach var="productO" items="${productO}">
                     <tr>
-                        <td><img width="100" src="${product.image}" alt=""></td>
-                        <td>name: ${product.name}</td>
-                        <td>${product.price} VND</td>
+                        <td><img width="100" src="${productO.image}" alt=""></td>
+                        <td>name: ${productO.name}</td>
+                        <td>${productO.price} VND</td>
                         <td>
-                                <p>${product.product_quantity}</p>
+                                <p>${productO.product_quantity}</p>
                             <div class="input-append">
 
-                                <a href="/Cart?action=delete&id=${product.id}&username=${username}">
+                                <a href="/Cart?action=delete&id=${productO.id}&username=${username}">
                                 </a>
                             </div>
                         </td>

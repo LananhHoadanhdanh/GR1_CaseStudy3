@@ -58,14 +58,14 @@ public class CartServlet extends HttpServlet {
         String user = request.getParameter("username");
         int result = 0;
         invoiceService.deleteOrder(user);
-        List<Invoice> products = invoiceService.findAll(user);
+        List<Invoice> products = invoiceService.findAllOrder(user);
         if (invoiceService.getStatus(user)==1){
             for (Invoice in : products
             ) {
                 result += (in.getProduct_quantity() * in.getPrice());
             }
         }
-        request.setAttribute("productO", products);
+        request.setAttribute("product", products);
         request.setAttribute("result", result);
         request.setAttribute("username", user);
         requestDispatcher.forward(request, response);
@@ -76,12 +76,12 @@ public class CartServlet extends HttpServlet {
         String user = request.getParameter("username");
         int result = 0;
         invoiceService.payOrder(user);
-        List<Invoice> products = invoiceService.findAll(user);
+        List<Invoice> products = invoiceService.findAllOrder(user);
         for (Invoice in : products
         ) {
             result += (in.getProduct_quantity() * in.getPrice());
         }
-        request.setAttribute("product", products);
+        request.setAttribute("productO", products);
         request.setAttribute("result", result);
         request.setAttribute("username", user);
         requestDispatcher.forward(request, response);

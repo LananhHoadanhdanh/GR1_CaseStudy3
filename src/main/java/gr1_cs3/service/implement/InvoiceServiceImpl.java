@@ -54,6 +54,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         }
         return products;
     }
+
     public List<Invoice> findAllOrder(String username) {
         List<Invoice> products = new ArrayList<>();
         try (Connection connection = getConnection();
@@ -62,9 +63,8 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                      " inner join orderdetail on orderdetail.productId = product.id\n" +
                      " inner join `order` on orderdetail.orderId = `order`.id\n" +
                      "inner join member on `member`.id=memberId\n" +
-                     "where member.username=? and `order`.status=?;");) {
+                     "where member.username=? and `order`.status=1;");) {
             preparedStatement.setString(1, username);
-            preparedStatement.setInt(2, 1);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -79,9 +79,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                 int productquantity = rs.getInt("product_quantity");
                 int status = rs.getInt("status");
                 String description = rs.getString("description");
-                if (status == 1) {
-                    products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity, productId, orderId));
-                }
+                products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity, productId, orderId));
             }
         } catch (SQLException ignored) {
         }
@@ -170,7 +168,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
 
     @Override
     public void payOrder(String username) {
-        Order order=getOrder(username);
+        Order order = getOrder(username);
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`order` SET `status` = '1' WHERE `id` = ?;");) {
             preparedStatement.setInt(1, order.getId());
@@ -265,6 +263,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
             throwables.printStackTrace();
         }
     }
+
     @Override
     public void deleteOrder(String userName) {
         try (Connection connection = getConnection();
