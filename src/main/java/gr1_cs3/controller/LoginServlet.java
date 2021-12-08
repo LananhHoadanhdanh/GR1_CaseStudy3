@@ -1,5 +1,6 @@
 package gr1_cs3.controller;
 
+import gr1_cs3.model.Member;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.MemberService;
 import gr1_cs3.service.ProductService;
@@ -41,23 +42,33 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Member member = null;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if (memberService.checkAdmin(username, password)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
-            List<Product> products = productService.findAll();
-            request.setAttribute("products", products);
-            dispatcher.forward(request, response);
-        } else if (memberService.checkLogin(username, password)) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/userView.jsp");
-            request.setAttribute("username", username);
-            List<Product> newProducts = productService.printFourProduct();
-            List<Product> topThreeProducts = productService.getThreeProduct();
-            request.setAttribute("newProducts", newProducts);
-            request.setAttribute("topThreeProducts", topThreeProducts);
+        member = memberService.getMemberByUsername(username);
+        if (member == null) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/login.jsp");
             requestDispatcher.forward(request, response);
         } else {
-            response.sendRedirect("/login");
+            if (memberService.checkLogin(username, password)) {
+                if (member.getRoleId() == 1) {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
+                    List<Product> products = productService.findAll();
+                    request.setAttribute("products", products);
+                    dispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/userView.jsp");
+                    request.setAttribute("username", username);
+                    List<Product> newProducts = productService.printFourProduct();
+                    List<Product> topThreeProducts = productService.getThreeProduct();
+                    request.setAttribute("newProducts", newProducts);
+                    request.setAttribute("topThreeProducts", topThreeProducts);
+                    requestDispatcher.forward(request, response);
+                }
+            } else {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/login.jsp");
+                requestDispatcher.forward(request, response);
+            }
         }
     }
 }
