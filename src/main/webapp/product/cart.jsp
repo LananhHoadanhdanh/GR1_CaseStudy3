@@ -45,8 +45,7 @@
                 <a value="${pass}" href="#"><span class="icon-user"></span></a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                        class="badge badge-warning"> $448.42</span></a>
+
             </div>
         </div>
     </div>

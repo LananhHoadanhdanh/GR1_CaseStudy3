@@ -45,6 +45,8 @@ Upper Header Section
         <a href="/login"><span class="icon-edit"></span>Login</a>
         <a href="/register"><span class="icon-edit"></span>Register</a>
         <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+        <a class="active" href="Cart?action=def&username=${username}"><span class="icon-shopping-cart"></span><span
+                class="badge badge-warning">Giỏ hàng</span></a>
       </div>
     </div>
   </div>
@@ -68,7 +70,7 @@ Lower Header Section
       </div>
       <div class="span4 alignR">
         <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-        <a href="Cart?action=def&username=${username}"><span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span></a>
+        <a href="Cart?action=def&username=${username}"><span class="btn btn-mini"><span class="icon-shopping-cart"></span></span></a>
         <span class="btn btn-warning btn-mini">$</span>
         <span class="btn btn-mini">&pound;</span>
         <span class="btn btn-mini">&euro;</span>

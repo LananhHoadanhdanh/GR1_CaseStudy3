@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Reggae+One&family=Vollkorn&display=swap');
 body {
-    background: url(assets/img/white_leather.png) repeat 0 0;
+    background: black;
     font-family: 'Vollkorn', serif !important;
     font-size: 20px;
 }
