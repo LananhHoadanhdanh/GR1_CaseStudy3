@@ -175,20 +175,12 @@ Lower Header Section
                             <td>name: ${product.name}<br>warehouse : ${product.quantity}</td>
                             <td>${product.price} VND</td>
                             <td>
-                                <form action="/Cart?action=edit&id=${product.id}&username=${username}&quantity=${product.product_quantity}" method="post">
+                                <form action="/Cart?action=edit&id=${product.id}&username=${username}&quantity=${product.product_quantity}"
+                                      method="post">
                                     <input name="edit" class="span1" style="max-width:34px" id="appendedInputButtons"
                                            size="16" type="number" value="${product.product_quantity}">
                                 </form>
 
-                                    <%--                            <form action="/products?act=edit&id=${pro.id}" method="post">--%>
-                                    <%--                                name: <input style="border: none" type="text" name="name"  value="${pro.name}">--%>
-                                    <%--                                price: <input style="border: none" type="number" name="price" value="${pro.price}">--%>
-                                    <%--                                quantity: <input style="border: none" type="number" name="quantity" value="${pro.quantity}">--%>
-                                    <%--                                <button onclick="if (confirm('Edit selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};" title="Link Title">edit</button>--%>
-                                    <%--                                <a href="/products?act=delete&id=${pro.id}" onclick="return confirm('Delete selected item?')" >--%>
-                                    <%--                                    delete--%>
-                                    <%--                                </a>--%>
-                                    <%--                            </form>--%>
                                 <div class="input-append">
                                     <a href="/Cart?action=reduce&id=${product.id}&username=${username}">
                                         <button class="btn btn-mini" type="button">-</button>
@@ -196,9 +188,11 @@ Lower Header Section
                                     <a href="/Cart?action=augment&id=${product.id}&username=${username}">
                                         <button class="btn btn-mini" type="button">+</button>
                                     </a>
-                                    <a href="/Cart?action=delete&id=${product.id}&username=${username}">  <button class="btn btn-mini btn-danger" type="button"><span
-                                            class="icon-remove"></span>
-                                    </button></a>
+                                    <a href="/Cart?action=delete&id=${product.id}&username=${username}">
+                                        <button class="btn btn-mini btn-danger" type="button"><span
+                                                class="icon-remove"></span>
+                                        </button>
+                                    </a>
                                 </div>
                             </td>
                             <td>${product.price*product.product_quantity} VND</td>
@@ -220,8 +214,13 @@ Lower Header Section
                     <tbody>
                     <tr>
                         <td>
-                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Xóa giỏ hàng</button></a>
-                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Đặt mua</button></a>
+                            <a href="/Cart?action=deleteCart&username=${username}">
+                                <button type="submit" class="shopBtn"> Xóa giỏ hàng</button>
+                            </a>
+                            <a href="/Cart?action=ordered&username=${username}">
+                                <button type="submit" class="shopBtn"> Đặt mua</button>
+                            </a>
+
                         </td>
                     </tr>
 
@@ -234,30 +233,39 @@ Lower Header Section
                     </tr>
                     <tr>
                         <td>
-                            <form class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="span2 control-label" for="inputEmail">Country</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Country">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="span2 control-label" for="inputPassword">Post Code/ Zipcode</label>
-                                    <div class="controls">
-                                        <input type="password" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <div class="controls">
-                                        <button type="submit" class="shopBtn">Click to check the price</button>
-                                    </div>
-                                </div>
-                            </form>
+                    <tr>
+                        <th>Product</th>
+                        <th>Information</th>
+                        <th>Unit price</th>
+                        <th>Qty</th>
+                        <th>Total</th>
+                    </tr>
+                            <c:forEach var="productO" items="${productO}">
+                    <tr>
+                        <td><img width="100" src="${productO.image}" alt=""></td>
+                        <td>name: ${productO.name}</td>
+                        <td>${productO.price} VND</td>
+                        <td>
+                                <p>${productO.product_quantity}</p>
+                            <div class="input-append">
+
+                                <a href="/Cart?action=delete&id=${productO.id}&username=${username}">
+                                </a>
+                            </div>
                         </td>
+                        <td>${productO.price*productO.product_quantity} VND</td>
+                    </tr>
+                    </c:forEach>
+                    </td>
                     </tr>
                     </tbody>
-                </table>
-                <a href="/login?username=tek&password=123456&submitAccount=Login" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
+                   <td></td><td></td><td> <td></td><td class="label label-primary"> ${resultO} VND</td></td>
+
+                </table> <a href="/Cart?action=deleteOrder&username=${username}">
+                <button type="submit" class="shopBtn">Hủy Đơn Hàng</button>
+            </a>
+                <a href="/login?username=tek&password=123456&submitAccount=Login" class="shopBtn btn-large"><span
+                        class="icon-arrow-left"></span> Continue
                     Shopping </a>
                 <a href="login.html" class="shopBtn btn-large pull-right">Next <span
                         class="icon-arrow-right"></span></a>
