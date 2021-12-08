@@ -37,18 +37,22 @@ Upper Header Section
                 <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Trang chủ</a>
                 <c:if test="${sessionScope.acc != null}">
                     <a href="/logout"><span class="icon-edit"></span> Đăng xuất</a>
-                    <a href="#"><span class="icon-user"></span>Hello ${acc.username}</a>
+                    <a href="#"><span class="icon-user"></span> Hello ${acc.username}</a>
                 </c:if>
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
                 <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> Giỏ hàng<span
-                        class="badge badge-warning"></span></a>
+                <c:if test="${sessionScope.acc != null}">
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span
+                            class="icon-shopping-cart"></span> Giỏ hàng<span
+                            class="badge badge-warning"></span></a>
+                </c:if>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!--
@@ -69,7 +73,7 @@ Lower Header Section
             </div>
             <div class="span4 alignR">
                 <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-                <a href="Cart?action=def&username=${username}"><span class="btn btn-mini">[ 2 ] <span
+                <a href="Cart?action=def&username=${username}"><span class="btn btn-mini"><span
                         class="icon-shopping-cart"></span></span></a>
                 <span class="btn btn-warning btn-mini">$</span>
                 <span class="btn btn-mini">&pound;</span>

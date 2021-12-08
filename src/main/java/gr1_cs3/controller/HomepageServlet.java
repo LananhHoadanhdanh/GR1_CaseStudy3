@@ -89,16 +89,11 @@ public class HomepageServlet extends HttpServlet {
 
     private void showHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-        List<Product> newProducts = new ArrayList<>();
-        List<Product> topThreeProducts = new ArrayList<>();
-        List<Product> upComingProducts = new ArrayList<>();
-        List<Category> categories = new ArrayList<>();
-        List<Brand> brands = new ArrayList<>();
-        newProducts = productService.printFourProduct();
-        topThreeProducts = productService.getThreeProduct();
-        upComingProducts = productService.getUpcomingProduct();
-        categories = categoryService.findAll();
-        brands = brandService.findAll();
+        List<Product> newProducts = productService.printFourProduct();
+        List<Product> topThreeProducts = productService.getThreeProduct();
+        List<Product> upComingProducts = productService.getUpcomingProduct();
+        List<Category> categories = categoryService.findAll();
+        List<Brand> brands = brandService.findAll();
         request.setAttribute("newProducts", newProducts);
         request.setAttribute("topThreeProducts", topThreeProducts);
         request.setAttribute("upComingProducts", upComingProducts);

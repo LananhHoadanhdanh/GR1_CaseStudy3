@@ -43,15 +43,17 @@
                 <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Trang chủ</a>
                 <c:if test="${sessionScope.acc != null}">
                     <a href="/logout"><span class="icon-edit"></span> Đăng xuất</a>
-                    <a href="#"><span class="icon-user"></span>Hello ${acc.username}</a>
+                    <a href="#"><span class="icon-user"></span> Hello ${acc.username}</a>
                 </c:if>
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
                 <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> Giỏ hàng<span
-                        class="badge badge-warning"></span></a>
+                <c:if test="${sessionScope.acc != null}">
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
+                            class="badge badge-warning"></span></a>
+                </c:if>
             </div>
         </div>
     </div>
