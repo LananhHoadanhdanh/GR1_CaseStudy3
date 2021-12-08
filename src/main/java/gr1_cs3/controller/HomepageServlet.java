@@ -88,23 +88,34 @@ public class HomepageServlet extends HttpServlet {
     }
 
     private void showHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-        List<Product> newProducts = new ArrayList<>();
-        List<Product> topThreeProducts = new ArrayList<>();
-        List<Product> upComingProducts = new ArrayList<>();
-        List<Category> categories = new ArrayList<>();
-        List<Brand> brands = new ArrayList<>();
-        newProducts = productService.printFourProduct();
-        topThreeProducts = productService.getThreeProduct();
-        upComingProducts = productService.getUpcomingProduct();
-        categories = categoryService.findAll();
-        brands = brandService.findAll();
-        request.setAttribute("newProducts", newProducts);
-        request.setAttribute("topThreeProducts", topThreeProducts);
-        request.setAttribute("upComingProducts", upComingProducts);
-        request.setAttribute("listCategory", categories);
-        request.setAttribute("listBrand", brands);
-        requestDispatcher.forward(request, response);
+        String txtSearch = request.getParameter("Search");
+        if (txtSearch == null) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
+            List<Product> newProducts = new ArrayList<>();
+            List<Product> topThreeProducts = new ArrayList<>();
+            List<Product> upComingProducts = new ArrayList<>();
+            List<Category> categories = new ArrayList<>();
+            List<Brand> brands = new ArrayList<>();
+            newProducts = productService.printFourProduct();
+            topThreeProducts = productService.getThreeProduct();
+            upComingProducts = productService.getUpcomingProduct();
+            categories = categoryService.findAll();
+            brands = brandService.findAll();
+
+
+            request.setAttribute("newProducts", newProducts);
+            request.setAttribute("topThreeProducts", topThreeProducts);
+            request.setAttribute("upComingProducts", upComingProducts);
+            request.setAttribute("listCategory", categories);
+            request.setAttribute("listBrand", brands);
+            requestDispatcher.forward(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
+            List<Product> products = productService.findByName(txtSearch);
+            request.setAttribute("products", products);
+            requestDispatcher.forward(request, response);
+        }
+
     }
 
     @Override
@@ -113,16 +124,19 @@ public class HomepageServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action) {
-            case "findByName":
-                findProductByName(request, response);
-                break;
-            default:
-                break;
-        }
     }
 
-    private void findProductByName(HttpServletRequest request, HttpServletResponse response) {
-
-    }
+//    private void findProductByName(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+//        String txtSearch = request.getParameter("Search");
+//        List<Product> products = new ArrayList<>();
+//        products = productService.findByName(txtSearch);
+//        request.setAttribute("products", products);
+//        try {
+//            request.getRequestDispatcher("product/list.jsp").forward(request, response);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

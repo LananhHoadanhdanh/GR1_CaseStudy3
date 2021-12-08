@@ -2,6 +2,7 @@ package gr1_cs3.service.implement;
 
 import gr1_cs3.model.Brand;
 import gr1_cs3.model.Category;
+import gr1_cs3.model.Product;
 import gr1_cs3.service.BrandService;
 
 import java.sql.*;
@@ -60,5 +61,28 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public int findById(int id) throws SQLException {
         return 0;
+    }
+
+    @Override
+    public List<Product> getProductByBID(int bId) {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select *from product where product.brandId = ?");) {
+            preparedStatement.setInt(1, bId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                String description = rs.getString("description");
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
     }
 }
