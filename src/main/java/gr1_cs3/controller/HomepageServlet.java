@@ -20,9 +20,9 @@ import java.util.List;
 
 @WebServlet(name = "HomepageServlet", value = "")
 public class HomepageServlet extends HttpServlet {
-    ProductService productService = new ProductServiceImpl();
-    CategoryService categoryService = new CategoryServiceImpl();
-    BrandService brandService = new BrandServiceImpl();
+    public static ProductService productService = new ProductServiceImpl();
+    public static CategoryService categoryService = new CategoryServiceImpl();
+    public static BrandService brandService = new BrandServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,23 +50,19 @@ public class HomepageServlet extends HttpServlet {
     }
 
     private void showProductDetail(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/productDetail.jsp");
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product productDetail = productService.findProductById(id);
-        request.setAttribute("productDetail", productDetail);
-        List<Category> categories = new ArrayList<>();
-        List<Brand> brands = new ArrayList<>();
-        categories = categoryService.findAll();
-        brands = brandService.findAll();
-        request.setAttribute("listCategory", categories);
-        request.setAttribute("listBrand", brands);
-        try {
-            requestDispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/productDetail.jsp");
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        Product productDetail = productService.findProductById(id);
+//        request.setAttribute("productDetail", productDetail);
+//        List<Category> categories = categoryService.findAll();
+//        List<Brand> brands = brandService.findAll();
+//        request.setAttribute("listCategory", categories);
+//        request.setAttribute("listBrand", brands);
+//        try {
+//            requestDispatcher.forward(request, response);
+//        } catch (ServletException | IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void showAboutUs(HttpServletRequest request, HttpServletResponse response) {
@@ -87,27 +83,25 @@ public class HomepageServlet extends HttpServlet {
         }
     }
 
-    private void showHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    public static void showHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String txtSearch = request.getParameter("Search");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
+        List<Product> newProducts = productService.printFourProduct();
+        List<Product> upComingProducts = productService.getUpcomingProduct();
+        List<Category> categories = categoryService.findAll();
+        List<Brand> brands = brandService.findAll();
+        request.setAttribute("newProducts", newProducts);
+        request.setAttribute("upComingProducts", upComingProducts);
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
+        List<Product> products = new ArrayList<>();
         if (txtSearch == null) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-            List<Product> newProducts = productService.printFourProduct();
-            List<Product> products = productService.findAll();
-            List<Product> upComingProducts = productService.getUpcomingProduct();
-            List<Category> categories = categoryService.findAll();
-            List<Brand> brands = brandService.findAll();
-            request.setAttribute("newProducts", newProducts);
-            request.setAttribute("products", products);
-            request.setAttribute("upComingProducts", upComingProducts);
-            request.setAttribute("listCategory", categories);
-            request.setAttribute("listBrand", brands);
-            requestDispatcher.forward(request, response);
+            products = productService.findAll();
         } else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-            List<Product> products = productService.findByName(txtSearch);
-            request.setAttribute("products", products);
-            requestDispatcher.forward(request, response);
+            products = productService.findByName(txtSearch);
         }
+        request.setAttribute("products", products);
+        requestDispatcher.forward(request, response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
