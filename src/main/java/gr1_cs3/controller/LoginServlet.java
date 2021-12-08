@@ -51,6 +51,8 @@ public class LoginServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         } else {
             if (memberService.checkLogin(username, password)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("acc", member);
                 if (member.getRoleId() == 1) {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
                     List<Product> products = productService.findAll();

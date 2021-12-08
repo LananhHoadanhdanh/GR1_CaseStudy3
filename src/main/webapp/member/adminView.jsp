@@ -51,8 +51,13 @@
             <a href="#"><span class="icon-tumblr"></span></a>
           </div>
           <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
-          <a href="#"><span class="icon-user"></span> My Account</a>
-          <a href="/login"><span class="icon-edit"></span>Login</a>
+          <c:if test="${sessionScope.acc != null}">
+            <a href="http://localhost:8080"><span class="icon-edit"></span>Logout</a>
+            <a href="#"><span class="icon-user"></span> ${acc.username}</a>
+          </c:if>
+          <c:if test="${sessionScope.acc == null}">
+            <a href="/login"><span class="icon-edit"></span>Login</a>
+          </c:if>
           <a href="/register"><span class="icon-edit"></span>Register</a>
           <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
         </div>
