@@ -125,7 +125,7 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li><a href="brand?bid=${brand.id}"><span class="icon-chevron-right"> ${brand.name}</span></a>
+                        <li  class="${tagBrand == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -193,9 +193,9 @@ Lower Header Section
                                     <a href="?action=product-detail&id=${product.id}"><img src="${product.image}" alt=""></a>
                                     <div class="caption cntr">
                                         <h3>${product.name}</h3>
-                                        <p style="display: inline !important;"><strong> ${product.price}</strong></p>
-                                        <span style="padding: 5px !important; font-weight: bold !important;">VNĐ</span><br>
-                                        <span  style="font-weight: bold !important; padding: 5px !important;">Số lượng: </span>
+                                        <p><strong> ${product.price}</strong></p>
+                                        <span>VNĐ</span><br>
+                                        <span>Số lượng: </span>
                                         <span><strong> ${product.quantity}</strong></span>
                                         <h4><a class="shopBtn" href="/login" title="add to cart"> Add to cart </a></h4>
                                         <br class="clr">
