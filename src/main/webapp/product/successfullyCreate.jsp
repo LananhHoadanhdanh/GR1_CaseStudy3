@@ -51,7 +51,8 @@
                 <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
                 <c:if test="${sessionScope.acc != null}">
-                    <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span
+                            class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
             </div>
@@ -63,7 +64,7 @@
 Lower Header Section
 -->
 <div class="container">
-    <div id="gototop"> </div>
+    <div id="gototop"></div>
     <header id="header">
         <div class="row">
             <div class="span4">
@@ -76,7 +77,7 @@ Lower Header Section
             <div class="span4">
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) :  0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
                 <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
                 <span class="btn btn-mini">&pound;</span>
@@ -105,9 +106,9 @@ Lower Header Section
                         <li class=""><a href="#">Four Column</a></li>
                         <li class=""><a href="#">General Content</a></li>
                     </ul>
-                    <form action="#" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2">
-                        <button>Search</button>
+                    <form method="get" action="/" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2" name="Search">
+                        <input type="submit" value="Search">
                     </form>
                 </div>
             </div>
@@ -119,65 +120,51 @@ Lower Header Section
     <div class="row">
         <div id="sidebar" class="span3">
             <div class="well well-small">
-                <h3>Category</h3>
+                <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
-                    <li><a href="#"><span class="icon-chevron-right"></span>Figure</a></li>
-                    <li><a href="#"><span class="icon-chevron-right"></span>Nendoroid</a></li>
-                    <li><a href="#"><span class="icon-chevron-right"></span>Cosplay</a></li>
-                    <li><a href="#"><span class="icon-chevron-right"></span>Accessory</a></li>
+                    <c:forEach items="${listCategory}" var="category">
+                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
+                    <span class="icon-chevron-right">
+                            ${category.name}
+                    </span>
+                        </a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
             <div class="well well-small">
-                <h3>Brand</h3>
+                <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
-                    <li><a href="#"><span class="icon-chevron-right"></span>Naruto</a></li>
-                    <li><a href="#"><span class="icon-chevron-right"></span>Dragon Ball</a></li>
-                    <li><a href="#"><span class="icon-chevron-right"></span>Kimetsu no Yaiba</a></li>
-                    <li><a href="#"><span class="icon-chevron-right"></span>One Piece</a></li>
-                    <li><a href="#"><span class="icon-chevron-right"></span>Gundam</a></li>
+                    <c:forEach items="${listBrand}" var="brand">
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="/?action=show-product-by-brand&bid=${brand.id}"><span
+                                class="icon-chevron-right"> ${brand.name}</span></a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
+            <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
+            <br>
+            <br>
             <ul class="nav nav-list promowrapper">
-                <li>
-                    <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                class="icon-search"></span>XEM NHANH</a>
+                <c:forEach var="product" items="${upComingProducts}">
+                    <li>
+                        <div class="thumbnail">
+                            <a class="zoomTool" href="/products?action=view&id=${product.id}" title="add to cart"><span
+                                    class="icon-search"></span> QUICK VIEW</a>
 
-                        <img src="assets/img/bootstrap-ecommerce-templates.PNG" alt="bootstrap ecommerce templates">
-                        <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">XEM</a> <span class="pull-right">$22.00</span>
-                            </h4>
+                            <img src="${product.image}" alt="">
+                            <div class="caption">
+                                <h4><a class="defaultBtn" href="/products?action=view&id=${product.id}">VIEW</a> <span
+                                        class="pull-right">${product.price}</span>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li style="border:0"> &nbsp;</li>
-                <li>
-                    <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                class="icon-search"></span>XEM NHANH</a>
-                        <img src="assets/img/shopping-cart-template.PNG" alt="shopping cart template">
-                        <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                            </h4>
-                        </div>
-                    </div>
-                </li>
-                <li style="border:0"> &nbsp;</li>
-                <li>
-                    <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                class="icon-search"></span>XEM NHANH</a>
-                        <img src="assets/img/bootstrap-template.png" alt="bootstrap template">
-                        <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                            </h4>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                    <li style="border:0"> &nbsp;</li>
+                </c:forEach>
             </ul>
-
         </div>
         <div class="span9">
             <h1>Thêm sản phẩm thành công. Trở về trang chủ để tiếp tục</h1>

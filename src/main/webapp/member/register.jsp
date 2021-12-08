@@ -107,9 +107,9 @@ Lower Header Section
                         <li class=""><a href="four-col.html">Four Column</a></li>
                         <li class=""><a href="general.html">General Content</a></li>
                     </ul>
-                    <form action="#" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2">
-                        <button>Search</button>
+                    <form method="get" action="/" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2" name="Search">
+                        <input type="submit" value="Search">
                     </form>
                 </div>
             </div>
@@ -121,65 +121,51 @@ Lower Header Section
     <div class="row">
         <div id="sidebar" class="span3">
             <div class="well well-small">
-                <h3>Category</h3>
+                <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Figure</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Nendoroid</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Cosplay</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Accessory</a></li>
+                    <c:forEach items="${listCategory}" var="category">
+                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
+                    <span class="icon-chevron-right">
+                            ${category.name}
+                    </span>
+                        </a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
             <div class="well well-small">
-                <h3>Brand</h3>
+                <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Naruto</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Dragon Ball</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Kimetsu no Yaiba</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>One Piece</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Gundam</a></li>
+                    <c:forEach items="${listBrand}" var="brand">
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="/?action=show-product-by-brand&bid=${brand.id}"><span
+                                class="icon-chevron-right"> ${brand.name}</span></a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
+            <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
+            <br>
+            <br>
             <ul class="nav nav-list promowrapper">
-                <li>
-                    <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                class="icon-search"></span> QUICK VIEW</a>
+                <c:forEach var="product" items="${upComingProducts}">
+                    <li>
+                        <div class="thumbnail">
+                            <a class="zoomTool" href="/products?action=view&id=${product.id}" title="add to cart"><span
+                                    class="icon-search"></span> QUICK VIEW</a>
 
-                        <img src="assets/img/bootstrap-ecommerce-templates.PNG" alt="bootstrap ecommerce templates">
-                        <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                            </h4>
+                            <img src="${product.image}" alt="">
+                            <div class="caption">
+                                <h4><a class="defaultBtn" href="/products?action=view&id=${product.id}">VIEW</a> <span
+                                        class="pull-right">${product.price}</span>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li style="border:0"> &nbsp;</li>
-                <li>
-                    <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                class="icon-search"></span> QUICK VIEW</a>
-                        <img src="assets/img/shopping-cart-template.PNG" alt="shopping cart template">
-                        <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                            </h4>
-                        </div>
-                    </div>
-                </li>
-                <li style="border:0"> &nbsp;</li>
-                <li>
-                    <div class="thumbnail">
-                        <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                class="icon-search"></span> QUICK VIEW</a>
-                        <img src="assets/img/bootstrap-template.png" alt="bootstrap template">
-                        <div class="caption">
-                            <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span class="pull-right">$22.00</span>
-                            </h4>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                    <li style="border:0"> &nbsp;</li>
+                </c:forEach>
             </ul>
-
         </div>
         <div class="span9">
             <ul class="breadcrumb">
@@ -187,25 +173,25 @@ Lower Header Section
                 <li class="active">Registration</li>
             </ul>
 
-            <h3> Registration</h3>
+            <h3> Đăng kí tài khoản</h3>
             <hr class="soft"/>
             <div class="well">
                 <form class="form-horizontal" method="post">
                     <h3>Your Personal Details</h3>
                     <div class="control-group">
-                        <label class="control-label" for="username">Username <sup>*</sup></label>
+                        <label class="control-label" for="username">Tên đăng nhập <sup>*</sup></label>
                         <div class="controls">
                             <input type="text" id="username" name="username" placeholder="Username">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="password">Password<sup>*</sup></label>
+                        <label class="control-label" for="password">Mật khẩu <sup>*</sup></label>
                         <div class="controls">
                             <input type="password" id="password" placeholder="Password" name="password">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="name">Name<sup>*</sup></label>
+                        <label class="control-label" for="name">Họ và tên <sup>*</sup></label>
                         <div class="controls">
                             <input type="text" id="name" placeholder="Name" name="name">
                         </div>
@@ -217,20 +203,20 @@ Lower Header Section
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" >Phone number <sup>*</sup></label>
+                        <label class="control-label" >Số điện thoại <sup>*</sup></label>
                         <div class="controls">
                             <input type="text" placeholder="Phone number" name="phone">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Address <sup>*</sup></label>
+                        <label class="control-label">Địa chỉ <sup>*</sup></label>
                         <div class="controls">
                             <input type="text" placeholder="Address" name="address">
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <input type="submit" name="submitAccount" value="Register" class="exclusive shopBtn">
+                            <input type="submit" name="submitAccount" value="Đăng kí" class="exclusive shopBtn">
                         </div>
                     </div>
                 </form>
