@@ -13,6 +13,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,20 +25,6 @@ public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int categoryId = Integer.parseInt(request.getParameter("cid"));
-        List<Product> products = new ArrayList<>();
-        List<Category> categories = new ArrayList<>();
-        List<Brand> brands = new ArrayList<>();
-        products = categoryService.getProductByCID(categoryId);
-        categories = categoryService.findAll();
-        brands = brandService.findAll();
-        request.setAttribute("products", products);
-        request.setAttribute("listCategory", categories);
-        request.setAttribute("listBrand", brands);
-        request.setAttribute("tag", categoryId);
-        request.getRequestDispatcher("product/home.jsp").forward(request, response);
-
-
         String action = request.getParameter("/action");
         if (action == null) {
             action = "";
@@ -55,6 +42,25 @@ public class CategoryServlet extends HttpServlet {
                 showProductDetail(request, response);
                 break;
         }
+        int categoryId = Integer.parseInt(request.getParameter("cid"));
+        List<Product> newProducts = null;
+        try {
+            newProducts = productService.printFourProduct();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        List<Product> upComingProducts = productService.getUpcomingProduct();
+        List<Product> products = categoryService.getProductByCID(categoryId);
+        List<Category> categories = categoryService.findAll();
+        List<Brand>  brands = brandService.findAll();
+        request.setAttribute("newProducts", newProducts);
+        request.setAttribute("products", products);
+        request.setAttribute("upComingProducts", upComingProducts);
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
+        request.setAttribute("tag", categoryId);
+        request.getRequestDispatcher("product/home.jsp").forward(request, response);
+
     }
 
     @Override

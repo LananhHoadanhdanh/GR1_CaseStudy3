@@ -104,16 +104,20 @@ public class HomepageServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         } else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
+            List<Product> newProducts = productService.printFourProduct();
             List<Product> products = productService.findByName(txtSearch);
+            List<Product> upComingProducts = productService.getUpcomingProduct();
+            List<Category> categories = categoryService.findAll();
+            List<Brand> brands = brandService.findAll();
+            request.setAttribute("newProducts", newProducts);
             request.setAttribute("products", products);
+            request.setAttribute("upComingProducts", upComingProducts);
+            request.setAttribute("listCategory", categories);
+            request.setAttribute("listBrand", brands);
             requestDispatcher.forward(request, response);
         }
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
     }
 }

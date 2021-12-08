@@ -90,8 +90,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="">Trang chủ </a></li>
-                        <li class=""><a href="/list-view">Tất cả sản phẩm</a></li>
+                        <li class="active"><a href="?action=home">Trang chủ </a></li>
                         <li class=""><a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
                         <li class=""><a href="?action=gioi-thieu">Giới thiệu</a></li>
                         <li class=""><a href="general.html">Tin tức</a></li>
@@ -127,7 +126,7 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li class="${tag == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span
                                 class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
