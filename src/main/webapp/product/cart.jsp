@@ -42,9 +42,11 @@
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
-                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <c:if test="${sessionScope.acc != null}">
+                <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
                     <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
@@ -98,13 +100,20 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <form action="/login?username=${username}&password=${pass}&submitAccount=Login" method="post">
-                        <button>Home</button></form>
-                        <li class=""><a href="list-view.html">List View</a></li>
-                        <li class=""><a href="grid-view.html">Grid View</a></li>
-                        <li class=""><a href="three-col.html">Three Column</a></li>
-                        <li class=""><a href="four-col.html">Four Column</a></li>
-                        <li class=""><a href="general.html">General Content</a></li>
+                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
                     <form action="#" class="navbar-search pull-left">
                         <input type="text" placeholder="Search" class="search-query span2">

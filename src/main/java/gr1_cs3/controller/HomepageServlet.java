@@ -65,9 +65,7 @@ public class HomepageServlet extends HttpServlet {
         request.setAttribute("tag", categoryId);
         try {
             request.getRequestDispatcher("product/home.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -85,9 +83,7 @@ public class HomepageServlet extends HttpServlet {
         request.setAttribute("tag", categoryId);
         try {
             request.getRequestDispatcher("product/home.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }

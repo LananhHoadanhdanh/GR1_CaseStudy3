@@ -48,11 +48,12 @@
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
-                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <c:if test="${sessionScope.acc != null}">
-                    <a class="active" href="Cart?action=def&username=${acc.username}"><span
-                            class="icon-shopping-cart"></span> Giỏ hàng<span
+                <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
             </div>
@@ -99,12 +100,20 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="http://localhost:8080">Trang chủ</a></li>
-                        <li class=""><a href="#">Sản phẩm</a></li>
-                        <li class=""><a href="#">Grid View</a></li>
-                        <li class=""><a href="#">Three Column</a></li>
-                        <li class=""><a href="#">Four Column</a></li>
-                        <li class=""><a href="#">General Content</a></li>
+                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
                     <form method="get" action="/" class="navbar-search pull-right">
                         <input type="text" placeholder="Search" class="search-query span2" name="Search">
@@ -123,7 +132,8 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a
+                                href="/?action=show-product-by-category&cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -137,7 +147,8 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li class="${tagBrand == brand.id ? "active":""}"><a href="/?action=show-product-by-brand&bid=${brand.id}"><span
+                        <li class="${tagBrand == brand.id ? "active":""}"><a
+                                href="/?action=show-product-by-brand&bid=${brand.id}"><span
                                 class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>

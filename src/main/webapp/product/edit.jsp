@@ -48,9 +48,11 @@
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
-                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <c:if test="${sessionScope.acc != null}">
+                <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
                     <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
@@ -98,12 +100,20 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="http://localhost:8080">Trang chủ</a></li>
-                        <li class=""><a href="#">Sản phẩm</a></li>
-                        <li class=""><a href="#">Grid View</a></li>
-                        <li class=""><a href="#">Three Column</a></li>
-                        <li class=""><a href="#">Four Column</a></li>
-                        <li class=""><a href="#">General Content</a></li>
+                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
                     <form action="#" class="navbar-search pull-right">
                         <input type="text" placeholder="Search" class="search-query span2">
@@ -205,7 +215,7 @@ Lower Header Section
                     <div class="controls">
                         <select class="span1" name="categoryId">
                             <option value="${product.categoryId}">${product.categoryId}</option>
-                            <c:forEach var="category" items="${categories}">
+                            <c:forEach var="category" items="${listCategory}">
                                 <option value="${category.id}">${category.id}. ${category.name}</option>
                             </c:forEach>
                         </select>
@@ -215,7 +225,7 @@ Lower Header Section
                     <div class="controls">
                         <select class="span1" name="brandId">
                             <option value="${product.brandId}">${product.brandId}</option>
-                            <c:forEach var="brand" items="${brands}">
+                            <c:forEach var="brand" items="${listBrand}">
                                 <option value="${brand.id}">${brand.id}. ${brand.name}</option>
                             </c:forEach>
                         </select>
@@ -225,7 +235,6 @@ Lower Header Section
                         <label class="control-label" for="description">Mô tả sản phẩm<sup>*</sup></label>
                         <div class="controls">
                             <input type="text" style="width: 200px; height: 150px;" id="description" name="description" value="${product.description}">
-<%--                            <textarea rows="9" cols="70" id="description" name="description">${product.description}</textarea>--%>
                         </div>
                     </div>
                     <br>

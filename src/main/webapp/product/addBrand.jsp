@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,9 +115,9 @@ Lower Header Section
                             <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
                         </c:if>
                     </ul>
-                    <form method="get" action="/" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2" name="Search">
-                        <input type="submit" value="Search">
+                    <form action="#" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2">
+                        <button>Search</button>
                     </form>
                 </div>
             </div>
@@ -177,54 +177,23 @@ Lower Header Section
         </div>
         <div class="span9">
             <ul class="breadcrumb">
-                <li><a href="http://localhost:8080">Home</a> <span class="divider">/</span></li>
-                <li class="active">Registration</li>
+                <li><a href="http://localhost:8080">Trang chủ</a> <span class="divider">/</span></li>
+                <li class="active">Thêm nhãn hiệu</li>
             </ul>
 
-            <h3> Đăng kí tài khoản</h3>
+            <h3>Thêm nhãn hiệu, tên anime, manga</h3>
             <hr class="soft"/>
             <div class="well">
                 <form class="form-horizontal" method="post">
-                    <h3>Your Personal Details</h3>
                     <div class="control-group">
-                        <label class="control-label" for="username">Tên đăng nhập <sup>*</sup></label>
+                        <label class="control-label" for="name">Tên anime, manga<sup>*</sup></label>
                         <div class="controls">
-                            <input type="text" id="username" name="username" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="password">Mật khẩu <sup>*</sup></label>
-                        <div class="controls">
-                            <input type="password" id="password" placeholder="Password" name="password">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="name">Họ và tên <sup>*</sup></label>
-                        <div class="controls">
-                            <input type="text" id="name" placeholder="Name" name="name">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" >Email <sup>*</sup></label>
-                        <div class="controls">
-                            <input type="text" placeholder="Email" name="email">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" >Số điện thoại <sup>*</sup></label>
-                        <div class="controls">
-                            <input type="text" placeholder="Phone number" name="phone">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Địa chỉ <sup>*</sup></label>
-                        <div class="controls">
-                            <input type="text" placeholder="Address" name="address">
+                            <input type="text" id="name" name="name" placeholder="name">
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <input type="submit" name="submitAccount" value="Đăng kí" class="exclusive shopBtn">
+                            <input type="submit" name="submitAccount" value="Thêm nhãn hiệu" class="exclusive shopBtn">
                         </div>
                     </div>
                 </form>
