@@ -37,12 +37,58 @@ public class HomepageServlet extends HttpServlet {
             case "gioi-thieu":
                 showAboutUs(request, response);
                 break;
+            case "show-product-by-category":
+                showProductByCID(request, response);
+                break;
+            case "show-product-by-brand":
+                showProductByBID(request, response);
+                break;
             default:
                 try {
                     showHomePage(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+        }
+    }
+
+    private void showProductByCID(HttpServletRequest request, HttpServletResponse response) {
+        int categoryId = Integer.parseInt(request.getParameter("cid"));
+        List<Product> upComingProducts = productService.getUpcomingProduct();
+        List<Product> products = categoryService.getProductByCID(categoryId);
+        List<Category> categories = categoryService.findAll();
+        List<Brand>  brands = brandService.findAll();
+        request.setAttribute("products", products);
+        request.setAttribute("upComingProducts", upComingProducts);
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
+        request.setAttribute("tag", categoryId);
+        try {
+            request.getRequestDispatcher("product/home.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showProductByBID(HttpServletRequest request, HttpServletResponse response) {
+        int categoryId = Integer.parseInt(request.getParameter("bid"));
+        List<Product> upComingProducts = productService.getUpcomingProduct();
+        List<Product> products = brandService.getProductByBID(categoryId);
+        List<Category> categories = categoryService.findAll();
+        List<Brand>  brands = brandService.findAll();
+        request.setAttribute("products", products);
+        request.setAttribute("upComingProducts", upComingProducts);
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
+        request.setAttribute("tag", categoryId);
+        try {
+            request.getRequestDispatcher("product/home.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -86,9 +132,5 @@ public class HomepageServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
     }
 }

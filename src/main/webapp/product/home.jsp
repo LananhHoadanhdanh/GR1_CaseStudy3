@@ -44,7 +44,9 @@ Upper Header Section
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
-                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
                 <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
                     <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
@@ -90,7 +92,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="">Trang chủ </a></li>
+                        <li class="active"><a href="?action=home">Trang chủ </a></li>
                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
                             <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
                         </c:if>
@@ -98,7 +100,7 @@ Lower Header Section
                         <li class=""><a href="?action=gioi-thieu">Giới thiệu</a></li>
                         <li class=""><a href="general.html">Tin tức</a></li>
                     </ul>
-                    <form method="get" class="navbar-search pull-right">
+                    <form method="get" action="/" class="navbar-search pull-right">
                         <input type="text" placeholder="Search" class="search-query span2" name="Search">
                         <input type="submit" value="Search">
                     </form>
@@ -115,7 +117,7 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li class="${tag == category.id ? "active":""}"><a href="category?cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -129,7 +131,7 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li class="${tag == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="/?action=show-product-by-brand&bid=${brand.id}"><span
                                 class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>

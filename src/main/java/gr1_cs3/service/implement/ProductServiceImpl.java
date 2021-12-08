@@ -19,8 +19,8 @@ public class ProductServiceImpl implements ProductService {
         return connection;
     }
 
-    public int viewPay(int price, int quantity){
-        return price*quantity;
+    public int viewPay(int price, int quantity) {
+        return price * quantity;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
@@ -49,7 +49,8 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> printFourProduct() throws SQLException {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where product.quantity > 0 order by id desc limit 4");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where product.quantity > " +
+                     " 0 order by id desc limit 4");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -60,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
@@ -83,7 +84,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                product = new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description );
+                product = new Product(id, name, price, quantity, categoryId, image, brandId, description);
             }
         } catch (SQLException e) {
         }
@@ -105,7 +106,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                upComingProducts.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                upComingProducts.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
@@ -127,7 +128,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
@@ -150,7 +151,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
@@ -173,7 +174,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
@@ -196,7 +197,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(id, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(id, name, price, quantity, categoryId, image, brandId, description));
             }
         } catch (SQLException ignored) {
         }
@@ -220,7 +221,7 @@ public class ProductServiceImpl implements ProductService {
                 String image = rs.getString("image");
                 int brandId = rs.getInt("brandId");
                 String description = rs.getString("description");
-                products.add(new Product(idData, name, price, quantity,  categoryId,  image,  brandId,  description ));
+                products.add(new Product(idData, name, price, quantity, categoryId, image, brandId, description));
             }
             for (int i = 0; i < products.size(); i++) {
                 if (products.get(i).getId() == id) {
