@@ -96,7 +96,22 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         }
         return 0;
     }
-
+    @Override
+    public String getPassByUser(String username) {
+        String password = null;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select password from member where (username = ? or email = ?)");) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, username);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                password = rs.getString("password");
+            }
+        } catch (SQLException ignored) {
+        }
+        return password;
+    }
     @Override
     public void augmentToCart(int idProduct, String userName) {
             try (Connection connection = getConnection();

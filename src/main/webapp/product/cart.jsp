@@ -40,8 +40,9 @@
                     <a href="#"><span class="icon-youtube"></span></a>
                     <a href="#"><span class="icon-tumblr"></span></a>
                 </div>
-                <a href="index.html"> <span class="icon-home"></span> Home</a>
+                <a href="/login?username=${username}&password=${pass}&submitAccount=Login"> <span class="icon-home"></span> Home</a>
                 <a href="#"><span class="icon-user"></span>${username}</a>
+                <a value="${pass}" href="#"><span class="icon-user"></span></a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
                 <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
@@ -96,7 +97,8 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="index.html">Home </a></li>
+                        <form action="/login?username=${username}&password=${pass}&submitAccount=Login" method="post">
+                        <button>Home</button></form>
                         <li class=""><a href="list-view.html">List View</a></li>
                         <li class=""><a href="grid-view.html">Grid View</a></li>
                         <li class=""><a href="three-col.html">Three Column</a></li>
@@ -208,8 +210,8 @@ Lower Header Section
                     <tbody>
                     <tr>
                         <td>
-
-                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Delete Cart</button></a>
+                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Xóa giỏ hàng</button></a>
+                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Đặt mua</button></a>
                         </td>
                     </tr>
 
