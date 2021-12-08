@@ -150,21 +150,21 @@ public class CartServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
         List<Invoice> products = invoiceService.findAll(user);
-
+        String pass=invoiceService.getPassByUser(user);
         if (invoiceService.getIdOrder(user) == 0 || invoiceService.getStatus(user) != 0) {
             invoiceService.addToCa(user);
         }
         if (products.size() != 0) {
             for (Invoice add : products
             ) {
-                if (add.getOrderId() == invoiceService.getIdOrder(user) && add.getProductId() == id) {
+                if (add.getOrderId() == invoiceService.getOrder(user).getId() && add.getProductId() == id) {
                     augment(request, response);
                 } else {
-                    invoiceService.addToCart(id, user);
+                    invoiceService.addToCart(id, invoiceService.getOrder(user).getId());
                 }
             }
         } else {
-            invoiceService.addToCart(id, user);
+                invoiceService.addToCart(id, invoiceService.getOrder(user).getId());
         }
         for (Invoice in : products
         ) {
@@ -174,6 +174,7 @@ public class CartServlet extends HttpServlet {
             }
         }
         products = invoiceService.findAll(user);
+        request.setAttribute("pass", pass);
         request.setAttribute("product", products);
         request.setAttribute("result", result);
         request.setAttribute("username", user);
@@ -185,6 +186,7 @@ public class CartServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         String user = request.getParameter("username");
         int result = 0;
+        String pass=invoiceService.getPassByUser(user);
         List<Invoice> products = invoiceService.findAll(user);
         for (Invoice in : products
         ) {
@@ -193,8 +195,8 @@ public class CartServlet extends HttpServlet {
                 delete(request, response);
             }
         }
-
         request.setAttribute("username", user);
+        request.setAttribute("pass", pass);
         request.setAttribute("product", products);
         request.setAttribute("result", result);
         requestDispatcher.forward(request, response);

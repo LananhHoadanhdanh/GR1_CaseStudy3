@@ -35,7 +35,7 @@ public class CategoryServlet extends HttpServlet {
         request.setAttribute("listCategory", categories);
         request.setAttribute("listBrand", brands);
         request.setAttribute("tag", categoryId);
-        request.getRequestDispatcher("product/list.jsp").forward(request, response);
+        request.getRequestDispatcher("product/home.jsp").forward(request, response);
 
 
         String action = request.getParameter("/action");
