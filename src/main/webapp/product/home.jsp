@@ -25,7 +25,8 @@
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Pacifico&family=Reggae+One&family=Vollkorn&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Pacifico&family=Reggae+One&family=Vollkorn&display=swap"
+          rel="stylesheet">
 </head>
 <body style="font-family: 'Alegreya Sans', sans-serif; font-size: 16px">
 <!--
@@ -108,7 +109,7 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li><a href="category?cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a href="category?cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -122,7 +123,8 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li><a href="brand?bid=${brand.id}"><span class="icon-chevron-right"> ${brand.name}</span></a>
+                        <li class="${tag == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span
+                                class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -221,7 +223,7 @@ Lower Header Section
             New Products
             -->
             <div class="well well-small">
-                <h3>New Products </h3>
+                <h3>Hàng mới về </h3>
                 <hr class="soften"/>
                 <div class="row-fluid">
                     <div id="newProductCar" class="carousel slide">
@@ -261,9 +263,10 @@ Lower Header Section
                         <a class="right carousel-control" href="#newProductCar" data-slide="next">&rsaquo;</a>
                     </div>
                 </div>
+                <h3>Tất cả sản phẩm</h3>
                 <div class="row-fluid">
                     <ul class="thumbnails">
-                        <c:forEach var="product" items="${topThreeProducts}">
+                        <c:forEach var="product" items="${products}">
                             <li class="span4" style="margin: 0 !important; padding: 5px">
                                 <div class="thumbnail">
                                     <a class="zoomTool" href="?action=product-detail&id=${product.id}"
@@ -292,63 +295,63 @@ Lower Header Section
             <!--
             Featured Products
             -->
-<%--            <div class="well well-small">--%>
-<%--                <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span--%>
-<%--                        class="icon-plus"></span></a> Best selling Products </h3>--%>
-<%--                <hr class="soften"/>--%>
-<%--                <div class="row-fluid">--%>
-<%--                    <ul class="thumbnails">--%>
-<%--                        <li class="span4">--%>
-<%--                            <div class="thumbnail">--%>
-<%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-<%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
-<%--                                <a href="product_details.html"><img src="assets/img/d.jpg" alt=""></a>--%>
-<%--                                <div class="caption">--%>
-<%--                                    <h5>Manicure & Pedicure</h5>--%>
-<%--                                    <h4>--%>
-<%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
-<%--                                                class="icon-zoom-in"></span></a>--%>
-<%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
-<%--                                        <span class="pull-right">$22.00</span>--%>
-<%--                                    </h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                        <li class="span4">--%>
-<%--                            <div class="thumbnail">--%>
-<%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-<%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
-<%--                                <a href="product_details.html"><img src="assets/img/e.jpg" alt=""></a>--%>
-<%--                                <div class="caption">--%>
-<%--                                    <h5>Manicure & Pedicure</h5>--%>
-<%--                                    <h4>--%>
-<%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
-<%--                                                class="icon-zoom-in"></span></a>--%>
-<%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
-<%--                                        <span class="pull-right">$22.00</span>--%>
-<%--                                    </h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                        <li class="span4">--%>
-<%--                            <div class="thumbnail">--%>
-<%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-<%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
-<%--                                <a href="product_details.html"><img src="assets/img/f.jpg" alt=""/></a>--%>
-<%--                                <div class="caption">--%>
-<%--                                    <h5>Manicure & Pedicure</h5>--%>
-<%--                                    <h4>--%>
-<%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
-<%--                                                class="icon-zoom-in"></span></a>--%>
-<%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
-<%--                                        <span class="pull-right">$22.00</span>--%>
-<%--                                    </h4>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <%--            <div class="well well-small">--%>
+            <%--                <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span--%>
+            <%--                        class="icon-plus"></span></a> Best selling Products </h3>--%>
+            <%--                <hr class="soften"/>--%>
+            <%--                <div class="row-fluid">--%>
+            <%--                    <ul class="thumbnails">--%>
+            <%--                        <li class="span4">--%>
+            <%--                            <div class="thumbnail">--%>
+            <%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
+            <%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
+            <%--                                <a href="product_details.html"><img src="assets/img/d.jpg" alt=""></a>--%>
+            <%--                                <div class="caption">--%>
+            <%--                                    <h5>Manicure & Pedicure</h5>--%>
+            <%--                                    <h4>--%>
+            <%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
+            <%--                                                class="icon-zoom-in"></span></a>--%>
+            <%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
+            <%--                                        <span class="pull-right">$22.00</span>--%>
+            <%--                                    </h4>--%>
+            <%--                                </div>--%>
+            <%--                            </div>--%>
+            <%--                        </li>--%>
+            <%--                        <li class="span4">--%>
+            <%--                            <div class="thumbnail">--%>
+            <%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
+            <%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
+            <%--                                <a href="product_details.html"><img src="assets/img/e.jpg" alt=""></a>--%>
+            <%--                                <div class="caption">--%>
+            <%--                                    <h5>Manicure & Pedicure</h5>--%>
+            <%--                                    <h4>--%>
+            <%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
+            <%--                                                class="icon-zoom-in"></span></a>--%>
+            <%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
+            <%--                                        <span class="pull-right">$22.00</span>--%>
+            <%--                                    </h4>--%>
+            <%--                                </div>--%>
+            <%--                            </div>--%>
+            <%--                        </li>--%>
+            <%--                        <li class="span4">--%>
+            <%--                            <div class="thumbnail">--%>
+            <%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
+            <%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
+            <%--                                <a href="product_details.html"><img src="assets/img/f.jpg" alt=""/></a>--%>
+            <%--                                <div class="caption">--%>
+            <%--                                    <h5>Manicure & Pedicure</h5>--%>
+            <%--                                    <h4>--%>
+            <%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
+            <%--                                                class="icon-zoom-in"></span></a>--%>
+            <%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
+            <%--                                        <span class="pull-right">$22.00</span>--%>
+            <%--                                    </h4>--%>
+            <%--                                </div>--%>
+            <%--                            </div>--%>
+            <%--                        </li>--%>
+            <%--                    </ul>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
         </div>
     </div>
 

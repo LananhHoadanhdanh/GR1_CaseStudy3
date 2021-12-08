@@ -35,7 +35,7 @@ public class BrandServlet extends HttpServlet {
         request.setAttribute("listCategory", categories);
         request.setAttribute("listBrand", brands);
         request.setAttribute("tagBrand", brandId);
-        request.getRequestDispatcher("product/list.jsp").forward(request, response);
+        request.getRequestDispatcher("product/home.jsp").forward(request, response);
 
         String action = request.getParameter("/action");
         if (action == null) {
