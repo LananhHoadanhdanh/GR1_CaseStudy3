@@ -160,11 +160,11 @@ public class CartServlet extends HttpServlet {
                 if (add.getOrderId() == invoiceService.getIdOrder(user) && add.getProductId() == id) {
                     augment(request, response);
                 } else {
-                    invoiceService.addToCart(id, user);
+                    invoiceService.addToCart(id, invoiceService.getOrder(user).getId());
                 }
             }
         } else {
-            invoiceService.addToCart(id, user);
+                invoiceService.addToCart(id, invoiceService.getOrder(user).getId());
         }
         for (Invoice in : products
         ) {

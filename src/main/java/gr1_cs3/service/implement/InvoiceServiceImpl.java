@@ -1,6 +1,7 @@
 package gr1_cs3.service.implement;
 
 import gr1_cs3.model.Invoice;
+import gr1_cs3.model.Order;
 import gr1_cs3.model.Product;
 import gr1_cs3.service.InvoiceService;
 
@@ -85,7 +86,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
     @Override
     public int getStatus(String username) {
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select status from `order` where memberid=?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select status from `order` where memberid=? order by id desc ")) {
             preparedStatement.setInt(1, getIdUser(username));
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
@@ -96,6 +97,7 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         }
         return 0;
     }
+
     @Override
     public String getPassByUser(String username) {
         String password = null;
@@ -112,84 +114,105 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         }
         return password;
     }
+
+    @Override
+    public Order getOrder(String userName) {
+        Order order = new Order();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from `order` where status =0 and memberId=?");) {
+            preparedStatement.setInt(1, getIdUser(userName));
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int id = rs.getInt("id");
+            int memberId = rs.getInt("memberId");
+            int status = rs.getInt("status");
+            order = new Order(id, memberId, status);
+            return order;
+        } catch (SQLException ignored) {
+        }
+        return order;
+    }
+
     @Override
     public void augmentToCart(int idProduct, String userName) {
-            try (Connection connection = getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`+ 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
-                preparedStatement.setInt(1, getIdOrder(userName));
-                preparedStatement.setInt(2, idProduct);
-                preparedStatement.executeUpdate();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`+ 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
+            preparedStatement.setInt(1, getOrder(userName).getId());
+            preparedStatement.setInt(2, idProduct);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void reduceToCart(int idProduct, String userName) {
-            try (Connection connection = getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`- 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
-                preparedStatement.setInt(1, getIdOrder(userName));
-                preparedStatement.setInt(2, idProduct);
-                preparedStatement.executeUpdate();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =(`product_quantity`- 1) WHERE (`orderId` = ?) and (`productId` = ?);")) {
+            preparedStatement.setInt(1, getOrder(userName).getId());
+            preparedStatement.setInt(2, idProduct);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
     @Override
     public void editCart(int idProduct, String userName, int quantity) {
-            try (Connection connection = getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =? WHERE (`orderId` = ?) and (`productId` = ?);")) {
-                preparedStatement.setInt(1, quantity);
-                preparedStatement.setInt(2, getIdOrder(userName));
-                preparedStatement.setInt(3, idProduct);
-                preparedStatement.executeUpdate();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`orderdetail` SET `product_quantity` =? WHERE (`orderId` = ?) and (`productId` = ?);")) {
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setInt(2, getOrder(userName).getId());
+            preparedStatement.setInt(3, idProduct);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
-    public void addToCart(int idProduct, String userName) {
-            try (Connection connection = getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `cs3_g1`.`orderdetail` (`orderId`, `productId`, `product_quantity`) VALUES (?,?,?) ;")) {
-                preparedStatement.setInt(1, getIdOrder(userName));
-                preparedStatement.setInt(2, idProduct);
-                preparedStatement.setInt(3, 1);
-                preparedStatement.executeUpdate();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+    public void addToCart(int idProduct, int idOrder) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `cs3_g1`.`orderdetail` (`orderId`, `productId`, `product_quantity`) VALUES (?,?,?) ;")) {
+            preparedStatement.setInt(1, idOrder);
+            preparedStatement.setInt(2, idProduct);
+            preparedStatement.setInt(3, 1);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void addToCa(String userName) {
-            try (Connection connection = getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(
-                         "INSERT INTO `cs3_g1`.`order` (memberId) VALUES (?) ;")) {
-                preparedStatement.setInt(1, getIdUser(userName));
-                preparedStatement.executeUpdate();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "INSERT INTO `cs3_g1`.`order` (memberId) VALUES (?) ;")) {
+            preparedStatement.setInt(1, getIdUser(userName));
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
+    }
+
     @Override
-    public void deleteProInCart(String userName,int id) {
+    public void deleteProInCart(String userName, int id) {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      "    DELETE FROM `cs3_g1`.`orderdetail` WHERE (`orderId` = ?) and (`productId` = ?);")) {
-            preparedStatement.setInt(1, getIdOrder(userName));
+            preparedStatement.setInt(1, getOrder(userName).getId());
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
+
     @Override
     public void deleteCart(String userName) {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      "    DELETE FROM `cs3_g1`.`orderdetail` WHERE `orderId` = ?;")) {
-            preparedStatement.setInt(1, getIdOrder(userName));
+            preparedStatement.setInt(1, getOrder(userName).getId());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
