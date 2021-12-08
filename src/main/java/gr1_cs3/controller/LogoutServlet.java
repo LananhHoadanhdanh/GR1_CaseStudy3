@@ -15,52 +15,24 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "LogoutServlet", value = "/logout")
 public class LogoutServlet extends HttpServlet {
-    ProductService productService = new ProductServiceImpl();
-    CategoryService categoryService = new CategoryServiceImpl();
-    BrandService brandService = new BrandServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("acc");
-        String txtSearch = request.getParameter("Search");
-        if (txtSearch == null) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-            List<Product> newProducts = null;
-            try {
-                newProducts = productService.printFourProduct();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            List<Product> products = productService.findAll();
-            List<Product> upComingProducts = productService.getUpcomingProduct();
-            List<Category> categories = categoryService.findAll();
-            List<Brand> brands = brandService.findAll();
-            request.setAttribute("newProducts", newProducts);
-            request.setAttribute("products", products);
-            request.setAttribute("upComingProducts", upComingProducts);
-            request.setAttribute("listCategory", categories);
-            request.setAttribute("listBrand", brands);
-            requestDispatcher.forward(request, response);
-        } else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-            List<Product> products = null;
-            try {
-                products = productService.findByName(txtSearch);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            request.setAttribute("products", products);
-            requestDispatcher.forward(request, response);
+        try {
+            HomepageServlet.showHomePage(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

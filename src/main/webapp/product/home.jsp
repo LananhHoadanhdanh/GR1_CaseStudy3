@@ -46,7 +46,7 @@ Upper Header Section
                 </c:if>
                 <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <c:if test="${sessionScope.acc != null}">
+                <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
                     <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
@@ -91,6 +91,9 @@ Lower Header Section
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
+                        </c:if>
                         <li class=""><a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
                         <li class=""><a href="?action=gioi-thieu">Giới thiệu</a></li>
                         <li class=""><a href="general.html">Tin tức</a></li>
@@ -112,7 +115,7 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li class="${tag == category.id ? "active":""}"><a href="category?cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a href="?action=show-product-by-category&cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -126,7 +129,7 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li class="${tagBrand == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="?action=show-product-by-brand&bid=${brand.id}"><span
                                 class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
@@ -140,12 +143,12 @@ Lower Header Section
                 <c:forEach var="product" items="${upComingProducts}">
                     <li>
                         <div class="thumbnail">
-                            <a class="zoomTool" href="?action=product-detail&id=${product.id}" title="add to cart"><span
+                            <a class="zoomTool" href="/products?action=view&id=${product.id}" title="add to cart"><span
                                     class="icon-search"></span> QUICK VIEW</a>
 
                             <img src="${product.image}" alt="">
                             <div class="caption">
-                                <h4><a class="defaultBtn" href="?action=product-detail&id=${product.id}">VIEW</a> <span
+                                <h4><a class="defaultBtn" href="/products?action=view&id=${product.id}">VIEW</a> <span
                                         class="pull-right">${product.price}</span>
                                 </h4>
                             </div>
@@ -236,10 +239,10 @@ Lower Header Section
                                     <c:forEach var="product" items="${newProducts}">
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <a class="zoomTool" href="?action=product-detail&id=${product.id}"
+                                                <a class="zoomTool" href="/products?action=view&id=${product.id}"
                                                    title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
                                                 <a href="#" class="tag"></a>
-                                                <a href="?action=product-detail&id=${product.id}"><img
+                                                <a href="/products?action=view&id=${product.id}"><img
                                                         src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
@@ -251,10 +254,10 @@ Lower Header Section
                                     <c:forEach var="product" items="${newProducts}">
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <a class="zoomTool" href="?action=product-detail&id=${product.id}"
+                                                <a class="zoomTool" href="/products?action=view&id=${product.id}"
                                                    title="add to cart"><span
                                                         class="icon-search"></span> QUICK VIEW</a>
-                                                <a href="?action=product-detail&id=${product.id}"><img
+                                                <a href="/products?action=view&id=${product.id}"><img
                                                         src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
@@ -272,10 +275,10 @@ Lower Header Section
                         <c:forEach var="product" items="${products}">
                             <li class="span4" style="margin: 0 !important; padding: 5px">
                                 <div class="thumbnail">
-                                    <a class="zoomTool" href="?action=product-detail&id=${product.id}"
+                                    <a class="zoomTool" href="/products?action=view&id=${product.id}"
                                        title="add to cart"><span
                                             class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="?action=product-detail&id=${product.id}"><img
+                                    <a href="/products?action=view&id=${product.id}"><img
                                             src="<c:out value="${product.image}"/>" alt=""></a>
                                     <div class="caption cntr">
                                         <h3>${product.name}</h3>
@@ -378,15 +381,13 @@ Lower Header Section
         <div class="row-fluid">
             <div class="span2">
                 <h5>Liên kết</h5>
-                <a href="">Trang chủ</a><br>
-                <a href="/list-view">Tất cả sản phẩm</a><br>
-                <a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a><br>
-                <a href="?action=gioi-thieu">Giới thiệu</a><br>
+                <a href="#">Trang chủ</a><br>
+                <a href="#">Hướng dẫn mua hàng</a><br>
+                <a href="#">Giới thiệu</a><br>
             </div>
             <div class="span2">
                 <h5>Chính sách hỗ trợ</h5>
                 <a href="#">Tìm kiếm</a><br>
-                <a href="#">Giới thiệu</a><br>
                 <a href="#">Chính sách thanh toán</a><br>
                 <a href="#">Chính sách vận chuyển</a><br>
             </div>
