@@ -246,12 +246,14 @@ Lower Header Section
                                 </a>
                             </div>
                         </td>
-                        <td>${productO.price*product.product_quantity} VND</td>
+                        <td>${productO.price*productO.product_quantity} VND</td>
                     </tr>
                     </c:forEach>
                     </td>
                     </tr>
                     </tbody>
+                   <td></td><td></td><td> <td></td><td class="label label-primary"> ${resultO} VND</td></td>
+
                 </table> <a href="/Cart?action=deleteOrder&username=${username}">
                 <button type="submit" class="shopBtn">Hủy Đơn Hàng</button>
             </a>

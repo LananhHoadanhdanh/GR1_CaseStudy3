@@ -74,15 +74,15 @@ public class CartServlet extends HttpServlet {
     private void ordered(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         String user = request.getParameter("username");
-        int result = 0;
+        int resultO = 0;
         invoiceService.payOrder(user);
         List<Invoice> products = invoiceService.findAllOrder(user);
         for (Invoice in : products
         ) {
-            result += (in.getProduct_quantity() * in.getPrice());
+            resultO += (in.getProduct_quantity() * in.getPrice());
         }
         request.setAttribute("productO", products);
-        request.setAttribute("result", result);
+        request.setAttribute("resultO", resultO);
         request.setAttribute("username", user);
         requestDispatcher.forward(request, response);
     }
