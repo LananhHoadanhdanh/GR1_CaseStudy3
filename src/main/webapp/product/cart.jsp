@@ -41,7 +41,7 @@
                     <a href="#"><span class="icon-tumblr"></span></a>
                 </div>
                 <a href="index.html"> <span class="icon-home"></span> Home</a>
-                <a href="#"><span class="icon-user"></span> My Account</a>
+                <a href="#"><span class="icon-user"></span>${username}</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
                 <a class="active" href="product/cart.jsp"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
@@ -156,25 +156,41 @@ Lower Header Section
                     </tr>
                     </thead>
                     <tbody>
-<%--                    <%int totalPay=0;%>--%>
+                    <%--                    <%int totalPay=0;%>--%>
                     <c:forEach var="product" items="${product}">
-                    <tr>
-                        <td><img width="100" src="${product.image}" alt=""></td>
-                        <td>name: ${product.name}<br>warehouse : ${product.quantity}</td>
-                        <td>${product.price} VND</td>
-                        <td>
-                            <input class="span1" style="max-width:34px" id="appendedInputButtons"
-                                   size="16" type="text" value="${product.product_quantity}">
+                        <tr>
+                            <td><img width="100" src="${product.image}" alt=""></td>
+                            <td>name: ${product.name}<br>warehouse : ${product.quantity}</td>
+                            <td>${product.price} VND</td>
+                            <td>
+                                <form action="/Cart?action=edit&id=${product.id}&username=${username}&quantity=${product.product_quantity}" method="post">
+                                    <input name="edit" class="span1" style="max-width:34px" id="appendedInputButtons"
+                                           size="16" type="number" value="${product.product_quantity}">
+                                </form>
 
-                            <div class="input-append">
-                                <button class="btn btn-mini" type="button">-</button>
-                                <button class="btn btn-mini" type="button">+</button>
-                                <button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span>
-                                </button>
-                            </div>
-                        </td>
-                        <td>${product.price*product.product_quantity} VND</td>
-                    </tr>
+                                    <%--                            <form action="/products?act=edit&id=${pro.id}" method="post">--%>
+                                    <%--                                name: <input style="border: none" type="text" name="name"  value="${pro.name}">--%>
+                                    <%--                                price: <input style="border: none" type="number" name="price" value="${pro.price}">--%>
+                                    <%--                                quantity: <input style="border: none" type="number" name="quantity" value="${pro.quantity}">--%>
+                                    <%--                                <button onclick="if (confirm('Edit selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};" title="Link Title">edit</button>--%>
+                                    <%--                                <a href="/products?act=delete&id=${pro.id}" onclick="return confirm('Delete selected item?')" >--%>
+                                    <%--                                    delete--%>
+                                    <%--                                </a>--%>
+                                    <%--                            </form>--%>
+                                <div class="input-append">
+                                    <a href="/Cart?action=reduce&id=${product.id}&username=${username}">
+                                        <button class="btn btn-mini" type="button">-</button>
+                                    </a>
+                                    <a href="/Cart?action=augment&id=${product.id}&username=${username}">
+                                        <button class="btn btn-mini" type="button">+</button>
+                                    </a>
+                                    <a href="/Cart?action=delete&id=${product.id}&username=${username}">  <button class="btn btn-mini btn-danger" type="button"><span
+                                            class="icon-remove"></span>
+                                    </button></a>
+                                </div>
+                            </td>
+                            <td>${product.price*product.product_quantity} VND</td>
+                        </tr>
 
                     </c:forEach>
 
@@ -192,11 +208,8 @@ Lower Header Section
                     <tbody>
                     <tr>
                         <td>
-                            <form class="form-inline">
-                                <label style="min-width:159px"> VOUCHERS Code: </label>
-                                <input type="text" class="input-medium" placeholder="CODE">
-                                <button type="submit" class="shopBtn"> ADD</button>
-                            </form>
+
+                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Delete Cart</button></a>
                         </td>
                     </tr>
 
@@ -232,7 +245,7 @@ Lower Header Section
                     </tr>
                     </tbody>
                 </table>
-                <a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
+                <a href="/login?username=tek&password=123456&submitAccount=Login" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
                     Shopping </a>
                 <a href="login.html" class="shopBtn btn-large pull-right">Next <span
                         class="icon-arrow-right"></span></a>
