@@ -32,6 +32,12 @@ public class CartServlet extends HttpServlet {
             case "addToCart":
                 addToCart(request, response);
                 break;
+            case "delete":
+                delete(request, response);
+                break;
+            case "deleteCart":
+                deleteCart(request, response);
+                break;
             default:
                 try {
                     findAll(request, response);
@@ -41,13 +47,11 @@ public class CartServlet extends HttpServlet {
         }
     }
 
-    private void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void deleteCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         String user = request.getParameter("username");
-        int edit = Integer.parseInt(request.getParameter("edit"));
-        int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-        invoiceService.editCart(id, user,edit);
+        invoiceService.deleteCart(user);
         List<Invoice> products = invoiceService.findAll(user);
         for (Invoice in : products
         ) {
@@ -58,6 +62,48 @@ public class CartServlet extends HttpServlet {
         request.setAttribute("username", user);
         requestDispatcher.forward(request, response);
     }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
+        String user = request.getParameter("username");
+        int id = Integer.parseInt(request.getParameter("id"));
+        int result = 0;
+        invoiceService.deleteProInCart(user, id);
+        List<Invoice> products = invoiceService.findAll(user);
+        for (Invoice in : products
+        ) {
+            result += (in.getProduct_quantity() * in.getPrice());
+            if (in.getProduct_quantity() <= 0) {
+                delete(request, response);
+            }
+        }
+        request.setAttribute("product", products);
+        request.setAttribute("result", result);
+        request.setAttribute("username", user);
+        requestDispatcher.forward(request, response);
+    }
+
+    private void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
+        String user = request.getParameter("username");
+        int edit = Integer.parseInt(request.getParameter("edit"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        int result = 0;
+        invoiceService.editCart(id, user, edit);
+        List<Invoice> products = invoiceService.findAll(user);
+        for (Invoice in : products
+        ) {
+            result += (in.getProduct_quantity() * in.getPrice());
+            if (in.getProduct_quantity() <= 0) {
+                delete(request, response);
+            }
+        }
+        request.setAttribute("product", products);
+        request.setAttribute("result", result);
+        request.setAttribute("username", user);
+        requestDispatcher.forward(request, response);
+    }
+
     private void reduce(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         String user = request.getParameter("username");
@@ -68,6 +114,9 @@ public class CartServlet extends HttpServlet {
         for (Invoice in : products
         ) {
             result += (in.getProduct_quantity() * in.getPrice());
+            if (in.getProduct_quantity() <= 0) {
+                delete(request, response);
+            }
         }
         request.setAttribute("product", products);
         request.setAttribute("result", result);
@@ -80,11 +129,14 @@ public class CartServlet extends HttpServlet {
         String user = request.getParameter("username");
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-        invoiceService.augToCart(id, user);
+        invoiceService.augmentToCart(id, user);
         List<Invoice> products = invoiceService.findAll(user);
         for (Invoice in : products
         ) {
             result += (in.getProduct_quantity() * in.getPrice());
+            if (in.getProduct_quantity() <= 0) {
+                delete(request, response);
+            }
         }
         request.setAttribute("product", products);
         request.setAttribute("result", result);
@@ -97,17 +149,37 @@ public class CartServlet extends HttpServlet {
         String user = request.getParameter("username");
         int id = Integer.parseInt(request.getParameter("id"));
         int result = 0;
-        invoiceService.augToCart(id, user);
         List<Invoice> products = invoiceService.findAll(user);
+
+        if (invoiceService.getIdOrder(user) == 0 || invoiceService.getStatus(user) != 0) {
+            invoiceService.addToCa(user);
+        }
+        if (products.size() != 0) {
+            for (Invoice add : products
+            ) {
+                if (add.getOrderId() == invoiceService.getIdOrder(user) && add.getProductId() == id) {
+                    augment(request, response);
+                } else {
+                    invoiceService.addToCart(id, user);
+                }
+            }
+        } else {
+            invoiceService.addToCart(id, user);
+        }
         for (Invoice in : products
         ) {
             result += (in.getProduct_quantity() * in.getPrice());
+            if (in.getProduct_quantity() <= 0) {
+                delete(request, response);
+            }
         }
+        products = invoiceService.findAll(user);
         request.setAttribute("product", products);
         request.setAttribute("result", result);
         request.setAttribute("username", user);
         requestDispatcher.forward(request, response);
     }
+
 
     private void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
@@ -117,7 +189,11 @@ public class CartServlet extends HttpServlet {
         for (Invoice in : products
         ) {
             result += (in.getProduct_quantity() * in.getPrice());
+            if (in.getProduct_quantity() <= 0) {
+                delete(request, response);
+            }
         }
+
         request.setAttribute("username", user);
         request.setAttribute("product", products);
         request.setAttribute("result", result);
@@ -131,24 +207,11 @@ public class CartServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "augment":
-                augment(request, response);
-                break;
-            case "reduce":
-                reduce(request, response);
-                break;
+
             case "edit":
                 edit(request, response);
                 break;
-            case "addToCart":
-                addToCart(request, response);
-                break;
-            default:
-                try {
-                    findAll(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+
         }
     }
 }

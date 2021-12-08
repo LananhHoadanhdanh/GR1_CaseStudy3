@@ -184,9 +184,9 @@ Lower Header Section
                                     <a href="/Cart?action=augment&id=${product.id}&username=${username}">
                                         <button class="btn btn-mini" type="button">+</button>
                                     </a>
-                                    <button class="btn btn-mini btn-danger" type="button"><span
+                                    <a href="/Cart?action=delete&id=${product.id}&username=${username}">  <button class="btn btn-mini btn-danger" type="button"><span
                                             class="icon-remove"></span>
-                                    </button>
+                                    </button></a>
                                 </div>
                             </td>
                             <td>${product.price*product.product_quantity} VND</td>
@@ -208,11 +208,8 @@ Lower Header Section
                     <tbody>
                     <tr>
                         <td>
-                            <form class="form-inline">
-                                <label style="min-width:159px"> VOUCHERS Code: </label>
-                                <input type="text" class="input-medium" placeholder="CODE">
-                                <button type="submit" class="shopBtn"> ADD</button>
-                            </form>
+
+                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Delete Cart</button></a>
                         </td>
                     </tr>
 
@@ -248,7 +245,7 @@ Lower Header Section
                     </tr>
                     </tbody>
                 </table>
-                <a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
+                <a href="/login?username=tek&password=123456&submitAccount=Login" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
                     Shopping </a>
                 <a href="login.html" class="shopBtn btn-large pull-right">Next <span
                         class="icon-arrow-right"></span></a>
