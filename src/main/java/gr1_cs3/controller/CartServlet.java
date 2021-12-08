@@ -157,7 +157,7 @@ public class CartServlet extends HttpServlet {
         if (products.size() != 0) {
             for (Invoice add : products
             ) {
-                if (add.getOrderId() == invoiceService.getIdOrder(user) && add.getProductId() == id) {
+                if (add.getOrderId() == invoiceService.getOrder(user).getId() && add.getProductId() == id) {
                     augment(request, response);
                 } else {
                     invoiceService.addToCart(id, invoiceService.getOrder(user).getId());
