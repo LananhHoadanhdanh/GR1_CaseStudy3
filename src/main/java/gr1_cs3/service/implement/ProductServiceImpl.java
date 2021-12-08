@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from product");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where product.quantity > 0");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> printFourProduct() throws SQLException {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from product order by id desc limit 4");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where product.quantity > 0 order by id desc limit 4");) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");

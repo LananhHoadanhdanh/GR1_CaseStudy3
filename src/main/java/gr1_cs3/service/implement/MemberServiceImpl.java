@@ -62,13 +62,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean checkAdmin(String username, String password) {
-        boolean check = false;
-        if (username.equals("admin") || username.equals("admin@gmail.com")) {
-            if (password.equals("admin")) {
-                check = true;
-            }
-        }
-        return check;
+        return false;
     }
 
     @Override
@@ -96,5 +90,30 @@ public class MemberServiceImpl implements MemberService {
         } catch (SQLException ignored) {
         }
         return password;
+    }
+
+    @Override
+    public Member getMemberByUsername(String username) {
+        Member member = null;
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from member where (username = ? or email = ?)");) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, username);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String user_name = rs.getString("username");
+                String password = rs.getString("password");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                int roleId = rs.getInt("roleId");
+                member = new Member(id, user_name, password, name, phone, email, address, roleId);
+            }
+        } catch (SQLException ignored) {
+        }
+        return member;
     }
 }
