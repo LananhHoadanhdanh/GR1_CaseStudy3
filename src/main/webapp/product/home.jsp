@@ -25,8 +25,9 @@
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Pacifico&family=Reggae+One&family=Vollkorn&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: 'Alegreya Sans', sans-serif; font-size: 16px">
 <!--
 Upper Header Section
 -->

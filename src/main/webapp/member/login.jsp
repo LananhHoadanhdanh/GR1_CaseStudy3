@@ -46,7 +46,7 @@
           <a href="#"><span class="icon-tumblr"></span></a>
         </div>
         <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Home</a>
-        <a href="#"><span class="icon-user"></span> My Account</a>
+        <a href="login"><span class="icon-user"></span> My Account</a>
         <a href="/login"><span class="icon-edit"></span>Login</a>
         <a href="/register"><span class="icon-edit"></span>Register</a>
         <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>

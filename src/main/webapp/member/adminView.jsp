@@ -32,6 +32,9 @@
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Reggae+One&family=Vollkorn&display=swap" rel="stylesheet">
   </head>
   <body>
   <!--

@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
     private void showLoginPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("member/login.jsp");
         dispatcher.forward(request, response);
+
     }
 
     @Override
@@ -48,13 +49,10 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("products", products);
             dispatcher.forward(request, response);
         } else if (memberService.checkLogin(username, password)) {
-//            response.sendRedirect("/products");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/userView.jsp");
             request.setAttribute("username", username);
-            List<Product> newProducts = new ArrayList<>();
-            List<Product> topThreeProducts = new ArrayList<>();
-            newProducts = productService.printFourProduct();
-            topThreeProducts = productService.getThreeProduct();
+            List<Product> newProducts = productService.printFourProduct();
+            List<Product> topThreeProducts = productService.getThreeProduct();
             request.setAttribute("newProducts", newProducts);
             request.setAttribute("topThreeProducts", topThreeProducts);
             requestDispatcher.forward(request, response);
