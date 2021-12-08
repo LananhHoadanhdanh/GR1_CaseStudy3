@@ -127,16 +127,19 @@ Lower Header Section
                 </ul>
             </div>
 
+            <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
+            <br>
+            <br>
             <ul class="nav nav-list promowrapper">
                 <c:forEach var="product" items="${upComingProducts}">
                     <li>
                         <div class="thumbnail">
-                            <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                            <a class="zoomTool" href="?action=product-detail&id=${product.id}" title="add to cart"><span
                                     class="icon-search"></span> QUICK VIEW</a>
 
                             <img src="${product.image}" alt="">
                             <div class="caption">
-                                <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span
+                                <h4><a class="defaultBtn" href="?action=product-detail&id=${product.id}">VIEW</a> <span
                                         class="pull-right">${product.price}</span>
                                 </h4>
                             </div>
@@ -271,7 +274,7 @@ Lower Header Section
                                         <h3>${product.name}</h3>
                                         <p style="display: inline !important;"><strong> ${product.price}</strong></p>
                                         <span style="padding: 5px !important; font-weight: bold !important;">VNĐ</span>
-                                        <span  style="font-weight: bold !important; padding: 5px !important;">Số lượng: </span>
+                                        <span style="font-weight: bold !important; padding: 5px !important;">Số lượng: </span>
                                         <p style="display: inline !important;"><strong> ${product.quantity}</strong></p>
                                         <h4><a class="shopBtn" href="/login"
                                                title="add to cart"> Add to cart</a></h4>
