@@ -25,6 +25,8 @@ import java.util.List;
 public class LoginServlet extends HttpServlet {
 
     MemberService memberService = new MemberServiceImpl();
+    public static CategoryService categoryService = new CategoryServiceImpl();
+    public static BrandService brandService = new BrandServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +35,10 @@ public class LoginServlet extends HttpServlet {
 
     private void showLoginPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("member/login.jsp");
+        List<Category> categories = categoryService.findAll();
+        List<Brand> brands = brandService.findAll();
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
         dispatcher.forward(request, response);
 
     }

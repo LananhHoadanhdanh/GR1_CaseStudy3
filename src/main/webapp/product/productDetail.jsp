@@ -51,7 +51,8 @@
                 <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
                 <c:if test="${sessionScope.acc != null}">
-                    <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span
+                            class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
             </div>
@@ -149,7 +150,7 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li><a href="category?cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -163,33 +164,34 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li><a href="brand?bid=${brand.id}"><span class="icon-chevron-right"> ${brand.name}</span></a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div><div class="well well-small">
-            <h3>Danh mục sản phẩm</h3>
-            <ul class="nav nav-list">
-                <c:forEach items="${listCategory}" var="category">
-                    <li><a href="category?cid=${category.id}">
-                    <span class="icon-chevron-right">
-                            ${category.name}
-                    </span>
-                    </a>
-                    </li>
-                </c:forEach>
-            </ul>
-        </div>
-
-            <div class="well well-small">
-                <h3>Sản phẩm theo thể loại</h3>
-                <ul class="nav nav-list">
-                    <c:forEach items="${listBrand}" var="brand">
-                        <li><a href="brand?bid=${brand.id}"><span class="icon-chevron-right"> ${brand.name}</span></a>
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="/?action=show-product-by-brand&bid=${brand.id}"><span
+                                class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
                 </ul>
             </div>
+
+            <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
+            <br>
+            <br>
+            <ul class="nav nav-list promowrapper">
+                <c:forEach var="product" items="${upComingProducts}">
+                    <li>
+                        <div class="thumbnail">
+                            <a class="zoomTool" href="/products?action=view&id=${product.id}" title="add to cart"><span
+                                    class="icon-search"></span> QUICK VIEW</a>
+
+                            <img src="${product.image}" alt="">
+                            <div class="caption">
+                                <h4><a class="defaultBtn" href="/products?action=view&id=${product.id}">VIEW</a> <span
+                                        class="pull-right">${product.price}</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="border:0"> &nbsp;</li>
+                </c:forEach>
+            </ul>
         </div>
         <div class="span9">
             <ul class="breadcrumb">
@@ -205,15 +207,15 @@ Lower Header Section
                     <div class="span7">
                         <table cellpadding="5" style="text-align: left">
                             <tr>
-                                <th style="text-align: right">Tên: </th>
+                                <th style="text-align: right">Tên:</th>
                                 <td>${productDetail.name}</td>
                             </tr>
                             <tr>
-                                <th style="text-align: right">Giá: </th>
+                                <th style="text-align: right">Giá:</th>
                                 <td>${productDetail.price}</td>
                             </tr>
                             <tr>
-                                <th style="text-align: right">Mô tả: </th>
+                                <th style="text-align: right">Mô tả:</th>
                                 <td>${productDetail.description}</td>
                             </tr>
                         </table>

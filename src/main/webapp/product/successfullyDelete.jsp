@@ -51,7 +51,8 @@
                 <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
                 <c:if test="${sessionScope.acc != null}">
-                    <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span
+                            class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
             </div>
@@ -63,7 +64,7 @@
 Lower Header Section
 -->
 <div class="container">
-    <div id="gototop"> </div>
+    <div id="gototop"></div>
     <header id="header">
         <div class="row">
             <div class="span4">
@@ -76,7 +77,7 @@ Lower Header Section
             <div class="span4">
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) :  0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
                 <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
                 <span class="btn btn-mini">&pound;</span>
@@ -105,9 +106,9 @@ Lower Header Section
                         <li class=""><a href="#">Four Column</a></li>
                         <li class=""><a href="#">General Content</a></li>
                     </ul>
-                    <form action="#" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2">
-                        <button>Search</button>
+                    <form method="get" action="/" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2" name="Search">
+                        <input type="submit" value="Search">
                     </form>
                 </div>
             </div>
@@ -166,70 +167,7 @@ Lower Header Section
             </ul>
         </div>
         <div class="span9">
-            <ul class="breadcrumb">
-                <li><a href="http://localhost:8080">Trang chủ</a> <span class="divider">/</span></li>
-                <li class="active">Thêm sản phẩm</li>
-            </ul>
-
-            <h3>Thêm sản phẩm</h3>
-            <hr class="soft"/>
-            <div class="well">
-                <form class="form-horizontal" method="post">
-                    <h3>Thông tin sản phẩm</h3>
-                    <div class="control-group">
-                        <label class="control-label" for="name">Tên sản phẩm<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="text" id="name" name="name" placeholder="name">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="price">Giá<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="number" id="price" placeholder="Giá" name="price">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="quantity">Số lượng<sup>*</sup></label>
-                        <div class="controls">
-                            <input type="number" id="quantity" placeholder="Số lượng" name="quantity">
-                        </div>
-                    </div>
-
-                    <label class="control-label">Danh mục<sup>*</sup></label>
-                    <div class="controls">
-                        <select class="span1" name="categoryId">
-                            <option value="">-</option>
-                            <c:forEach var="category" items="${categories}">
-                                <option value="${category.id}">${category.id}. ${category.name}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <br>
-                    <label class="control-label">Anime/Manga<sup>*</sup></label>
-                    <div class="controls">
-                        <select class="span1" name="brandId">
-                            <option value="">-</option>
-                            <c:forEach var="brand" items="${brands}">
-                                <option value="${brand.id}">${brand.id}. ${brand.name}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <br>
-                    <div class="control-group">
-                        <label class="control-label" for="description">Mô tả sản phẩm<sup>*</sup></label>
-                        <div class="controls">
-                            <textarea rows="9" cols="70" id="description" name="description"></textarea>
-<%--                            <input type="text" id="description" name="description" placeholder="Mô tả sản phẩm">--%>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="control-group">
-                        <div class="controls">
-                            <input type="submit" name="submitAccount" value="Thêm sản phẩm" class="exclusive shopBtn">
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <h1>Xóa sản phẩm thành công. Trở về trang chủ để tiếp tục</h1>
         </div>
     </div>
     <!--

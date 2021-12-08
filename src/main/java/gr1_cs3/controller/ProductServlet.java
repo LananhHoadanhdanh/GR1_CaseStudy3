@@ -30,9 +30,6 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "list-view":
-                showAll(request, response);
-                break;
             case "addToCart":
                 try {
                     addToCart(request, response);
@@ -62,7 +59,7 @@ public class ProductServlet extends HttpServlet {
                 break;
             default:
                 try {
-                    showUserView(request, response);
+                    HomepageServlet.showHomePage(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -88,9 +85,11 @@ public class ProductServlet extends HttpServlet {
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         productService.delete(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
-        List<Product> products = productService.findAll();
-        request.setAttribute("products", products);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("member/successfullyDelete.jsp");
+        List<Category> categories = categoryService.findAll();
+        List<Brand> brands = brandService.findAll();
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
         dispatcher.forward(request, response);
     }
 
@@ -115,32 +114,11 @@ public class ProductServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void showAll(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
-//        List<Product> products = new ArrayList<>();
-//        products = productService.printAll();
-//        request.setAttribute("products", products);
-//        request.setAttribute("product", products.get(0));
-        try {
-            requestDispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void showUserView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/userView.jsp");
-        List<Product> newProducts = new ArrayList<>();
-        newProducts = productService.printFourProduct();
-        request.setAttribute("newProducts", newProducts);
-        requestDispatcher.forward(request, response);
-    }
     private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/cart.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
         Product products = productService.addToCart(id);
         request.setAttribute("product", products);
-
         requestDispatcher.forward(request, response);
     }
 
@@ -181,9 +159,11 @@ public class ProductServlet extends HttpServlet {
         int brandId = Integer.parseInt(request.getParameter("brandId"));
         Product product = new Product(id, name, price, quantity, categoryId, image, brandId, description);
         productService.edit(product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
-        List<Product> products = productService.findAll();
-        request.setAttribute("products", products);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("member/successfullyEdit.jsp");
+        List<Brand> brands = brandService.findAll();
+        List<Category> categories = categoryService.findAll();
+        request.setAttribute("brands", brands);
+        request.setAttribute("categories", categories);
         dispatcher.forward(request, response);
     }
 
@@ -197,7 +177,7 @@ public class ProductServlet extends HttpServlet {
         String image = "productImg/logo.png";
         Product product = new Product(name, price, quantity, categoryId, image, brandId, description);
         productService.add(product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("member/adminView.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("member/successfullyCreate.jsp");
         List<Product> products = productService.findAll();
         request.setAttribute("products", products);
         dispatcher.forward(request, response);
