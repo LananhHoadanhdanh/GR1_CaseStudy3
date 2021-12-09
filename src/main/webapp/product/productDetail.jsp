@@ -211,17 +211,41 @@ Lower Header Section
             <div class="well well-small">
                 <div class="row-fluid">
                     <div class="span5">
-                        <img src="${productDetail.image}" alt="${productDetail.name}">
+                        <div class="caption cntr">
+                            <img src="${productDetail.image}" alt="${productDetail.name}">
+                            <h3>${productDetail.name}</h3>
+
+                            <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 2}">
+                                <h4><a class="shopBtn" href="/Cart?action=addToCart&id=${productDetail.id}&username=${acc.username}"
+                                       title="add to cart"> Add to cart</a></h4>
+                            </c:if>
+
+                            <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                                <h4><a onclick="return confirm('Are you sure?')" class="shopBtn" href="/products?action=delete&id=${productDetail.id}"
+                                       title="add to cart"> Delete</a></h4> <br>
+                            </c:if>
+                            <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                                <h4><a class="shopBtn" href="/products?action=edit&id=${productDetail.id}"
+                                       title="add to cart"> Edit</a></h4>
+                            </c:if>
+
+                            <c:if test="${sessionScope.acc == null}">
+                                <h4><a class="shopBtn" href="/login"
+                                       title="add to cart"> Add to cart</a></h4>
+                            </c:if>
+                            <br class="clr">
+                        </div>
                     </div>
                     <div class="span7">
                         <table cellpadding="5" style="text-align: left">
-                            <tr>
-                                <th style="text-align: right">Tên:</th>
-                                <td>${productDetail.name}</td>
-                            </tr>
+
                             <tr>
                                 <th style="text-align: right">Giá:</th>
                                 <td>${productDetail.price}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: right">Số lượng:</th>
+                                <td>${productDetail.quantity}</td>
                             </tr>
                             <tr>
                                 <th style="text-align: right">Mô tả:</th>
