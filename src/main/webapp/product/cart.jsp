@@ -90,7 +90,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <li class="active"><a href="/">Trang chủ </a></li>
                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
                             <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
                         </c:if>
@@ -105,9 +105,6 @@ Lower Header Section
                             <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
                         </c:if>
                     </ul>
-                    <form action="#" class="navbar-search pull-left">
-                        <input type="text" placeholder="Search" class="search-query span2">
-                    </form>
                     <ul class="nav pull-right">
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span>
@@ -140,21 +137,21 @@ Lower Header Section
     <div class="row">
         <div class="span12">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                <li><a href="/">Trang chủ</a> <span class="divider">/</span></li>
                 <li class="active">Check Out</li>
             </ul>
             <div class="well well-small">
-                <h1>Check Out <small class="pull-right"> 2 Items are in the cart </small></h1>
+                <h1>Giỏ hàng </h1>
                 <hr class="soften"/>
 
                 <table class="table table-bordered table-condensed">
                     <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Information</th>
-                        <th>Unit price</th>
-                        <th>Qty</th>
-                        <th>Total</th>
+                        <th>Sản phẩm</th>
+                        <th>Thông tin</th>
+                        <th>Giá</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng giá</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -187,11 +184,10 @@ Lower Header Section
                             </td>
                             <td>${product.price*product.product_quantity} VND</td>
                         </tr>
-
                     </c:forEach>
 
                     <tr>
-                        <td colspan="6" class="alignR">Total products:</td>
+                        <td colspan="6" class="alignR">Tổng giá:</td>
                         <td class="label label-primary"> ${result} VND</td>
                     </tr>
                     </tbody>
@@ -219,16 +215,16 @@ Lower Header Section
                 <table class="table table-bordered">
                     <tbody>
                     <tr>
-                        <td>ESTIMATE YOUR SHIPPING & TAXES</td>
+                        <td>Đơn hàng đang chờ sử lý .....</td>
                     </tr>
                     <tr>
                         <td>
                     <tr>
-                        <th>Product</th>
-                        <th>Information</th>
-                        <th>Unit price</th>
-                        <th>Qty</th>
-                        <th>Total</th>
+                        <th>Sản phẩm</th>
+                        <th>Thông tin</th>
+                        <th>Giá</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng giá</th>
                     </tr>
                             <c:forEach var="productO" items="${productO}">
                     <tr>
@@ -254,11 +250,6 @@ Lower Header Section
                 </table> <a href="/Cart?action=deleteOrder&username=${username}">
                 <button type="submit" class="shopBtn">Hủy Đơn Hàng</button>
             </a>
-                <a href="/login?username=tek&password=123456&submitAccount=Login" class="shopBtn btn-large"><span
-                        class="icon-arrow-left"></span> Continue
-                    Shopping </a>
-                <a href="login.html" class="shopBtn btn-large pull-right">Next <span
-                        class="icon-arrow-right"></span></a>
 
             </div>
         </div>
