@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Reggae+One&family=Vollkorn&display=swap');
 body {
-    background: rgba(26, 25, 25, 0.91);
+    /*background: url(assets/img/white_leather.png) repeat 0 0;*/
+    background-color: #ffffff;
     font-family: 'Vollkorn', serif !important;
     font-size: 20px;
 }
@@ -160,6 +161,7 @@ hr.soften {
 }
 
 .thumbnail:hover {
+    boxShadow : "30px 20px 30px lightblue";
     border: 1px solid #CACACA;
 }
 
@@ -438,7 +440,6 @@ hr.soften {
 
 .carousel-caption {
     background: transparent;
-    background: transparent;
 }
 
 #compairTbl td {
@@ -574,7 +575,7 @@ hr.soften {
     text-align: center;
     color: #fff;
     border-radius: 2px;
-    background: #f89406;
+    background: #ffb54e;
     display: inline-block;
     padding: 0 12px;
     border: 0;
@@ -598,11 +599,11 @@ hr.soften {
 .shopBtn:hover {
     color: #fff;
     text-decoration: none;
-    background: #F86706
+    background: #66f06b
 }
 
 .gotop {
-    background-color: #000000;
+    background-color: #9aea5e;
     display: none;
     position: fixed;
     bottom: 30px;
@@ -612,6 +613,7 @@ hr.soften {
     text-decoration: none;
     font-size: 30px;
     line-height: 34px;
+    border-radius: 4px;
 }
 
 .gotop:hover {
