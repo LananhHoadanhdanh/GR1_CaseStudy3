@@ -65,7 +65,7 @@
 Lower Header Section
 -->
 <div class="container">
-    <div id="gototop"></div>
+    <div id="gototop"> </div>
     <header id="header">
         <div class="row">
             <div class="span4">
@@ -111,9 +111,9 @@ Lower Header Section
                             <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
                         </c:if>
                     </ul>
-                    <form method="get" action="/" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2" name="Search">
-                        <input type="submit" value="Search">
+                    <form action="#" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2">
+                        <button>Search</button>
                     </form>
                 </div>
             </div>
@@ -128,8 +128,7 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li class="${tag == category.id ? "active":""}"><a
-                                href="/?action=show-product-by-category&cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -143,8 +142,7 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li class="${tagBrand == brand.id ? "active":""}"><a
-                                href="/?action=show-product-by-brand&bid=${brand.id}"><span
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="/?action=show-product-by-brand&bid=${brand.id}"><span
                                 class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
@@ -174,7 +172,28 @@ Lower Header Section
             </ul>
         </div>
         <div class="span9">
-            <h1>Cập nhật sản phẩm thành công. Trở về trang chủ để tiếp tục</h1>
+            <ul class="breadcrumb">
+                <li><a href="http://localhost:8080">Trang chủ</a> <span class="divider">/</span></li>
+                <li class="active">Thêm nhãn hiệu</li>
+            </ul>
+
+            <h3>Thêm nhãn hiệu, tên anime, manga</h3>
+            <hr class="soft"/>
+            <div class="well">
+                <form class="form-horizontal" method="post">
+                    <div class="control-group">
+                        <label class="control-label" for="name">Tên anime, manga<sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" id="name" name="name" placeholder="name">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" name="submitAccount" value="Thêm nhãn hiệu" class="exclusive shopBtn">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <!--

@@ -40,7 +40,7 @@
     <div class="topNav">
         <div class="container">
             <div class="alignR">
-                <a class="active" href="http://localhost:8080"> <span class="icon-home">Trang chủ</span> </a>
+                <a class="active" href="http://localhost:8080"> <span class="icon-home"></span> Trang chủ</a>
                 <c:if test="${sessionScope.acc != null}">
                     <a href="/logout"><span class="icon-edit"></span> Đăng xuất</a>
                     <a href="#"><span class="icon-user"></span> Hello ${acc.username}</a>
@@ -53,8 +53,7 @@
                 </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
                 <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
-                    <a class="active" href="Cart?action=def&username=${acc.username}"><span
-                            class="icon-shopping-cart"></span> Giỏ hàng<span
+                    <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
             </div>
@@ -71,8 +70,8 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="/login">
-                        <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
+                    <a class="logo" href="/?action=home">
+                        <img src="../banner/logo.png" alt="bootstrap sexy shop" style="height: 60px">
                     </a>
                 </h1>
             </div>
@@ -101,13 +100,20 @@ Lower Header Section
                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
                             <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
                         </c:if>
-                        <li class=""><a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
-                        <li class=""><a href="?action=gioi-thieu">Giới thiệu</a></li>
-                        <li class=""><a href="general.html">Tin tức</a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
-                    <form action="#" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2">
-                        <button>Search</button>
+                    <form method="get" action="/" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2" name="Search">
+                        <input type="submit" value="Search">
                     </form>
                 </div>
             </div>
@@ -119,12 +125,16 @@ Lower Header Section
     <div class="row">
         <div id="sidebar" class="span3">
             <div class="well well-small">
-                <h3>Category</h3>
+                <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Figure</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Nendoroid</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Cosplay</a></li>
-                    <li><a href="products.html"><span class="icon-chevron-right"></span>Accessory</a></li>
+                    <c:forEach items="${listCategory}" var="category">
+                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
+                    <span class="icon-chevron-right">
+                            ${category.name}
+                    </span>
+                        </a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 

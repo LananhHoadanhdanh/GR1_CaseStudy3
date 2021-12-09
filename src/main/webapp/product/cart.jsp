@@ -42,9 +42,11 @@
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
-                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <c:if test="${sessionScope.acc != null}">
+                <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
                     <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
@@ -62,25 +64,15 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
-                        <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
+                    <a class="logo" href="/?action=home">
+                        <img src="../banner/logo.png" alt="bootstrap sexy shop" style="height: 60px">
                     </a>
                 </h1>
             </div>
             <div class="span4">
-                <div class="offerNoteWrapper">
-                    <h1 class="dotmark">
-                        <i class="icon-cut"></i>
-                        Twitter Bootstrap shopping cart HTML template is available @ $14
-                    </h1>
-                </div>
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-                <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
-                <span class="btn btn-warning btn-mini">$</span>
-                <span class="btn btn-mini">&pound;</span>
-                <span class="btn btn-mini">&euro;</span>
+                <p><br> <strong> Hỗ trợ (24/7) : 088 1234 678 </strong><br><br></p>
             </div>
         </div>
     </header>
@@ -98,17 +90,21 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <form action="/login?username=${username}&password=${pass}&submitAccount=Login" method="post">
-                        <button>Home</button></form>
-                        <li class=""><a href="list-view.html">List View</a></li>
-                        <li class=""><a href="grid-view.html">Grid View</a></li>
-                        <li class=""><a href="three-col.html">Three Column</a></li>
-                        <li class=""><a href="four-col.html">Four Column</a></li>
-                        <li class=""><a href="general.html">General Content</a></li>
+                        <li class="active"><a href="/">Trang chủ </a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
-                    <form action="#" class="navbar-search pull-left">
-                        <input type="text" placeholder="Search" class="search-query span2">
-                    </form>
                     <ul class="nav pull-right">
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span>
@@ -141,21 +137,21 @@ Lower Header Section
     <div class="row">
         <div class="span12">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                <li><a href="/">Trang chủ</a> <span class="divider">/</span></li>
                 <li class="active">Check Out</li>
             </ul>
             <div class="well well-small">
-                <h1>Check Out <small class="pull-right"> 2 Items are in the cart </small></h1>
+                <h1>Giỏ hàng </h1>
                 <hr class="soften"/>
 
                 <table class="table table-bordered table-condensed">
                     <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Information</th>
-                        <th>Unit price</th>
-                        <th>Qty</th>
-                        <th>Total</th>
+                        <th>Sản phẩm</th>
+                        <th>Thông tin</th>
+                        <th>Giá</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng giá</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -166,20 +162,12 @@ Lower Header Section
                             <td>name: ${product.name}<br>warehouse : ${product.quantity}</td>
                             <td>${product.price} VND</td>
                             <td>
-                                <form action="/Cart?action=edit&id=${product.id}&username=${username}&quantity=${product.product_quantity}" method="post">
+                                <form action="/Cart?action=edit&id=${product.id}&username=${username}&quantity=${product.product_quantity}"
+                                      method="post">
                                     <input name="edit" class="span1" style="max-width:34px" id="appendedInputButtons"
                                            size="16" type="number" value="${product.product_quantity}">
                                 </form>
 
-                                    <%--                            <form action="/products?act=edit&id=${pro.id}" method="post">--%>
-                                    <%--                                name: <input style="border: none" type="text" name="name"  value="${pro.name}">--%>
-                                    <%--                                price: <input style="border: none" type="number" name="price" value="${pro.price}">--%>
-                                    <%--                                quantity: <input style="border: none" type="number" name="quantity" value="${pro.quantity}">--%>
-                                    <%--                                <button onclick="if (confirm('Edit selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};" title="Link Title">edit</button>--%>
-                                    <%--                                <a href="/products?act=delete&id=${pro.id}" onclick="return confirm('Delete selected item?')" >--%>
-                                    <%--                                    delete--%>
-                                    <%--                                </a>--%>
-                                    <%--                            </form>--%>
                                 <div class="input-append">
                                     <a href="/Cart?action=reduce&id=${product.id}&username=${username}">
                                         <button class="btn btn-mini" type="button">-</button>
@@ -187,18 +175,19 @@ Lower Header Section
                                     <a href="/Cart?action=augment&id=${product.id}&username=${username}">
                                         <button class="btn btn-mini" type="button">+</button>
                                     </a>
-                                    <a href="/Cart?action=delete&id=${product.id}&username=${username}">  <button class="btn btn-mini btn-danger" type="button"><span
-                                            class="icon-remove"></span>
-                                    </button></a>
+                                    <a href="/Cart?action=delete&id=${product.id}&username=${username}">
+                                        <button class="btn btn-mini btn-danger" type="button"><span
+                                                class="icon-remove"></span>
+                                        </button>
+                                    </a>
                                 </div>
                             </td>
                             <td>${product.price*product.product_quantity} VND</td>
                         </tr>
-
                     </c:forEach>
 
                     <tr>
-                        <td colspan="6" class="alignR">Total products:</td>
+                        <td colspan="6" class="alignR">Tổng giá:</td>
                         <td class="label label-primary"> ${result} VND</td>
                     </tr>
                     </tbody>
@@ -211,8 +200,13 @@ Lower Header Section
                     <tbody>
                     <tr>
                         <td>
-                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Xóa giỏ hàng</button></a>
-                                <a href="/Cart?action=deleteCart&username=${username}"><button type="submit" class="shopBtn"> Đặt mua</button></a>
+                            <a href="/Cart?action=deleteCart&username=${username}">
+                                <button type="submit" class="shopBtn"> Xóa giỏ hàng</button>
+                            </a>
+                            <a href="/Cart?action=ordered&username=${username}">
+                                <button type="submit" class="shopBtn"> Đặt mua</button>
+                            </a>
+
                         </td>
                     </tr>
 
@@ -221,37 +215,41 @@ Lower Header Section
                 <table class="table table-bordered">
                     <tbody>
                     <tr>
-                        <td>ESTIMATE YOUR SHIPPING & TAXES</td>
+                        <td>Đơn hàng đang chờ sử lý .....</td>
                     </tr>
                     <tr>
                         <td>
-                            <form class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="span2 control-label" for="inputEmail">Country</label>
-                                    <div class="controls">
-                                        <input type="text" placeholder="Country">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="span2 control-label" for="inputPassword">Post Code/ Zipcode</label>
-                                    <div class="controls">
-                                        <input type="password" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <div class="controls">
-                                        <button type="submit" class="shopBtn">Click to check the price</button>
-                                    </div>
-                                </div>
-                            </form>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Thông tin</th>
+                        <th>Giá</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng giá</th>
+                    </tr>
+                            <c:forEach var="productO" items="${productO}">
+                    <tr>
+                        <td><img width="100" src="${productO.image}" alt=""></td>
+                        <td>name: ${productO.name}</td>
+                        <td>${productO.price} VND</td>
+                        <td>
+                                <p>${productO.product_quantity}</p>
+                            <div class="input-append">
+
+                                <a href="/Cart?action=delete&id=${productO.id}&username=${username}">
+                                </a>
+                            </div>
                         </td>
+                        <td>${productO.price*productO.product_quantity} VND</td>
+                    </tr>
+                    </c:forEach>
+                    </td>
                     </tr>
                     </tbody>
-                </table>
-                <a href="/login?username=tek&password=123456&submitAccount=Login" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
-                    Shopping </a>
-                <a href="login.html" class="shopBtn btn-large pull-right">Next <span
-                        class="icon-arrow-right"></span></a>
+                   <td></td><td></td><td> <td></td><td class="label label-primary"> ${resultO} VND</td></td>
+
+                </table> <a href="/Cart?action=deleteOrder&username=${username}">
+                <button type="submit" class="shopBtn">Hủy Đơn Hàng</button>
+            </a>
 
             </div>
         </div>

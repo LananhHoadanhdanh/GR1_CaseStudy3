@@ -45,6 +45,10 @@ public class RegisterServlet extends HttpServlet {
         try {
             memberService.add(member);
             RequestDispatcher dispatcher = request.getRequestDispatcher("member/successfullyRegister.jsp");
+            List<Category> categories = categoryService.findAll();
+            List<Brand> brands = brandService.findAll();
+            request.setAttribute("listCategory", categories);
+            request.setAttribute("listBrand", brands);
             dispatcher.forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();

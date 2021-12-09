@@ -65,8 +65,8 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="/login">
-                        <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
+                    <a class="logo" href="/?action=home">
+                        <img src="../banner/logo.png" alt="bootstrap sexy shop" style="height: 60px">
                     </a>
                 </h1>
             </div>
@@ -91,13 +91,20 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <li class="active"><a href="/?action=home">Trang chủ </a></li>
                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
                             <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
                         </c:if>
-                        <li class=""><a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
-                        <li class=""><a href="?action=gioi-thieu">Giới thiệu</a></li>
-                        <li class=""><a href="general.html">Tin tức</a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
                     <form method="get" action="/" class="navbar-search pull-right">
                         <input type="text" placeholder="Search" class="search-query span2" name="Search">
@@ -267,7 +274,7 @@ Lower Header Section
                                                    title="add to cart"> Add to cart</a></h4>
                                         </c:if>
                                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
-                                            <h4><a class="shopBtn" href="/products?action=delete&id=${product.id}"
+                                            <h4><a onclick="return confirm('Are you sure?')" class="shopBtn" href="/products?action=delete&id=${product.id}"
                                                    title="add to cart"> Delete</a></h4>
                                         </c:if>
                                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">

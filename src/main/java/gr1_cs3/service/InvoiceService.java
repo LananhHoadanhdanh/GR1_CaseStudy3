@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface InvoiceService<I> extends GeneralService<Invoice>{
     public List<Invoice> findAll(String username);
+    public List<Invoice> findAllOrder(String username);
     public int getIdUser(String username);
     public int getIdOrder(String username);
     public int getStatus(String username);
@@ -18,6 +19,8 @@ public interface InvoiceService<I> extends GeneralService<Invoice>{
     public void addToCa( String userName);
     public void deleteProInCart( String userName,int id);
     public void deleteCart(String userName);
+    public void deleteOrder(String userName);
     public String getPassByUser(String username);
     public Order getOrder( String userName);
+    public void payOrder (String username);
 }
