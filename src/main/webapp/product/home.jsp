@@ -66,8 +66,8 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="/login">
-                        <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
+                    <a class="logo" href="/?action=home">
+                        <img src="../banner/logo.png" alt="bootstrap sexy shop" style="height: 60px">
                     </a>
                 </h1>
             </div>
@@ -92,7 +92,7 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <li class="active"><a href="/?action=home">Trang chủ </a></li>
                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
                             <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
                         </c:if>

@@ -70,15 +70,15 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
-                        <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
+                    <a class="logo" href="/?action=home">
+                        <img src="../banner/logo.png" alt="bootstrap sexy shop" style="height: 60px">
                     </a>
                 </h1>
             </div>
             <div class="span4">
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Support (24/7) :  0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Hỗ trợ (24/7) : 088 1234 678 </strong><br><br></p>
             </div>
         </div>
     </header>
