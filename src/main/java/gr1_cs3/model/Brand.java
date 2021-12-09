@@ -3,6 +3,7 @@ package gr1_cs3.model;
 public class Brand {
     private int id;
     private String name;
+
     public Brand() {
     }
 

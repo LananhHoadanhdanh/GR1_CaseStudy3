@@ -44,9 +44,11 @@ Upper Header Section
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
-                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <c:if test="${sessionScope.acc != null}">
+                <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
                     <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
@@ -90,13 +92,22 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="">Trang chủ </a></li>
-                        <li class=""><a href="/list-view">Tất cả sản phẩm</a></li>
-                        <li class=""><a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
-                        <li class=""><a href="?action=gioi-thieu">Giới thiệu</a></li>
-                        <li class=""><a href="general.html">Tin tức</a></li>
+                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
-                    <form method="get" class="navbar-search pull-right">
+                    <form method="get" action="/" class="navbar-search pull-right">
                         <input type="text" placeholder="Search" class="search-query span2" name="Search">
                         <input type="submit" value="Search">
                     </form>
@@ -113,7 +124,7 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li class="${tag == category.id ? "active":""}"><a href="category?cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a href="/?action=show-product-by-category&cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -127,7 +138,7 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li class="${tag == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span
+                        <li class="${tagBrand == brand.id ? "active":""}"><a href="/?action=show-product-by-brand&bid=${brand.id}"><span
                                 class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
@@ -141,12 +152,12 @@ Lower Header Section
                 <c:forEach var="product" items="${upComingProducts}">
                     <li>
                         <div class="thumbnail">
-                            <a class="zoomTool" href="?action=product-detail&id=${product.id}" title="add to cart"><span
+                            <a class="zoomTool" href="/products?action=view&id=${product.id}" title="add to cart"><span
                                     class="icon-search"></span> QUICK VIEW</a>
 
                             <img src="${product.image}" alt="">
                             <div class="caption">
-                                <h4><a class="defaultBtn" href="?action=product-detail&id=${product.id}">VIEW</a> <span
+                                <h4><a class="defaultBtn" href="/products?action=view&id=${product.id}">VIEW</a> <span
                                         class="pull-right">${product.price}</span>
                                 </h4>
                             </div>
@@ -154,34 +165,7 @@ Lower Header Section
                     </li>
                     <li style="border:0"> &nbsp;</li>
                 </c:forEach>
-
-                <%--        <li>--%>
-                <%--            <div class="thumbnail">--%>
-                <%--                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-                <%--                        class="icon-search"></span> QUICK VIEW</a>--%>
-                <%--                <img src="assets/img/shopping-cart-template.PNG" alt="shopping cart template">--%>
-                <%--                <div class="caption">--%>
-                <%--                    <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span--%>
-                <%--                            class="pull-right">$22.00</span>--%>
-                <%--                    </h4>--%>
-                <%--                </div>--%>
-                <%--            </div>--%>
-                <%--        </li>--%>
-                <%--        <li style="border:0"> &nbsp;</li>--%>
-                <%--        <li>--%>
-                <%--            <div class="thumbnail">--%>
-                <%--                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-                <%--                        class="icon-search"></span> QUICK VIEW</a>--%>
-                <%--                <img src="assets/img/bootstrap-template.png" alt="bootstrap template">--%>
-                <%--                <div class="caption">--%>
-                <%--                    <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span--%>
-                <%--                            class="pull-right">$22.00</span>--%>
-                <%--                    </h4>--%>
-                <%--                </div>--%>
-                <%--            </div>--%>
-                <%--        </li>--%>
             </ul>
-
         </div>
         <div class="span9">
             <div class="well np">
@@ -237,10 +221,10 @@ Lower Header Section
                                     <c:forEach var="product" items="${newProducts}">
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <a class="zoomTool" href="?action=product-detail&id=${product.id}"
+                                                <a class="zoomTool" href="/products?action=view&id=${product.id}"
                                                    title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
                                                 <a href="#" class="tag"></a>
-                                                <a href="?action=product-detail&id=${product.id}"><img
+                                                <a href="/products?action=view&id=${product.id}"><img
                                                         src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
@@ -252,10 +236,10 @@ Lower Header Section
                                     <c:forEach var="product" items="${newProducts}">
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <a class="zoomTool" href="?action=product-detail&id=${product.id}"
+                                                <a class="zoomTool" href="/products?action=view&id=${product.id}"
                                                    title="add to cart"><span
                                                         class="icon-search"></span> QUICK VIEW</a>
-                                                <a href="?action=product-detail&id=${product.id}"><img
+                                                <a href="/products?action=view&id=${product.id}"><img
                                                         src="${product.image}" alt=""></a>
                                             </div>
                                         </li>
@@ -273,10 +257,10 @@ Lower Header Section
                         <c:forEach var="product" items="${products}">
                             <li class="span4" style="margin: 0 !important; padding: 5px">
                                 <div class="thumbnail">
-                                    <a class="zoomTool" href="?action=product-detail&id=${product.id}"
+                                    <a class="zoomTool" href="/products?action=view&id=${product.id}"
                                        title="add to cart"><span
                                             class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="?action=product-detail&id=${product.id}"><img
+                                    <a href="/products?action=view&id=${product.id}"><img
                                             src="<c:out value="${product.image}"/>" alt=""></a>
                                     <div class="caption cntr">
                                         <h3>${product.name}</h3>
@@ -288,7 +272,7 @@ Lower Header Section
                                                    title="add to cart"> Add to cart</a></h4>
                                         </c:if>
                                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
-                                            <h4><a class="shopBtn" href="/products?action=delete&id=${product.id}"
+                                            <h4><a onclick="return confirm('Are you sure?')" class="shopBtn" href="/products?action=delete&id=${product.id}"
                                                    title="add to cart"> Delete</a></h4>
                                         </c:if>
                                         <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
@@ -306,69 +290,8 @@ Lower Header Section
                             </li>
                         </c:forEach>
                     </ul>
-
                 </div>
             </div>
-            <!--
-            Featured Products
-            -->
-            <%--            <div class="well well-small">--%>
-            <%--                <h3><a class="btn btn-mini pull-right" href="products.html" title="View more">VIew More<span--%>
-            <%--                        class="icon-plus"></span></a> Best selling Products </h3>--%>
-            <%--                <hr class="soften"/>--%>
-            <%--                <div class="row-fluid">--%>
-            <%--                    <ul class="thumbnails">--%>
-            <%--                        <li class="span4">--%>
-            <%--                            <div class="thumbnail">--%>
-            <%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-            <%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
-            <%--                                <a href="product_details.html"><img src="assets/img/d.jpg" alt=""></a>--%>
-            <%--                                <div class="caption">--%>
-            <%--                                    <h5>Manicure & Pedicure</h5>--%>
-            <%--                                    <h4>--%>
-            <%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
-            <%--                                                class="icon-zoom-in"></span></a>--%>
-            <%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
-            <%--                                        <span class="pull-right">$22.00</span>--%>
-            <%--                                    </h4>--%>
-            <%--                                </div>--%>
-            <%--                            </div>--%>
-            <%--                        </li>--%>
-            <%--                        <li class="span4">--%>
-            <%--                            <div class="thumbnail">--%>
-            <%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-            <%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
-            <%--                                <a href="product_details.html"><img src="assets/img/e.jpg" alt=""></a>--%>
-            <%--                                <div class="caption">--%>
-            <%--                                    <h5>Manicure & Pedicure</h5>--%>
-            <%--                                    <h4>--%>
-            <%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
-            <%--                                                class="icon-zoom-in"></span></a>--%>
-            <%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
-            <%--                                        <span class="pull-right">$22.00</span>--%>
-            <%--                                    </h4>--%>
-            <%--                                </div>--%>
-            <%--                            </div>--%>
-            <%--                        </li>--%>
-            <%--                        <li class="span4">--%>
-            <%--                            <div class="thumbnail">--%>
-            <%--                                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-            <%--                                        class="icon-search"></span> QUICK VIEW</a>--%>
-            <%--                                <a href="product_details.html"><img src="assets/img/f.jpg" alt=""/></a>--%>
-            <%--                                <div class="caption">--%>
-            <%--                                    <h5>Manicure & Pedicure</h5>--%>
-            <%--                                    <h4>--%>
-            <%--                                        <a class="defaultBtn" href="product_details.html" title="Click to view"><span--%>
-            <%--                                                class="icon-zoom-in"></span></a>--%>
-            <%--                                        <a class="shopBtn" href="#" title="add to cart"><span class="icon-plus"></span></a>--%>
-            <%--                                        <span class="pull-right">$22.00</span>--%>
-            <%--                                    </h4>--%>
-            <%--                                </div>--%>
-            <%--                            </div>--%>
-            <%--                        </li>--%>
-            <%--                    </ul>--%>
-            <%--                </div>--%>
-            <%--            </div>--%>
         </div>
     </div>
 
@@ -379,15 +302,13 @@ Lower Header Section
         <div class="row-fluid">
             <div class="span2">
                 <h5>Liên kết</h5>
-                <a href="">Trang chủ</a><br>
-                <a href="/list-view">Tất cả sản phẩm</a><br>
-                <a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a><br>
-                <a href="?action=gioi-thieu">Giới thiệu</a><br>
+                <a href="#">Trang chủ</a><br>
+                <a href="#">Hướng dẫn mua hàng</a><br>
+                <a href="#">Giới thiệu</a><br>
             </div>
             <div class="span2">
                 <h5>Chính sách hỗ trợ</h5>
                 <a href="#">Tìm kiếm</a><br>
-                <a href="#">Giới thiệu</a><br>
                 <a href="#">Chính sách thanh toán</a><br>
                 <a href="#">Chính sách vận chuyển</a><br>
             </div>

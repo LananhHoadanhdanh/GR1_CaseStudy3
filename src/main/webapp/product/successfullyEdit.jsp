@@ -1,7 +1,13 @@
-<!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 12/5/2021
+  Time: 5:55 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -28,7 +34,7 @@
 </head>
 <body>
 <!--
-Upper Header Section
+	Upper Header Section
 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="topNav">
@@ -42,9 +48,11 @@ Upper Header Section
                 <c:if test="${sessionScope.acc == null}">
                     <a href="/login"><span class="icon-edit"></span> Đăng nhập</a>
                 </c:if>
-                <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                <c:if test="${sessionScope.acc == null}">
+                    <a href="/register"><span class="icon-edit"></span> Đăng kí</a>
+                </c:if>
                 <a href="contact.html"><span class="icon-envelope"></span> Liên lạc</a>
-                <c:if test="${sessionScope.acc != null}">
+                <c:if test="${sessionScope.acc != null && acc.roleId == 2}">
                     <a class="active" href="Cart?action=def&username=${acc.username}"><span class="icon-shopping-cart"></span> Giỏ hàng<span
                             class="badge badge-warning"></span></a>
                 </c:if>
@@ -62,7 +70,7 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="/login">
+                    <a class="logo" href="http://localhost:8080"><span>Twitter Bootstrap ecommerce template</span>
                         <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                     </a>
                 </h1>
@@ -70,7 +78,11 @@ Lower Header Section
             <div class="span4">
             </div>
             <div class="span4 alignR">
-                <p><br> <strong> Hỗ trợ (24/7) : 088 1234 678 </strong><br><br></p>
+                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
+                <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
+                <span class="btn btn-warning btn-mini">$</span>
+                <span class="btn btn-mini">&pound;</span>
+                <span class="btn btn-mini">&euro;</span>
             </div>
         </div>
     </header>
@@ -88,14 +100,23 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="/">Trang chủ</a></li>
-                        <li class="active"><a href="/list-view">Tất cả sản phẩm</a></li>
-                        <li class=""><a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
-                        <li class=""><a href="?action=gioi-thieu">Giới thiệu</a></li>
-                        <li class=""><a href="general.html">Tin tức</a></li>
+                        <li class="active"><a href="?action=home">Trang chủ </a></li>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=create">Thêm sản phẩm mới</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addCategory">Thêm danh mục</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc != null && sessionScope.acc.roleId == 1}">
+                            <li class=""><a href="/products?action=addBrand">Thêm nhãn hiệu</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.acc == null || sessionScope.acc.roleId == 2}">
+                            <li class=""><a href="/?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a></li>
+                            <li class=""><a href="/?action=gioi-thieu">Giới thiệu</a></li>
+                        </c:if>
                     </ul>
-                    <form method="post" action="findByName" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2">
+                    <form method="get" action="/" class="navbar-search pull-right">
+                        <input type="text" placeholder="Search" class="search-query span2" name="Search">
                         <input type="submit" value="Search">
                     </form>
                 </div>
@@ -111,7 +132,8 @@ Lower Header Section
                 <h3>Danh mục sản phẩm</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listCategory}" var="category">
-                        <li class="${tag == category.id ? "active":""}"><a href="category?cid=${category.id}">
+                        <li class="${tag == category.id ? "active":""}"><a
+                                href="/?action=show-product-by-category&cid=${category.id}">
                     <span class="icon-chevron-right">
                             ${category.name}
                     </span>
@@ -125,22 +147,27 @@ Lower Header Section
                 <h3>Sản phẩm theo thể loại</h3>
                 <ul class="nav nav-list">
                     <c:forEach items="${listBrand}" var="brand">
-                        <li  class="${tagBrand == brand.id ? "active":""}"><a href="brand?bid=${brand.id}"><span class="icon-chevron-right"> ${brand.name}</span></a>
+                        <li class="${tagBrand == brand.id ? "active":""}"><a
+                                href="/?action=show-product-by-brand&bid=${brand.id}"><span
+                                class="icon-chevron-right"> ${brand.name}</span></a>
                         </li>
                     </c:forEach>
                 </ul>
             </div>
 
+            <a class="shopBtn btn-block" href="#">Upcoming products <br><small>Click to view</small></a>
+            <br>
+            <br>
             <ul class="nav nav-list promowrapper">
                 <c:forEach var="product" items="${upComingProducts}">
                     <li>
                         <div class="thumbnail">
-                            <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                            <a class="zoomTool" href="/products?action=view&id=${product.id}" title="add to cart"><span
                                     class="icon-search"></span> QUICK VIEW</a>
 
                             <img src="${product.image}" alt="">
                             <div class="caption">
-                                <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span
+                                <h4><a class="defaultBtn" href="/products?action=view&id=${product.id}">VIEW</a> <span
                                         class="pull-right">${product.price}</span>
                                 </h4>
                             </div>
@@ -148,66 +175,40 @@ Lower Header Section
                     </li>
                     <li style="border:0"> &nbsp;</li>
                 </c:forEach>
-
-                <%--        <li>--%>
-                <%--            <div class="thumbnail">--%>
-                <%--                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-                <%--                        class="icon-search"></span> QUICK VIEW</a>--%>
-                <%--                <img src="assets/img/shopping-cart-template.PNG" alt="shopping cart template">--%>
-                <%--                <div class="caption">--%>
-                <%--                    <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span--%>
-                <%--                            class="pull-right">$22.00</span>--%>
-                <%--                    </h4>--%>
-                <%--                </div>--%>
-                <%--            </div>--%>
-                <%--        </li>--%>
-                <%--        <li style="border:0"> &nbsp;</li>--%>
-                <%--        <li>--%>
-                <%--            <div class="thumbnail">--%>
-                <%--                <a class="zoomTool" href="product_details.html" title="add to cart"><span--%>
-                <%--                        class="icon-search"></span> QUICK VIEW</a>--%>
-                <%--                <img src="assets/img/bootstrap-template.png" alt="bootstrap template">--%>
-                <%--                <div class="caption">--%>
-                <%--                    <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span--%>
-                <%--                            class="pull-right">$22.00</span>--%>
-                <%--                    </h4>--%>
-                <%--                </div>--%>
-                <%--            </div>--%>
-                <%--        </li>--%>
             </ul>
         </div>
         <div class="span9">
-            <!--
-            New Products
-            -->
-            <div class="well well-small">
-                <h3>Our Products </h3>
-                <div class="row-fluid">
-                    <ul class="thumbnails">
-                        <c:forEach var="product" items="${products}">
-                            <li class="span4" style="margin: 0px !important; padding: 5px">
-                                <div class="thumbnail">
-                                    <a href="?action=product-detail&id=${product.id}" class="overlay"></a>
-                                    <a class="zoomTool" href="?action=product-detail&id=${product.id}" title="add to cart"><span
-                                            class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="?action=product-detail&id=${product.id}"><img src="${product.image}" alt=""></a>
-                                    <div class="caption cntr">
-                                        <h3>${product.name}</h3>
-                                        <p><strong> ${product.price}</strong></p>
-                                        <span>VNĐ</span><br>
-                                        <span>Số lượng: </span>
-                                        <span><strong> ${product.quantity}</strong></span>
-                                        <h4><a class="shopBtn" href="/login" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </div>
+            <h1>Cập nhật sản phẩm thành công. Trở về trang chủ để tiếp tục</h1>
         </div>
     </div>
+    <!--
+    Clients
+    -->
+    <section class="our_client">
+        <hr class="soften"/>
+        <h4 class="title cntr"><span class="text">Manufactures</span></h4>
+        <hr class="soften"/>
+        <div class="row">
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/1.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/2.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/3.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/4.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/5.png"></a>
+            </div>
+            <div class="span2">
+                <a href="#"><img alt="" src="assets/img/6.png"></a>
+            </div>
+        </div>
+    </section>
 
     <!--
     Footer
@@ -215,26 +216,28 @@ Lower Header Section
     <footer class="footer">
         <div class="row-fluid">
             <div class="span2">
-                <h5>Liên kết</h5>
-                <a href="">Trang chủ</a><br>
-                <a href="/list-view">Tất cả sản phẩm</a><br>
-                <a href="?action=huong-dan-mua-hang">Hướng dẫn mua hàng</a><br>
-                <a href="?action=gioi-thieu">Giới thiệu</a><br>
+                <h5>Your Account</h5>
+                <a href="#">YOUR ACCOUNT</a><br>
+                <a href="#">PERSONAL INFORMATION</a><br>
+                <a href="#">ADDRESSES</a><br>
+                <a href="#">DISCOUNT</a><br>
+                <a href="#">ORDER HISTORY</a><br>
             </div>
             <div class="span2">
-                <h5>Chính sách hỗ trợ</h5>
-                <a href="#">Tìm kiếm</a><br>
-                <a href="#">Giới thiệu</a><br>
-                <a href="#">Chính sách thanh toán</a><br>
-                <a href="#">Chính sách vận chuyển</a><br>
+                <h5>Iinformation</h5>
+                <a href="contact.html">CONTACT</a><br>
+                <a href="#">SITEMAP</a><br>
+                <a href="#">LEGAL NOTICE</a><br>
+                <a href="#">TERMS AND CONDITIONS</a><br>
+                <a href="#">ABOUT US</a><br>
             </div>
             <div class="span2">
-                <%--                <h5>Our Offer</h5>--%>
-                <%--                <a href="#">NEW PRODUCTS</a> <br>--%>
-                <%--                <a href="#">TOP SELLERS</a><br>--%>
-                <%--                <a href="#">SPECIALS</a><br>--%>
-                <%--                <a href="#">MANUFACTURERS</a><br>--%>
-                <%--                <a href="#">SUPPLIERS</a> <br/>--%>
+                <h5>Our Offer</h5>
+                <a href="#">NEW PRODUCTS</a> <br>
+                <a href="#">TOP SELLERS</a><br>
+                <a href="#">SPECIALS</a><br>
+                <a href="#">MANUFACTURERS</a><br>
+                <a href="#">SUPPLIERS</a> <br/>
             </div>
             <div class="span6">
                 <h5>The standard chunk of Lorem</h5>
@@ -259,7 +262,7 @@ Lower Header Section
         <span>Copyright &copy; 2013<br> bootstrap ecommerce shopping template</span>
     </div>
 </div>
-<a href="http://localhost:8080/" class="gotop"><i class="icon-double-angle-up"></i></a>
+<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -268,4 +271,5 @@ Lower Header Section
 <script src="assets/js/shop.js"></script>
 </body>
 </html>
+
 

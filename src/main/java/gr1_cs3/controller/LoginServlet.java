@@ -25,9 +25,8 @@ import java.util.List;
 public class LoginServlet extends HttpServlet {
 
     MemberService memberService = new MemberServiceImpl();
-    ProductService productService = new ProductServiceImpl();
-    CategoryService categoryService = new CategoryServiceImpl();
-    BrandService brandService = new BrandServiceImpl();
+    public static CategoryService categoryService = new CategoryServiceImpl();
+    public static BrandService brandService = new BrandServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +35,10 @@ public class LoginServlet extends HttpServlet {
 
     private void showLoginPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("member/login.jsp");
+        List<Category> categories = categoryService.findAll();
+        List<Brand> brands = brandService.findAll();
+        request.setAttribute("listCategory", categories);
+        request.setAttribute("listBrand", brands);
         dispatcher.forward(request, response);
 
     }
@@ -61,26 +64,7 @@ public class LoginServlet extends HttpServlet {
             if (memberService.checkLogin(username, password)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("acc", member);
-                String txtSearch = request.getParameter("Search");
-                if (txtSearch == null) {
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-                    List<Product> newProducts = productService.printFourProduct();
-                    List<Product> products = productService.findAll();
-                    List<Product> upComingProducts = productService.getUpcomingProduct();
-                    List<Category> categories = categoryService.findAll();
-                    List<Brand> brands = brandService.findAll();
-                    request.setAttribute("newProducts", newProducts);
-                    request.setAttribute("products", products);
-                    request.setAttribute("upComingProducts", upComingProducts);
-                    request.setAttribute("listCategory", categories);
-                    request.setAttribute("listBrand", brands);
-                    requestDispatcher.forward(request, response);
-                } else {
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/home.jsp");
-                    List<Product> products = productService.findByName(txtSearch);
-                    request.setAttribute("products", products);
-                    requestDispatcher.forward(request, response);
-                }
+                HomepageServlet.showHomePage(request, response);
             } else {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("member/login.jsp");
                 requestDispatcher.forward(request, response);

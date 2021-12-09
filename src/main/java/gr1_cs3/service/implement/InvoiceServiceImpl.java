@@ -29,8 +29,9 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                      " inner join orderdetail on orderdetail.productId = product.id\n" +
                      " inner join `order` on orderdetail.orderId = `order`.id\n" +
                      "inner join member on `member`.id=memberId\n" +
-                     "where member.username=?;");) {
+                     "where member.username=? and `order`.status=?;");) {
             preparedStatement.setString(1, username);
+            preparedStatement.setInt(2, 0);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -48,6 +49,37 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
                 if (status == 0) {
                     products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity, productId, orderId));
                 }
+            }
+        } catch (SQLException ignored) {
+        }
+        return products;
+    }
+
+    public List<Invoice> findAllOrder(String username) {
+        List<Invoice> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
+                     "from product\n" +
+                     " inner join orderdetail on orderdetail.productId = product.id\n" +
+                     " inner join `order` on orderdetail.orderId = `order`.id\n" +
+                     "inner join member on `member`.id=memberId\n" +
+                     "where member.username=? and `order`.status=1;");) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                int productId = rs.getInt("productId");
+                int orderId = rs.getInt("orderId");
+                int quantity = rs.getInt("quantity");
+                int categoryId = rs.getInt("categoryId");
+                String image = rs.getString("image");
+                int brandId = rs.getInt("brandId");
+                int productquantity = rs.getInt("product_quantity");
+                int status = rs.getInt("status");
+                String description = rs.getString("description");
+                products.add(new Invoice(id, name, price, quantity, categoryId, image, brandId, description, productquantity, productId, orderId));
             }
         } catch (SQLException ignored) {
         }
@@ -133,6 +165,19 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
         return order;
     }
 
+
+    @Override
+    public void payOrder(String username) {
+        Order order = getOrder(username);
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `cs3_g1`.`order` SET `status` = '1' WHERE `id` = ?;");) {
+            preparedStatement.setInt(1, order.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     @Override
     public void augmentToCart(int idProduct, String userName) {
         try (Connection connection = getConnection();
@@ -213,6 +258,19 @@ public class InvoiceServiceImpl implements InvoiceService<Invoice> {
              PreparedStatement preparedStatement = connection.prepareStatement(
                      "    DELETE FROM `cs3_g1`.`orderdetail` WHERE `orderId` = ?;")) {
             preparedStatement.setInt(1, getOrder(userName).getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteOrder(String userName) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "DELETE FROM `cs3_g1`.`order` WHERE  memberId=? and status =?;")) {
+            preparedStatement.setInt(1, getIdUser(userName));
+            preparedStatement.setInt(2, 1);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
